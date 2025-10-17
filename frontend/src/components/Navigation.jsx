@@ -1,6 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FiShoppingCart, FiHeart, FiUser, FiMenu } from "react-icons/fi";
+import {
+  FiShoppingCart,
+  FiHeart,
+  FiUser,
+  FiMenu,
+  FiAlertCircle,
+  FiCheck,
+} from "react-icons/fi";
 import { FaSearch } from "react-icons/fa";
 
 const Navigation = () => {
@@ -8,22 +15,28 @@ const Navigation = () => {
     <nav className="text-white w-full bg-[#272343]">
       <div className="w-full border-b border-gray-700">
         <div className="max-w-[1320px] mx-auto flex flex-wrap items-center justify-center md:justify-between py-2 px-4 text-xs md:text-sm text-gray-400">
-          <p className="text-center md:text-left">
-            ✓ Free Shipping on All Orders Over $50
+          <p className="text-center md:text-left flex items-center gap-1">
+            <FiCheck /> Free Shipping on All Orders Over $50
           </p>
           <div className="hidden md:flex items-center gap-4 text-gray-400 text-sm">
             <div className="relative">
-              <select className="bg-transparent !text-gray-400 border border-gray-400 rounded px-2 py-1 hover:text-white focus:outline-none focus:border-white transition">
+              <select className="bg-transparent !text-gray-400 rounded px-2 py-1 hover:text-white transition">
                 <option value="en">Eng</option>
                 <option value="vi">Vi</option>
               </select>
             </div>
             <span className="hover:text-white transition cursor-pointer">
-              FAQs
+              Faqs
             </span>
-            <a href="/help" className="hover:text-white transition underline">
-              Need Help?
-            </a>
+            <div className="">
+              <a
+                href="/help"
+                className="hover:text-white transition flex items-center gap-1"
+              >
+                <FiAlertCircle />
+                Need Help?
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -74,38 +87,38 @@ const Navigation = () => {
         <div className="max-w-[1320px] mx-auto flex flex-wrap justify-between items-center px-4 py-3">
           <div className="flex items-center space-x-4 sm:space-x-6 flex-wrap">
             <button className="border border-gray-300 rounded px-3 py-1 text-[14px] bg-white text-gray-800 hover:bg-gray-50 flex items-center gap-1">
-              <FiMenu className="text-[20px]" />
-              <span>All Categories</span>
+              <FiMenu className="text-[20px] flex items-center" />
+              <span className="font-[#272343] font-medium">All Categories</span>
             </button>
 
-            <div className="hidden md:flex items-center space-x-4 gap-6">
+            <div className="text-[#636270] hidden md:flex items-center space-x-4 gap-6">
               <Link
                 to="/"
-                className="text-gray-800 hover:text-[#007580] text-[14px] transition"
+                className=" hover:text-[#007580] text-[14px] transition"
               >
                 Home
               </Link>
               <Link
                 to="/shop"
-                className="text-gray-800 hover:text-[#007580] text-[14px] transition"
+                className=" hover:text-[#007580] text-[14px] transition"
               >
                 Shop
               </Link>
               <Link
                 to="/product"
-                className="text-gray-800 hover:text-[#007580] text-[14px] transition"
+                className=" hover:text-[#007580] text-[14px] transition"
               >
                 Product
               </Link>
               <Link
                 to="/pages"
-                className="text-gray-800 hover:text-[#007580] text-[14px] transition"
+                className=" hover:text-[#007580] text-[14px] transition"
               >
                 Pages
               </Link>
               <Link
                 to="/about"
-                className="text-gray-800 hover:text-[#007580] text-[14px] transition"
+                className=" hover:text-[#007580] text-[14px] transition"
               >
                 About
               </Link>

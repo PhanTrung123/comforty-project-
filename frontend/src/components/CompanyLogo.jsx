@@ -17,7 +17,7 @@ const CompanyLogo = () => {
         {logos.map((logo, index) => (
           <div
             key={index}
-            className="flex items-center justify-center w-[120px] sm:w-[160px] opacity-70 hover:opacity-100 transition-opacity duration-300"
+            className="flex items-center justify-center w-[120px] sm:w-[160px]  transition-opacity duration-300"
           >
             <img
               src={logo}

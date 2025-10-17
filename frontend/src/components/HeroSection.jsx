@@ -6,24 +6,24 @@ const HeroSection = () => {
   const slides = [
     {
       id: 1,
-      title: "Welcome to Chairy",
-      desc: " Best Furniture Collection For Your Interior.",
+      title: "Modern Comfort for Your Home",
+      desc: "Discover elegant furniture designed to bring comfort and style to every room.",
       image: "/Product Image.png",
-      discount: 54,
+      discount: 30,
     },
     {
       id: 2,
-      title: "Welcome to Chairy",
-      desc: " Best Furniture Collection For Your Interior.",
-      image: "/Product Image.png",
-      discount: 54,
+      title: "Timeless Wooden Collections",
+      desc: "Crafted from the finest wood, our pieces blend tradition with modern aesthetics.",
+      image: "/image/product1.jpg",
+      discount: 45,
     },
     {
       id: 3,
-      title: "Welcome to Chairy",
-      desc: " Best Furniture Collection For Your Interior.",
-      image: "/Product Image.png",
-      discount: 54,
+      title: "Luxury Meets Simplicity",
+      desc: "Upgrade your living space with minimalist yet luxurious furniture pieces.",
+      image: "/image/product2.jpg",
+      discount: 50,
     },
   ];
 
@@ -48,15 +48,15 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="relative w-full rounded-b-lg  h-[850px] bg-gradient-to-br from-[#f0f2f3] to-[#e1e3e6] flex items-center overflow-hidden">
-      <div className="absolute  rounded-full bg-[#e1e3e6] opacity-70 w-[747px] h-[747px] -top-[196px] left-[804px] z-0"></div>
+    <div className="relative w-full rounded-b-lg  h-[850px] bg-[#F0F2F3] flex items-center overflow-hidden">
+      <div className="absolute rounded-full bg-[#E1E3E5] opacity-70 w-[747px] h-[747px] -top-[60%] left-1/2 transform -translate-x-1/2 z-0"></div>
       <div className="absolute inset-0 bg-gradient-to-r from-[#e1e3e6]/70 to-[#f0f2f3]/70 z-10"></div>
       <div className="relative z-20 w-full max-w-[1280px] mx-auto px-6 md:px-12 flex items-center justify-between">
         <div className="w-full md:w-1/2 text-left">
-          <p className="text-gray-500 text-sm uppercase tracking-wide mb-3">
+          <p className="text-gray-800 text-sm uppercase tracking-wide mb-3">
             {slide.title}
           </p>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6 leading-tight break-words">
+          <h1 className=" md:text-5xl !font-bold text-7xl text-gray-800 mb-6 leading-tight break-words">
             {slide.desc}
           </h1>
           <button className="!bg-[#029FAE] text-white px-6 py-3 rounded-lg hover:bg-teal-600 transition-all duration-300 flex items-center gap-3 shadow-md hover:shadow-lg">
