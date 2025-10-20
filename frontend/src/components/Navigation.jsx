@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   FiShoppingCart,
@@ -11,6 +11,8 @@ import {
 import { FaSearch } from "react-icons/fa";
 
 const Navigation = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <nav className="text-white w-full bg-[#272343]">
       <div className="w-full border-b border-gray-700">
@@ -28,15 +30,12 @@ const Navigation = () => {
             <span className="hover:text-white transition cursor-pointer">
               Faqs
             </span>
-            <div className="">
-              <a
-                href="/help"
-                className="hover:text-white transition flex items-center gap-1"
-              >
-                <FiAlertCircle />
-                Need Help?
-              </a>
-            </div>
+            <a
+              href="/help"
+              className="hover:text-white transition flex items-center gap-1"
+            >
+              <FiAlertCircle /> Need Help?
+            </a>
           </div>
         </div>
       </div>
@@ -58,7 +57,7 @@ const Navigation = () => {
                 placeholder="Search here..."
                 className="w-full p-2 pl-3 pr-10 rounded outline-none bg-white border border-gray-300"
               />
-              <span className="absolute inset-y-0 right-3 flex items-center text-gray-500">
+              <span className="cursor-pointer absolute inset-y-0 right-3 flex items-center text-gray-500">
                 <FaSearch />
               </span>
             </div>
@@ -86,39 +85,42 @@ const Navigation = () => {
       <div className="bg-white text-gray-800 border-t border-gray-200 w-full">
         <div className="max-w-[1320px] mx-auto flex flex-wrap justify-between items-center px-4 py-3">
           <div className="flex items-center space-x-4 sm:space-x-6 flex-wrap">
-            <button className="border border-gray-300 rounded px-3 py-1 text-[14px] bg-white text-gray-800 hover:bg-gray-50 flex items-center gap-1">
-              <FiMenu className="text-[20px] flex items-center" />
+            <button
+              className=" border border-gray-300 rounded px-3 py-1 text-[14px] bg-white text-gray-800 hover:bg-gray-50 flex items-center gap-1"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              <FiMenu className="text-[20px]" />
               <span className="font-[#272343] font-medium">All Categories</span>
             </button>
 
-            <div className="text-[#636270] hidden md:flex items-center space-x-4 gap-6">
+            <div className="hidden md:flex items-center space-x-4 gap-6">
               <Link
                 to="/"
-                className=" hover:text-[#007580] text-[14px] transition"
+                className="hover:text-[#007580] text-[14px] transition"
               >
                 Home
               </Link>
               <Link
                 to="/shop"
-                className=" hover:text-[#007580] text-[14px] transition"
+                className="hover:text-[#007580] text-[14px] transition"
               >
                 Shop
               </Link>
               <Link
                 to="/product"
-                className=" hover:text-[#007580] text-[14px] transition"
+                className="hover:text-[#007580] text-[14px] transition"
               >
                 Product
               </Link>
               <Link
                 to="/pages"
-                className=" hover:text-[#007580] text-[14px] transition"
+                className="hover:text-[#007580] text-[14px] transition"
               >
                 Pages
               </Link>
               <Link
                 to="/about"
-                className=" hover:text-[#007580] text-[14px] transition"
+                className="hover:text-[#007580] text-[14px] transition"
               >
                 About
               </Link>
@@ -128,6 +130,43 @@ const Navigation = () => {
             Contact: <span className="font-bold ml-1">(808) 555-0111</span>
           </div>
         </div>
+
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-gray-50 border-t border-gray-200">
+            <div className="flex flex-col px-4 py-2 space-y-2">
+              <Link
+                to="/"
+                className="hover:text-[#007580] text-[14px] transition"
+              >
+                Home
+              </Link>
+              <Link
+                to="/shop"
+                className="hover:text-[#007580] text-[14px] transition"
+              >
+                Shop
+              </Link>
+              <Link
+                to="/product"
+                className="hover:text-[#007580] text-[14px] transition"
+              >
+                Product
+              </Link>
+              <Link
+                to="/pages"
+                className="hover:text-[#007580] text-[14px] transition"
+              >
+                Pages
+              </Link>
+              <Link
+                to="/about"
+                className="hover:text-[#007580] text-[14px] transition"
+              >
+                About
+              </Link>
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );

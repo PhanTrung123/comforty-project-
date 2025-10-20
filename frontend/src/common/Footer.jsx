@@ -91,21 +91,25 @@ const Footer = () => {
         </div>
         {footerLinks.map((link, index) => (
           <div key={index} className="flex flex-col">
-            <h4 className="text-[#9A9CAA] uppercase mb-3">{link.title}</h4>
+            <h4 className="!text-[#9A9CAA] font-medium uppercase mb-3">
+              {link.title}
+            </h4>
 
             {link.input ? (
               <>
-                <div className="flex w-full">
-                  <input
-                    type="email"
-                    placeholder="Your email"
-                    className="flex-1 border border-gray-300 rounded-l-md px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-teal-500"
-                  />
-                  <button className="bg-teal-600 text-white px-4 py-2 rounded-r-md hover:bg-teal-700 transition">
+                <div className="flex flex-row gap-2">
+                  <div className=" w-full flex">
+                    <input
+                      type="email"
+                      placeholder="Your email"
+                      className="flex-1 border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-teal-500"
+                    />
+                  </div>
+                  <button className="bg-[#029FAE] flex  text-white px-4 py-2 rounded-md hover:bg-[#008490] transition">
                     Subscribe
                   </button>
                 </div>
-                <p className="text-gray-500 text-sm mt-3 leading-relaxed">
+                <p className="text-sm mt-3 leading-relaxed font-normal text-[#272343]">
                   {link.description}
                 </p>
               </>
@@ -114,7 +118,7 @@ const Footer = () => {
                 {link.items.map((item, i) => (
                   <li
                     key={i}
-                    className="hover:text-teal-600 cursor-pointer transition"
+                    className="hover:text-teal-600 hover:underline cursor-pointer text-[#272343] transition"
                   >
                     {item}
                   </li>

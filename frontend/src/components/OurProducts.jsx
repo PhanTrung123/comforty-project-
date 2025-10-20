@@ -1,3 +1,4 @@
+// OurProducts.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Products from "../common/Products";
@@ -19,7 +20,6 @@ const OurProducts = () => {
       id: 1,
       name: "Library Stool Chair",
       price: "$20",
-      oldPrice: null,
       image: "/image/product1.jpg",
       status: "New",
       tagColor: "bg-teal-500",
@@ -37,42 +37,36 @@ const OurProducts = () => {
       id: 3,
       name: "Library Stool Chair",
       price: "$20",
-      oldPrice: null,
       image: "/image/product3.jpg",
     },
     {
       id: 4,
       name: "Library Stool Chair",
       price: "$20",
-      oldPrice: null,
       image: "/image/product4.jpg",
     },
     {
       id: 5,
       name: "Library Stool Chair",
       price: "$20",
-      oldPrice: null,
       image: "/image/product5.jpg",
     },
     {
       id: 6,
       name: "Library Stool Chair",
       price: "$20",
-      oldPrice: null,
       image: "/image/product6.jpg",
     },
     {
       id: 7,
       name: "Library Stool Chair",
       price: "$20",
-      oldPrice: null,
       image: "/image/product7.jpg",
     },
     {
       id: 8,
       name: "Library Stool Chair",
       price: "$20",
-      oldPrice: null,
       image: "/image/product8.jpg",
     },
   ];
@@ -82,6 +76,7 @@ const OurProducts = () => {
       <div className="flex items-center justify-center mb-8">
         <h3 className="text-2xl font-semibold text-gray-800">Our Products</h3>
       </div>
+
       <div className="flex flex-wrap justify-center items-center gap-6 mb-10 text-gray-600 text-base font-medium">
         {tabItems.map(({ text, path }) => (
           <button
@@ -100,7 +95,12 @@ const OurProducts = () => {
           </button>
         ))}
       </div>
-      <Products products={productsList} />
+
+      {/* Grid 4 cột × 2 hàng */}
+      <Products
+        gridCols="grid-cols-1 sm:grid-cols-2 md:grid-cols-4"
+        products={productsList}
+      />
     </section>
   );
 };

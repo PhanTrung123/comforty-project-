@@ -15,7 +15,6 @@ const LandingPage = () => {
       <FeaturedProducts />
       <TopCatagories />
       <OurProducts />
-      <FeaturedProducts />
     </Layout>
   );
 };

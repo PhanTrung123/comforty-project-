@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { FaArrowRightLong } from "react-icons/fa6";
-import { FaArrowLeftLong } from "react-icons/fa6";
+import React, { useRef } from "react";
+import Slider from "react-slick";
+import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
+import { settings } from "../common/Products";
 
 const HeroSection = () => {
   const slides = [
@@ -27,90 +28,96 @@ const HeroSection = () => {
     },
   ];
 
-  const totalSlides = slides.length;
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const slide = slides[currentSlide];
+  const sliderRef = useRef(null);
 
-  const handleNext = () => {
-    if (currentSlide < totalSlides - 1) {
-      setCurrentSlide(currentSlide + 1);
-    }
-  };
-
-  const handlePrev = () => {
-    if (currentSlide > 0) {
-      setCurrentSlide(currentSlide - 1);
-    }
-  };
-
-  const handleDotClick = (index) => {
-    setCurrentSlide(index);
+  const heroSettings = {
+    ...settings,
+    dots: true,
+    slidesToShow: 1,
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    speed: 800,
   };
 
   return (
-    <div className="relative w-full rounded-b-lg  h-[850px] bg-[#F0F2F3] flex items-center overflow-hidden">
-      <div className="absolute rounded-full bg-[#E1E3E5] opacity-70 w-[747px] h-[747px] -top-[60%] left-1/2 transform -translate-x-1/2 z-0"></div>
+    <section className="relative w-full bg-[#F0F2F3] overflow-hidden rounded-b-lg py-10 md:py-20 lg:py-28">
       <div className="absolute inset-0 bg-gradient-to-r from-[#e1e3e6]/70 to-[#f0f2f3]/70 z-10"></div>
-      <div className="relative z-20 w-full max-w-[1280px] mx-auto px-6 md:px-12 flex items-center justify-between">
-        <div className="w-full md:w-1/2 text-left">
-          <p className="text-gray-800 text-sm uppercase tracking-wide mb-3">
-            {slide.title}
-          </p>
-          <h1 className=" md:text-5xl !font-bold text-7xl text-gray-800 mb-6 leading-tight break-words">
-            {slide.desc}
-          </h1>
-          <button className="!bg-[#029FAE] text-white px-6 py-3 rounded-lg hover:bg-teal-600 transition-all duration-300 flex items-center gap-3 shadow-md hover:shadow-lg">
-            Shop Now
-            <span className="w-6 h-6 items-center flex ">
-              <FaArrowRightLong />
-            </span>
-          </button>
-        </div>
+
+      <div className="relative z-20 w-full max-w-[1320px] mx-auto px-6 md:px-10">
+        <Slider ref={sliderRef} {...heroSettings}>
+          {slides.map((slide) => (
+            <div key={slide.id}>
+              <div
+                className="flex flex-col-reverse md:flex-row items-center justify-between 
+                gap-10 md:gap-10 lg:gap-12 min-h-[480px] md:min-h-[550px] lg:min-h-[600px]"
+              >
+                <div
+                  className="w-full md:w-1/2 flex flex-col justify-center text-left 
+                  pt-6 md:pt-0 md:pr-4 lg:pr-6"
+                >
+                  <p className="text-gray-700 text-xs sm:text-sm uppercase tracking-wide mb-2 sm:mb-3">
+                    {slide.title}
+                  </p>
+                  <h1
+                    className="text-[20px] sm:text-[26px] md:text-[34px] lg:text-[42px] xl:text-[48px] 
+                    font-bold text-gray-800 mb-4 sm:mb-6 leading-snug md:leading-tight"
+                  >
+                    {slide.desc}
+                  </h1>
+                  <button
+                    className="bg-[#029FAE] text-white px-6 py-3 rounded-lg hover:bg-teal-600 
+                    transition-all duration-300 flex items-center gap-3 shadow-md hover:shadow-lg w-fit"
+                  >
+                    Shop Now
+                    <FaArrowRightLong />
+                  </button>
+                </div>
+                <div
+                  className="relative w-full md:w-1/2 flex items-center justify-center 
+                  md:pl-4 lg:pl-6"
+                >
+                  <img
+                    src={slide.image}
+                    alt={slide.title}
+                    className="w-[80%] sm:w-[70%] md:w-[90%] lg:w-[85%] object-contain rounded-lg"
+                  />
+                  <div
+                    className="absolute top-[8%] right-[10%] bg-white rounded-full 
+                    w-16 h-16 sm:w-20 sm:h-20 flex flex-col items-center justify-center 
+                    text-center shadow-lg z-30 p-1"
+                  >
+                    <span className="text-lg sm:text-2xl text-red-600 font-bold">
+                      {slide.discount}%
+                    </span>
+                    <span className="text-[10px] sm:text-xs text-gray-600">
+                      Discount
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </Slider>
+        <button
+          onClick={() => sliderRef.current.slickPrev()}
+          className="hidden lg:flex absolute left-4 xl:-left-8 top-1/2 -translate-y-1/2 
+          z-20 items-center justify-center w-10 h-10 xl:w-14 xl:h-14 rounded-full 
+          bg-white shadow-md hover:bg-gray-100 hover:shadow-lg transition-all"
+        >
+          <FaArrowLeftLong className="text-[#029FAE]" />
+        </button>
 
         <button
-          onClick={handlePrev}
-          disabled={currentSlide === 0}
-          className="absolute !-left-12 z-20 flex items-center justify-center w-14 h-14 !rounded-full !bg-white shadow-md hover:shadow-lg !hover:bg-gray-100 transition-all duration-300 cursor-pointer disabled:cursor-not-allowed"
+          onClick={() => sliderRef.current.slickNext()}
+          className="hidden lg:flex absolute right-4 xl:-right-8 top-1/2 -translate-y-1/2 
+          z-20 items-center justify-center w-10 h-10 xl:w-14 xl:h-14 rounded-full 
+          bg-white shadow-md hover:bg-gray-100 hover:shadow-lg transition-all"
         >
-          <FaArrowLeftLong className="text-[#029FAE] text-xl" />
+          <FaArrowRightLong className="text-[#029FAE]" />
         </button>
-        <button
-          onClick={handleNext}
-          disabled={currentSlide === totalSlides - 1}
-          className="absolute !-right-12 z-20 flex items-center justify-center w-14 h-14 !rounded-full !bg-white shadow-md hover:shadow-lg !hover:bg-gray-100 transition-all duration-300 cursor-pointer disabled:cursor-not-allowed"
-        >
-          <FaArrowRightLong className="text-[#029FAE] text-xl" />
-        </button>
-        <div className="absolute rounded-full bg-[#e1e3e6] opacity-70 w-[747px] h-[747px] -top-[196px] left-[804px] z-0"></div>
-        <div className="relative w-[350px] md:w-[400px]">
-          <img
-            src={slide.image}
-            alt="Furniture Chair"
-            className="w-full object-cover z-20"
-          />
-          <div className="absolute -top-6 right-0 bg-white rounded-full w-20 h-20 flex flex-col items-center justify-center text-center shadow-lg z-30 p-1">
-            <span className="text-2xl text-red-600 font-bold">
-              {slide.discount}%
-            </span>
-            <span className="text-xs text-gray-600">Discount</span>
-          </div>
-        </div>
       </div>
-
-      <div className="absolute bottom-24 w-full flex justify-center space-x-4 px-4 z-20">
-        {slides.map((_, index) => (
-          <span
-            key={index}
-            onClick={() => handleDotClick(index)}
-            className={`w-3 h-3 rounded-full cursor-pointer transition-all duration-300 ${
-              currentSlide === index
-                ? "bg-gray-800 scale-125"
-                : "bg-gray-400 hover:bg-gray-500"
-            }`}
-          ></span>
-        ))}
-      </div>
-    </div>
+    </section>
   );
 };
 
