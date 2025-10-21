@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
+import SliderSpecial from "../common/SliderSpecial";
 
 const TopCategories = () => {
   const categories = [
@@ -47,21 +48,8 @@ const TopCategories = () => {
     },
   ];
 
-  const itemsPage = 5;
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const prevSlide = () => {
-    setCurrentIndex(
-      (prev) => (prev - 1 + categories.length) % categories.length
-    );
-  };
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % categories.length);
-  };
-  const visibleSlides = Array.from(
-    { length: itemsPage },
-    (_, i) => categories[(currentIndex + i) % categories.length]
-  );
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
 
   return (
     <section className="relative pb-8">
@@ -69,13 +57,13 @@ const TopCategories = () => {
         <h3 className="text-2xl font-bold text-gray-800">Top Categories</h3>
         <div className="flex items-center gap-3">
           <button
-            onClick={prevSlide}
+            ref={prevRef}
             className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-teal-500 hover:text-white transition-all duration-300"
           >
             <FaArrowLeftLong />
           </button>
           <button
-            onClick={nextSlide}
+            ref={nextRef}
             className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-teal-500 hover:text-white transition-all duration-300"
           >
             <FaArrowRightLong />
@@ -83,35 +71,12 @@ const TopCategories = () => {
         </div>
       </div>
 
-      <div className="w-full flex items-center justify-center space-x-4 overflow-hidden relative">
-        {visibleSlides.map((item, index) => {
-          let scale = "scale-90";
-          let opacity = "opacity-40";
-
-          if (index === 1 || index === 3 || index === 2) {
-            scale = "scale-100";
-            opacity = "opacity-100";
-          }
-
-          return (
-            <div
-              key={item.id}
-              className={`relative cursor-pointer group transition-all duration-500 ${scale} ${opacity} w-[220px] flex-shrink-0`}
-            >
-              <div className="w-full h-[300px] overflow-hidden rounded-lg flex items-center justify-center bg-gray-100">
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-              <div className="absolute text-left bottom-0 w-full bg-black/70 text-white p-2 text-sm rounded-b-lg">
-                <h3 className="!text-white font-semibold">{item.name}</h3>
-                <p className="opacity-90">{item.quantity}</p>
-              </div>
-            </div>
-          );
-        })}
+      <div className="w-full">
+        <SliderSpecial
+          products={categories}
+          prevRef={prevRef}
+          nextRef={nextRef}
+        />
       </div>
     </section>
   );

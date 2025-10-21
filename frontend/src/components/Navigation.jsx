@@ -9,47 +9,81 @@ import {
   FiCheck,
 } from "react-icons/fi";
 import { FaSearch } from "react-icons/fa";
+import { useCart } from "../context/CartContext";
 
 const Navigation = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { cartCount } = useCart();
+
+  const topBarData = {
+    promo: { icon: <FiCheck />, text: "Free Shipping on All Orders Over $50" },
+    languages: [
+      { label: "Eng", value: "en" },
+      { label: "Vi", value: "vi" },
+    ],
+    links: [
+      { label: "Faqs", href: "#" },
+      { label: "Need Help?", href: "/help", icon: <FiAlertCircle /> },
+    ],
+  };
+
+  const navLinks = [
+    { name: "Home", path: "/" },
+    { name: "Shop", path: "/shop" },
+    { name: "Product", path: "/product" },
+    { name: "Pages", path: "/pages" },
+    { name: "About", path: "/about" },
+  ];
+
+  const contactNumber = "(808) 555-0111";
 
   return (
     <nav className="text-white w-full bg-[#272343]">
       <div className="w-full border-b border-gray-700">
         <div className="max-w-[1320px] mx-auto flex flex-wrap items-center justify-center md:justify-between py-2 px-4 text-xs md:text-sm text-gray-400">
-          <p className="text-center md:text-left flex items-center gap-1">
-            <FiCheck /> Free Shipping on All Orders Over $50
+          <p className="flex items-center gap-1">
+            {topBarData.promo.icon}
+            {topBarData.promo.text}
           </p>
-          <div className="hidden md:flex items-center gap-4 text-gray-400 text-sm">
-            <div className="relative">
-              <select className="bg-transparent !text-gray-400 rounded px-2 py-1 hover:text-white transition">
-                <option value="en">Eng</option>
-                <option value="vi">Vi</option>
-              </select>
-            </div>
-            <span className="hover:text-white transition cursor-pointer">
-              Faqs
-            </span>
-            <a
-              href="/help"
-              className="hover:text-white transition flex items-center gap-1"
-            >
-              <FiAlertCircle /> Need Help?
-            </a>
+
+          <div className="hidden md:flex items-center gap-4 text-sm">
+            <select className="bg-transparent text-gray-400 rounded px-2 py-1 hover:text-white transition">
+              {topBarData.languages.map((lang) => (
+                <option key={lang.value} value={lang.value}>
+                  {lang.label}
+                </option>
+              ))}
+            </select>
+
+            {topBarData.links.map((item, i) =>
+              item.icon ? (
+                <a
+                  key={i}
+                  href={item.href}
+                  className="hover:text-white transition flex items-center gap-1"
+                >
+                  {item.icon} {item.label}
+                </a>
+              ) : (
+                <a
+                  key={i}
+                  href={item.href}
+                  className="hover:text-white transition"
+                >
+                  {item.label}
+                </a>
+              )
+            )}
           </div>
         </div>
       </div>
-
       <div className="bg-[#f0f2f3] text-gray-800 w-full">
         <div className="max-w-[1320px] mx-auto flex flex-wrap items-center justify-between gap-3 p-4">
-          <div className="flex items-center">
-            <img
-              src="/Logo.png"
-              alt="Comforty Logo"
-              className="w-[120px] sm:w-[166px] h-[40px] object-contain"
-            />
-          </div>
-
+          <img
+            src="/Logo.png"
+            alt="Comforty Logo"
+            className="w-[120px] sm:w-[166px] h-[40px] object-contain"
+          />
           <div className="flex-1 hidden md:flex justify-center">
             <div className="relative w-full max-w-md">
               <input
@@ -62,108 +96,67 @@ const Navigation = () => {
               </span>
             </div>
           </div>
-
           <div className="flex items-center space-x-3 sm:space-x-4 text-xl">
-            <button className="flex justify-center items-center w-[110px] sm:w-[120px] h-[40px] bg-white border border-gray-300 rounded-md hover:text-[#007580] hover:bg-gray-50 transition">
-              <span className="flex items-center gap-2 text-black">
-                <FiShoppingCart />
-                <span className="text-[12px] sm:text-[13px]">Cart</span>
-              </span>
+            <button className="relative flex items-center justify-center w-[110px] sm:w-[120px] h-[40px] bg-white border border-gray-300 rounded-md hover:text-[#007580] hover:bg-gray-50 transition">
+              <div className="flex items-center gap-2 text-black relative">
+                <FiShoppingCart className="text-[18px]" />
+                <span className="text-[13px] sm:text-[14px]">Cart</span>
+
+                {cartCount > 0 && (
+                  <span className="ml-2 bg-[#007580] text-white text-[11px] font-semibold min-w-[18px] h-[18px] px-[5px] rounded-full flex items-center justify-center">
+                    {cartCount}
+                  </span>
+                )}
+              </div>
             </button>
 
-            <button className="flex justify-center items-center w-[40px] h-[40px] bg-white border border-gray-300 rounded-md text-black hover:text-[#007580] hover:bg-gray-50 transition">
+            <button className="w-[40px] items-center flex justify-center h-[40px] bg-white border border-gray-300 rounded-md hover:text-[#007580] transition">
               <FiHeart />
             </button>
-
-            <button className="flex justify-center items-center w-[40px] h-[40px] bg-white border border-gray-300 rounded-md text-black hover:text-[#007580] hover:bg-gray-50 transition">
+            <button className="w-[40px]  items-center flex justify-center h-[40px] bg-white border border-gray-300 rounded-md hover:text-[#007580] transition">
               <FiUser />
             </button>
           </div>
         </div>
       </div>
-
       <div className="bg-white text-gray-800 border-t border-gray-200 w-full">
         <div className="max-w-[1320px] mx-auto flex flex-wrap justify-between items-center px-4 py-3">
           <div className="flex items-center space-x-4 sm:space-x-6 flex-wrap">
             <button
-              className=" border border-gray-300 rounded px-3 py-1 text-[14px] bg-white text-gray-800 hover:bg-gray-50 flex items-center gap-1"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="border border-gray-300 rounded px-3 py-1 text-[14px] bg-white hover:bg-gray-50 flex items-center gap-1"
             >
               <FiMenu className="text-[20px]" />
-              <span className="font-[#272343] font-medium">All Categories</span>
+              <span className="font-medium">All Categories</span>
             </button>
-
-            <div className="hidden md:flex items-center space-x-4 gap-6">
-              <Link
-                to="/"
-                className="hover:text-[#007580] text-[14px] transition"
-              >
-                Home
-              </Link>
-              <Link
-                to="/shop"
-                className="hover:text-[#007580] text-[14px] transition"
-              >
-                Shop
-              </Link>
-              <Link
-                to="/product"
-                className="hover:text-[#007580] text-[14px] transition"
-              >
-                Product
-              </Link>
-              <Link
-                to="/pages"
-                className="hover:text-[#007580] text-[14px] transition"
-              >
-                Pages
-              </Link>
-              <Link
-                to="/about"
-                className="hover:text-[#007580] text-[14px] transition"
-              >
-                About
-              </Link>
+            <div className="hidden md:flex items-center space-x-6">
+              {navLinks.map((link, i) => (
+                <Link
+                  key={i}
+                  to={link.path}
+                  className="hover:text-[#007580] text-[14px] transition"
+                >
+                  {link.name}
+                </Link>
+              ))}
             </div>
           </div>
           <div className="text-[13px] sm:text-[14px] mt-2 sm:mt-0 text-center sm:text-right w-full sm:w-auto">
-            Contact: <span className="font-bold ml-1">(808) 555-0111</span>
+            Contact: <span className="font-bold ml-1">{contactNumber}</span>
           </div>
         </div>
-
         {mobileMenuOpen && (
           <div className="md:hidden bg-gray-50 border-t border-gray-200">
             <div className="flex flex-col px-4 py-2 space-y-2">
-              <Link
-                to="/"
-                className="hover:text-[#007580] text-[14px] transition"
-              >
-                Home
-              </Link>
-              <Link
-                to="/shop"
-                className="hover:text-[#007580] text-[14px] transition"
-              >
-                Shop
-              </Link>
-              <Link
-                to="/product"
-                className="hover:text-[#007580] text-[14px] transition"
-              >
-                Product
-              </Link>
-              <Link
-                to="/pages"
-                className="hover:text-[#007580] text-[14px] transition"
-              >
-                Pages
-              </Link>
-              <Link
-                to="/about"
-                className="hover:text-[#007580] text-[14px] transition"
-              >
-                About
-              </Link>
+              {navLinks.map((link, i) => (
+                <Link
+                  key={i}
+                  to={link.path}
+                  className="hover:text-[#007580] text-[14px] transition"
+                >
+                  {link.name}
+                </Link>
+              ))}
             </div>
           </div>
         )}

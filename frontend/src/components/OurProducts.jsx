@@ -1,7 +1,7 @@
 // OurProducts.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Products from "../common/Products";
+import { FiShoppingCart } from "react-icons/fi";
 
 const OurProducts = () => {
   const navigate = useNavigate();
@@ -96,11 +96,48 @@ const OurProducts = () => {
         ))}
       </div>
 
-      {/* Grid 4 cột × 2 hàng */}
-      <Products
-        gridCols="grid-cols-1 sm:grid-cols-2 md:grid-cols-4"
-        products={productsList}
-      />
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 px-4 md:px-8">
+        {productsList.map((item) => (
+          <div
+            key={item.id}
+            className="rounded-xl overflow-hidden bg-white shadow-sm hover:shadow-lg transition-all duration-300 group cursor-pointer"
+          >
+            <div className="relative w-full h-[250px]">
+              <img
+                src={item.image}
+                alt={item.name}
+                className="w-full h-full object-cover"
+              />
+              {item.status && (
+                <span
+                  className={`absolute top-3 left-3 text-white text-xs font-semibold px-3 py-1 rounded-sm shadow-md ${item.tagColor}`}
+                >
+                  {item.status}
+                </span>
+              )}
+            </div>
+
+            <div className="p-4">
+              <p className="text-sm font-medium text-gray-800">{item.name}</p>
+              <div className="flex items-center justify-between mt-2">
+                <div className="flex items-center gap-2">
+                  <span className="text-lg font-semibold text-gray-800">
+                    {item.price}
+                  </span>
+                  {item.oldPrice && (
+                    <span className="text-sm text-gray-400 line-through">
+                      {item.oldPrice}
+                    </span>
+                  )}
+                </div>
+                <button className="w-10 h-10 flex items-center justify-center rounded-md bg-gray-100 hover:bg-[#029FAE] hover:text-white transition-all duration-300">
+                  <FiShoppingCart />
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </section>
   );
 };

@@ -25,3 +25,14 @@ h5,
 h6 {
   @apply font-semibold text-gray-900;
 }
+
+.slick-slide > div {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .slick-slide > div {
+    padding: 0 !important;
+  }
+}

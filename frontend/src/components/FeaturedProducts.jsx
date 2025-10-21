@@ -1,5 +1,5 @@
 import React from "react";
-import Products from "../common/Products";
+import ProductsSlider from "../common/ProductsSlider";
 
 const FeaturedProducts = () => {
   const featuredList = [
@@ -69,15 +69,7 @@ const FeaturedProducts = () => {
     },
   ];
 
-  return (
-    <Products
-      title="Featured Products"
-      products={featuredList}
-      itemsPage={4}
-      gridCols="md:grid-cols-4"
-      showPagination={true}
-    />
-  );
+  return <ProductsSlider title="Featured Products" products={featuredList} />;
 };
 
 export default FeaturedProducts;

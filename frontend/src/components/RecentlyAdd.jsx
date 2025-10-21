@@ -1,5 +1,5 @@
 import React from "react";
-import Products from "../common/Products";
+import ProductsSlider from "../common/ProductsSlider";
 
 const RecentlyAdd = () => {
   const recentlyAdd = [
@@ -56,7 +56,7 @@ const RecentlyAdd = () => {
   ];
 
   return (
-    <Products
+    <ProductsSlider
       title="Recently Added"
       products={recentlyAdd}
       itemsPage={4}

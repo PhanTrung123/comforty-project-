@@ -1,5 +1,8 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/effect-coverflow";
 
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";

@@ -21,18 +21,36 @@ const CommentSlider = ({ comments, title }) => {
     responsive: [
       {
         breakpoint: 1024,
-        settings: { slidesToShow: 1 },
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          arrows: false,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false,
+          dots: true,
+          swipe: true,
+          centerMode: false,
+        },
       },
     ],
   };
 
   return (
-    <section className=" relative w-full py-16 bg-gradient-to-br from-[#f0f2f3] to-[#e1e3e6]">
+    <section className="relative w-full py-16 bg-gradient-to-br from-[#f0f2f3] to-[#e1e3e6]">
       <div className="max-w-[1280px] mx-auto px-6 md:px-12">
+        {/* --- Tiêu đề + nút điều hướng --- */}
         <div className="flex items-center justify-between mb-8">
           <h3 className="text-3xl font-semibold text-gray-800">{title}</h3>
 
-          <div className="flex gap-4">
+          {/* Ẩn nút trái/phải trên mobile */}
+          <div className="hidden md:flex gap-4">
             <button
               onClick={() => sliderRef.current.slickPrev()}
               className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-teal-500 hover:text-white transition-all duration-300"
@@ -48,6 +66,7 @@ const CommentSlider = ({ comments, title }) => {
           </div>
         </div>
 
+        {/* --- Slider bình luận --- */}
         <Slider ref={sliderRef} {...settings}>
           {comments.map((info) => (
             <div key={info.id} className="px-3">
@@ -59,7 +78,6 @@ const CommentSlider = ({ comments, title }) => {
                   </p>
                 </div>
 
-                {/* Thông tin người bình luận */}
                 <div className="flex items-center gap-3 mt-6 relative">
                   <img
                     src={info.avatar}
@@ -79,6 +97,22 @@ const CommentSlider = ({ comments, title }) => {
           ))}
         </Slider>
       </div>
+
+      <style>{`
+        .slick-dots {
+          bottom: -40px;
+        }
+        .slick-dots li button:before {
+          font-size: 14px;
+          color: #94a3b8; /* xám nhạt */
+          opacity: 0.7;
+        }
+        .slick-dots li.slick-active button:before {
+          color: #029FAE; /* chấm active màu xanh */
+          opacity: 1;
+          font-size: 16px;
+        }
+      `}</style>
     </section>
   );
 };

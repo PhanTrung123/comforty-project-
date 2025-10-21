@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import { FiShoppingCart } from "react-icons/fi";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
+import { useCart } from "../context/CartContext";
 
 export const settings = {
   dots: false,
@@ -18,15 +19,20 @@ export const settings = {
   ],
 };
 
-const Products = ({ title, products = [], slidesToShow = 4 }) => {
+const ProductsSlider = ({ title, products = [], slidesToShow = 4 }) => {
   const [liked, setLiked] = useState({});
   const sliderRef = useRef(null);
+  const { addToCart } = useCart();
 
   const toggleLike = (id) => {
     setLiked((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
-  const mergedSettings = { ...settings, slidesToShow };
+  const mergedSettings = {
+    ...settings,
+    slidesToShow: slidesToShow || settings.slidesToShow,
+    responsive: settings.responsive,
+  };
 
   return (
     <section className="relative pb-8">
@@ -93,7 +99,10 @@ const Products = ({ title, products = [], slidesToShow = 4 }) => {
                     )}
                   </div>
 
-                  <button className="w-11 h-11 flex items-center justify-center rounded-md bg-gray-100 hover:bg-[#029FAE] hover:text-white transition-all duration-300">
+                  <button
+                    onClick={() => addToCart()}
+                    className="w-11 h-11 flex items-center justify-center rounded-md bg-gray-100 hover:bg-[#029FAE] hover:text-white transition-all duration-300"
+                  >
                     <FiShoppingCart className="text-[18px]" />
                   </button>
                 </div>
@@ -106,4 +115,4 @@ const Products = ({ title, products = [], slidesToShow = 4 }) => {
   );
 };
 
-export default Products;
+export default ProductsSlider;

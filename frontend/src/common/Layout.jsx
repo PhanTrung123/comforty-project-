@@ -11,23 +11,23 @@ const Layout = ({ children }) => {
       <header className="w-full">
         <Navigation />
       </header>
-      <main className="flex-1 w-full max-w-[1740px] mx-auto px-4 sm:px-6 lg:px-8 ">
+      <section className="w-full mx-0 px-0 md:max-w-[1740px] md:mx-auto md:px-6 lg:px-8">
         <HeroSection />
-      </main>
-      <main className="flex-1 w-full max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
+      </section>
+      <main className="flex-1 w-full max-w-[1320px] mx-auto px-4 py-6 sm:px-6 lg:px-8">
         {children}
       </main>
-      <main className="flex-1 w-full ">
+      <section className="w-full">
         <Testimonial />
-      </main>
-      <main className="flex-1 w-full max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
+      </section>
+      <section className="w-full max-w-[1320px] mx-auto px-4 py-6 sm:px-6 lg:px-8">
         <RecentlyAdd />
-      </main>
-      <div className="w-full border-t border-b border-[#E1E3E5] bg-white">
-        <footer className="max-w-[1320px] w-full mx-auto px-4 sm:px-6 lg:px-8">
+      </section>
+      <footer className="w-full border-t border-b border-[#E1E3E5] bg-white">
+        <div className="max-w-[1320px] w-full mx-auto px-4 sm:px-6 lg:px-8">
           <Footer />
-        </footer>
-      </div>
+        </div>
+      </footer>
     </div>
   );
 };
