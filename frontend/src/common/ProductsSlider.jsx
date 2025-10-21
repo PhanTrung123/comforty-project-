@@ -1,37 +1,21 @@
-import React, { useState, useRef } from "react";
-import Slider from "react-slick";
+import React, { useRef, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import { useCart } from "../context/CartContext";
+
 import { FiShoppingCart } from "react-icons/fi";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
-import { useCart } from "../context/CartContext";
-
-export const settings = {
-  dots: false,
-  arrows: false,
-  infinite: true,
-  speed: 600,
-  slidesToShow: 4,
-  slidesToScroll: 1,
-  responsive: [
-    { breakpoint: 1024, settings: { slidesToShow: 3 } },
-    { breakpoint: 768, settings: { slidesToShow: 2 } },
-    { breakpoint: 480, settings: { slidesToShow: 1 } },
-  ],
-};
 
 const ProductsSlider = ({ title, products = [], slidesToShow = 4 }) => {
   const [liked, setLiked] = useState({});
-  const sliderRef = useRef(null);
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
+  const swiperRef = useRef(null);
   const { addToCart } = useCart();
 
   const toggleLike = (id) => {
     setLiked((prev) => ({ ...prev, [id]: !prev[id] }));
-  };
-
-  const mergedSettings = {
-    ...settings,
-    slidesToShow: slidesToShow || settings.slidesToShow,
-    responsive: settings.responsive,
   };
 
   return (
@@ -39,16 +23,15 @@ const ProductsSlider = ({ title, products = [], slidesToShow = 4 }) => {
       {title && (
         <div className="flex items-center justify-between mb-8">
           <h3 className="text-2xl font-bold text-gray-800">{title}</h3>
-
           <div className="flex items-center gap-3">
             <button
-              onClick={() => sliderRef.current.slickPrev()}
+              ref={prevRef}
               className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-teal-500 hover:text-white transition-all duration-300"
             >
               <FaArrowLeftLong />
             </button>
             <button
-              onClick={() => sliderRef.current.slickNext()}
+              ref={nextRef}
               className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-teal-500 hover:text-white transition-all duration-300"
             >
               <FaArrowRightLong />
@@ -56,9 +39,34 @@ const ProductsSlider = ({ title, products = [], slidesToShow = 4 }) => {
           </div>
         </div>
       )}
-      <Slider ref={sliderRef} {...mergedSettings}>
+
+      <Swiper
+        modules={[Navigation]}
+        spaceBetween={24}
+        slidesPerView={slidesToShow}
+        loop={true}
+        onBeforeInit={(swiper) => {
+          swiperRef.current = swiper;
+        }}
+        onSwiper={(swiper) => {
+          setTimeout(() => {
+            swiper.params.navigation.prevEl = prevRef.current;
+            swiper.params.navigation.nextEl = nextRef.current;
+            swiper.navigation.destroy();
+            swiper.navigation.init();
+            swiper.navigation.update();
+          });
+        }}
+        breakpoints={{
+          0: { slidesPerView: 1, spaceBetween: 16 },
+          480: { slidesPerView: 2, spaceBetween: 16 },
+          768: { slidesPerView: 3, spaceBetween: 20 },
+          1024: { slidesPerView: slidesToShow, spaceBetween: 24 },
+        }}
+        className="overflow-hidden !pb-2"
+      >
         {products.map((item) => (
-          <div key={item.id} className="px-3">
+          <SwiperSlide key={item.id}>
             <div className="rounded-xl overflow-hidden bg-white shadow-sm hover:shadow-lg transition-all duration-300 group cursor-pointer">
               <div className="relative w-full h-[250px]">
                 <img
@@ -73,6 +81,7 @@ const ProductsSlider = ({ title, products = [], slidesToShow = 4 }) => {
                     {item.status}
                   </span>
                 )}
+
                 <button
                   onClick={() => toggleLike(item.id)}
                   className="absolute top-3 right-3 w-9 h-9 flex items-center justify-center rounded-sm bg-white/90 hover:bg-red-50 shadow-md transition-all duration-300"
@@ -108,9 +117,9 @@ const ProductsSlider = ({ title, products = [], slidesToShow = 4 }) => {
                 </div>
               </div>
             </div>
-          </div>
+          </SwiperSlide>
         ))}
-      </Slider>
+      </Swiper>
     </section>
   );
 };

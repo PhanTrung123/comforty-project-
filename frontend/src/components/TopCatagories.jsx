@@ -52,7 +52,7 @@ const TopCategories = () => {
   const nextRef = useRef(null);
 
   return (
-    <section className="relative pb-8">
+    <section className="relative pb-8 w-full max-w-[1740px] mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="flex items-center justify-between py-8 mb-8">
         <h3 className="text-2xl font-bold text-gray-800">Top Categories</h3>
         <div className="flex items-center gap-3">
@@ -71,13 +71,11 @@ const TopCategories = () => {
         </div>
       </div>
 
-      <div className="w-full">
-        <SliderSpecial
-          products={categories}
-          prevRef={prevRef}
-          nextRef={nextRef}
-        />
-      </div>
+      <SliderSpecial
+        products={categories}
+        prevRef={prevRef}
+        nextRef={nextRef}
+      />
     </section>
   );
 };

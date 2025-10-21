@@ -97,17 +97,17 @@ const Navigation = () => {
             </div>
           </div>
           <div className="flex items-center space-x-3 sm:space-x-4 text-xl">
-            <button className="relative flex items-center justify-center w-[110px] sm:w-[120px] h-[40px] bg-white border border-gray-300 rounded-md hover:text-[#007580] hover:bg-gray-50 transition">
-              <div className="flex items-center gap-2 text-black relative">
+            <button className="relative gap-2 flex items-center justify-center w-[110px] sm:w-[120px] h-[40px] bg-white border border-gray-300 rounded-md hover:text-[#007580] hover:bg-gray-50 transition">
+              <div className="flex items-center gap-2 text-black">
                 <FiShoppingCart className="text-[18px]" />
                 <span className="text-[13px] sm:text-[14px]">Cart</span>
-
-                {cartCount > 0 && (
-                  <span className="ml-2 bg-[#007580] text-white text-[11px] font-semibold min-w-[18px] h-[18px] px-[5px] rounded-full flex items-center justify-center">
-                    {cartCount}
-                  </span>
-                )}
               </div>
+
+              {cartCount > 0 && (
+                <span className=" bg-[#007580] text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                  {cartCount}
+                </span>
+              )}
             </button>
 
             <button className="w-[40px] items-center flex justify-center h-[40px] bg-white border border-gray-300 rounded-md hover:text-[#007580] transition">

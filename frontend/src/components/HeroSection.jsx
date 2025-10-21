@@ -1,7 +1,7 @@
-import React, { useRef } from "react";
-import Slider from "react-slick";
+import React, { useRef, useEffect } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
-import { settings } from "../common/ProductsSlider";
 
 const HeroSection = () => {
   const slides = [
@@ -28,78 +28,59 @@ const HeroSection = () => {
     },
   ];
 
-  const sliderRef = useRef(null);
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
+  const swiperRef = useRef(null);
 
-  const heroSettings = {
-    ...settings,
-    dots: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 4000,
-    speed: 800,
-    arrows: false,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          arrows: false,
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          swipe: true,
-          dots: true,
-        },
-      },
-    ],
-  };
+  useEffect(() => {
+    if (!swiperRef.current) return;
+    const swiper = swiperRef.current;
+    swiper.params.navigation.prevEl = prevRef.current;
+    swiper.params.navigation.nextEl = nextRef.current;
+    swiper.navigation.destroy();
+    swiper.navigation.init();
+    swiper.navigation.update();
+  }, []);
 
   return (
-    <section className="relative w-full bg-[#F0F2F3] overflow-hidden rounded-b-lg py-10 md:py-20 lg:py-28">
-      <div className="absolute md:py-0 py-4 inset-0 bg-gradient-to-r from-[#e1e3e6]/70 to-[#f0f2f3]/70 z-10"></div>
+    <section className="relative w-full bg-[#F0F2F3] overflow-hidden rounded-b-lg py-8 sm:py-12 lg:py-20">
+      <div className="absolute inset-0 bg-gradient-to-r from-[#e1e3e6]/70 to-[#f0f2f3]/70 z-10"></div>
 
-      <div className="relative  z-20 py-4 w-full max-w-[1320px] mx-auto px-6 md:px-10">
-        <Slider ref={sliderRef} {...heroSettings}>
+      <div className="relative z-20 w-full max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10">
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          pagination={{ clickable: true }}
+          autoplay={{ delay: 4000 }}
+          loop={true}
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
+          spaceBetween={30}
+          slidesPerView={1}
+          speed={800}
+          className="relative"
+        >
           {slides.map((slide) => (
-            <div key={slide.id}>
-              <div
-                className="flex flex-col-reverse md:flex-row items-center justify-between 
-                gap-10 md:gap-10 lg:gap-14  min-h-[480px] md:min-h-[550px] lg:min-h-[600px]"
-              >
-                <div
-                  className="w-full md:w-1/2 flex flex-col justify-center text-left 
-                  pt-6 md:pt-0 md:pr-4 lg:pr-10"
-                >
-                  <p className="text-gray-700 text-xs sm:text-sm uppercase tracking-wide mb-2 sm:mb-3">
+            <SwiperSlide key={slide.id}>
+              <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-8 md:gap-12 min-h-[450px] md:min-h-[550px]">
+                <div className="w-full md:w-1/2 flex flex-col justify-center text-left">
+                  <h2 className="text-gray-700 text-sm uppercase tracking-wide mb-2">
                     {slide.title}
-                  </p>
-                  <h1
-                    className="text-[20px] sm:text-[26px] md:text-[34px] lg:text-[42px] xl:text-[48px] 
-                    font-bold text-gray-800 mb-4 sm:mb-6 leading-snug md:leading-tight"
-                  >
+                  </h2>
+                  <p className="text-[20px] sm:text-[26px] md:text-[34px] lg:text-[42px] font-bold text-gray-800 mb-5 leading-snug">
                     {slide.desc}
-                  </h1>
-                  <button
-                    className="bg-[#029FAE] flex-1 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-lg hover:bg-teal-600 
-                    transition-all duration-300 flex items-center gap-3 shadow-md hover:shadow-lg w-fit"
-                  >
+                  </p>
+                  <button className="bg-[#029FAE] text-white px-5 py-2 sm:px-6 sm:py-3 rounded-lg hover:bg-teal-600 transition-all duration-300 flex items-center gap-2 shadow-md w-fit">
                     Shop Now
                     <FaArrowRightLong />
                   </button>
                 </div>
-                <div
-                  className="relative w-full md:w-1/2 flex items-center justify-center 
-                  md:pl-4 lg:pl-10"
-                >
+
+                <div className="relative w-full md:w-1/2 flex items-center justify-center">
                   <img
                     src={slide.image}
                     alt={slide.title}
-                    className="w-[80%] sm:w-[70%] md:w-[90%] lg:w-[85%] object-contain rounded-lg"
+                    className="w-[80%] sm:w-[70%] md:w-[85%] object-contain rounded-lg"
                   />
-                  <div
-                    className="absolute top-[8%] right-[10%] bg-white rounded-full 
-                    w-16 h-16 sm:w-20 sm:h-20 flex flex-col items-center justify-center 
-                    text-center shadow-lg z-30 p-1"
-                  >
+                  <div className="absolute top-[8%] right-[10%] bg-white rounded-full w-16 h-16 sm:w-20 sm:h-20 flex flex-col items-center justify-center text-center shadow-lg z-30 p-1">
                     <span className="text-lg sm:text-2xl text-red-600 font-bold">
                       {slide.discount}%
                     </span>
@@ -109,23 +90,23 @@ const HeroSection = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </SwiperSlide>
           ))}
-        </Slider>
+        </Swiper>
 
         <button
-          onClick={() => sliderRef.current.slickPrev()}
-          className="hidden lg:flex absolute -left-14 xl:-left-14 top-1/2 -translate-y-1/2 
-          z-20 items-center justify-center w-10 h-10 xl:w-14 xl:h-14 rounded-full 
+          ref={prevRef}
+          className="hidden lg:flex absolute -left-10 top-1/2 -translate-y-1/2 
+          z-30 items-center justify-center w-12 h-12 rounded-full 
           bg-white shadow-md hover:bg-gray-100 hover:shadow-lg transition-all"
         >
           <FaArrowLeftLong className="text-[#029FAE]" />
         </button>
 
         <button
-          onClick={() => sliderRef.current.slickNext()}
-          className="hidden lg:flex absolute -right-14 xl:-right-14 top-1/2 -translate-y-1/2 
-          z-20 items-center justify-center w-10 h-10 xl:w-14 xl:h-14 rounded-full 
+          ref={nextRef}
+          className="hidden lg:flex absolute -right-10 top-1/2 -translate-y-1/2 
+          z-30 items-center justify-center w-12 h-12 rounded-full 
           bg-white shadow-md hover:bg-gray-100 hover:shadow-lg transition-all"
         >
           <FaArrowRightLong className="text-[#029FAE]" />

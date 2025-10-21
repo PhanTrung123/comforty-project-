@@ -30,7 +30,9 @@ const Testimonial = () => {
   ];
 
   return (
-    <CommentSlider title="What client says about us" comments={comments} />
+    <section className="">
+      <CommentSlider title="What client says about us" comments={comments} />
+    </section>
   );
 };
 
