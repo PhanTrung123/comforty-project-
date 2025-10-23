@@ -1,14 +1,8 @@
 import React, { useRef, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay } from "swiper/modules";
-import {
-  FaQuoteRight,
-  FaArrowLeftLong,
-  FaArrowRightLong,
-} from "react-icons/fa6";
-
+import { Navigation } from "swiper/modules";
+import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import "swiper/css";
-import "swiper/css/navigation";
 
 const CommentSlider = ({ comments, title }) => {
   const prevRef = useRef(null);
@@ -16,35 +10,39 @@ const CommentSlider = ({ comments, title }) => {
   const swiperRef = useRef(null);
 
   useEffect(() => {
-    if (!swiperRef.current || !prevRef.current || !nextRef.current) return;
+    if (
+      swiperRef.current &&
+      swiperRef.current.params &&
+      prevRef.current &&
+      nextRef.current
+    ) {
+      swiperRef.current.params.navigation.prevEl = prevRef.current;
+      swiperRef.current.params.navigation.nextEl = nextRef.current;
 
-    const swiper = swiperRef.current;
-    swiper.params.navigation.prevEl = prevRef.current;
-    swiper.params.navigation.nextEl = nextRef.current;
-
-    swiper.navigation.destroy();
-    swiper.navigation.init();
-    swiper.navigation.update();
+      swiperRef.current.navigation.destroy();
+      swiperRef.current.navigation.init();
+      swiperRef.current.navigation.update();
+    }
   }, []);
 
   return (
-    <section className="relative w-full py-16 bg-gradient-to-br from-[#f0f2f3] to-[#e1e3e6]">
-      <div className="w-full max-w-full sm:max-w-[1280px] mx-auto px-4 sm:px-12">
-        <div className="flex items-center justify-between mb-8">
-          <h3 className="text-3xl font-semibold text-gray-800 text-center sm:text-left w-full sm:w-auto">
+    <section className="relative w-full py-16 bg-[#f7f8f9]">
+      <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-8">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-10 text-center sm:text-left">
+          <h3 className="text-2xl sm:text-[32px] font-semibold capitalize text-[#272343] mb-4 sm:mb-0">
             {title}
           </h3>
 
-          <div className="hidden md:flex gap-4">
+          <div className="flex justify-center sm:justify-end gap-4">
             <button
               ref={prevRef}
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-[#029FAE] hover:text-white transition-all duration-300"
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-white text-gray-700 shadow-sm border border-gray-200 hover:bg-[#029FAE] hover:text-white transition-all duration-300"
             >
               <FaArrowLeftLong />
             </button>
             <button
               ref={nextRef}
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-[#029FAE] hover:text-white transition-all duration-300"
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-white text-gray-700 shadow-sm border border-gray-200 hover:bg-[#029FAE] hover:text-white transition-all duration-300"
             >
               <FaArrowRightLong />
             </button>
@@ -52,49 +50,51 @@ const CommentSlider = ({ comments, title }) => {
         </div>
 
         <Swiper
-          modules={[Navigation, Autoplay]}
+          modules={[Navigation]}
           spaceBetween={24}
-          slidesPerView={2}
-          autoplay={{ delay: 4000, disableOnInteraction: false }}
+          slidesPerView={1}
           onSwiper={(swiper) => (swiperRef.current = swiper)}
           navigation={{
             prevEl: prevRef.current,
             nextEl: nextRef.current,
           }}
           breakpoints={{
-            0: {
-              slidesPerView: 1,
-              spaceBetween: 16,
-            },
-            768: {
-              slidesPerView: 2,
-              spaceBetween: 24,
-            },
+            0: { slidesPerView: 1, spaceBetween: 16 },
+            768: { slidesPerView: 2, spaceBetween: 24 },
           }}
           className="pb-4"
         >
           {comments.map((info) => (
             <SwiperSlide key={info.id}>
-              <div className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-6 h-[300px] flex flex-col justify-between">
-                <div className="border-l-4 border-[#029FAE] pl-6 overflow-hidden">
-                  <p className="text-gray-600 text-[18px] leading-relaxed line-clamp-6">
-                    {info.description}
-                  </p>
+              <div className="relative bg-white h-[340px] rounded-2xl border  border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 p-6 sm:p-8 flex flex-col justify-between overflow-hidden">
+                <img
+                  src="/image/double_quotes_r 1.png"
+                  alt="quote"
+                  className="absolute bottom-0 right-6 w-[80px] h-[80px] sm:w-[140px] sm:h-[140px]  object-contain select-none pointer-events-none"
+                />
+
+                <div className="relative z-10">
+                  <div className="border-l-[3px] border-[#029FAE] pl-5">
+                    <p className="text-[#636270] text-[18px] font-normal leading-[150%] line-clamp-6">
+                      {info.description}
+                    </p>
+                  </div>
                 </div>
 
-                <div className="flex items-center gap-3 mt-6 relative">
+                <div className="flex items-center gap-3 relative z-10 mt-6">
                   <img
                     src={info.avatar}
                     alt={info.name}
-                    className="w-14 h-14 rounded-full object-cover border border-gray-200"
+                    className="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border border-gray-200 shadow"
                   />
                   <div>
-                    <h4 className="font-semibold text-gray-800 text-[18px]">
+                    <h4 className="text-[#272343] font-semibold text-[18px] sm:text-[20px] leading-[130%] capitalize">
                       {info.name}
                     </h4>
-                    <p className="text-sm text-gray-500">{info.position}</p>
+                    <p className="text-[14px] sm:text-[16px] font-normal text-[#9A9CAA] mt-1">
+                      {info.position}
+                    </p>
                   </div>
-                  <FaQuoteRight className="absolute right-4 text-5xl text-[#F0F2F3]" />
                 </div>
               </div>
             </SwiperSlide>

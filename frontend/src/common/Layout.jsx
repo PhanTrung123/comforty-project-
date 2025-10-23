@@ -8,7 +8,7 @@ import RecentlyAdd from "../components/RecentlyAdd";
 const Layout = ({ children }) => {
   return (
     <div className="flex flex-col min-h-screen bg-white font-sans overflow-x-hidden">
-      <header className="w-full">
+      <header className="w-full h-[204px]">
         <Navigation />
       </header>
       <section className="w-full mx-0 px-0 md:max-w-[1740px] md:mx-auto md:px-6 lg:px-8">

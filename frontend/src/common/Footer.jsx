@@ -13,7 +13,7 @@ const Footer = () => {
     description:
       "Vivamus tristique odio sit amet velit semper, eu posuere turpis interdum. Cras egestas purus.",
     socialLinks: [
-      { icon: <FaFacebookF />, color: "#007580", href: "#" },
+      { icon: <FaFacebookF size={20} />, href: "#" },
       { icon: <FaTwitter size={20} />, href: "#" },
       { icon: <FaInstagram size={20} />, href: "#" },
       { icon: <FaPinterestP size={20} />, href: "#" },
@@ -71,11 +71,27 @@ const Footer = () => {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`${
-                  social.color
-                    ? `text-[${social.color}] border border-[${social.color}] w-10 h-10 rounded-full flex items-center justify-center hover:bg-[${social.color}] hover:text-white transition`
-                    : "text-gray-600 hover:text-[#007580] transition"
+                className={`w-10 h-10 rounded-full flex items-center justify-center transition transform hover:scale-125 ${
+                  social.color ? "" : "text-gray-600 hover:text-[#007580]"
                 }`}
+                style={{
+                  color: social.color,
+                }}
+                onMouseEnter={(e) => {
+                  if (social.color) {
+                    e.currentTarget.style.backgroundColor = social.color;
+                    e.currentTarget.style.color = "#fff";
+                    e.currentTarget.style.border = `1px solid ${social.color}`;
+                  } else {
+                    e.currentTarget.style.color = "#007580";
+                    e.currentTarget.style.border = "1px solid #007580";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = "transparent";
+                  e.currentTarget.style.color = social.color || "#333";
+                  e.currentTarget.style.border = "none";
+                }}
               >
                 {social.icon}
               </a>
@@ -91,20 +107,18 @@ const Footer = () => {
 
             {link.input ? (
               <>
-                <div className="flex flex-col lg:flex-row gap-2 w-full max-w-md ">
-                  <div className="w-full flex flex-1 ">
-                    <input
-                      type="email"
-                      placeholder="Your email"
-                      className="flex-1 border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-teal-500"
-                    />
-                  </div>
-                  <button className="bg-[#029FAE] text-white px-4 py-2 rounded-md hover:bg-[#008490] transition">
+                <div className="flex flex-col lg:flex-row gap-3 w-full">
+                  <input
+                    type="email"
+                    placeholder="Your email"
+                    className="flex-grow min-w-0 border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-teal-500 w-full"
+                  />
+                  <button className="bg-[#029FAE] text-white px-5 py-2 rounded-md hover:bg-[#008490] transition w-full lg:w-auto">
                     Subscribe
                   </button>
                 </div>
 
-                <p className="text-sm mt-3 leading-relaxed font-normal text-[#272343]">
+                <p className=" mt-3 font-inter font-normal text-[15px] leading-[150%] text-[#7d7b8e]">
                   {link.description}
                 </p>
               </>

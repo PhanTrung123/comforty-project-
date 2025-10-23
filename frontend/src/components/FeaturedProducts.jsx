@@ -10,7 +10,7 @@ const FeaturedProducts = () => {
       oldPrice: "$40",
       image: "/image/product1.jpg",
       status: "Sale",
-      tagColor: "bg-red-500",
+      tagColor: "bg-[#F5813F]",
     },
     {
       id: 2,
@@ -18,7 +18,7 @@ const FeaturedProducts = () => {
       price: "$35",
       image: "/image/product2.jpg",
       status: "New",
-      tagColor: "bg-teal-500",
+      tagColor: "bg-[#01AD5A]",
     },
     {
       id: 3,
@@ -32,8 +32,6 @@ const FeaturedProducts = () => {
       price: "$45",
       oldPrice: "$60",
       image: "/image/product4.jpg",
-      status: "Hot",
-      tagColor: "bg-yellow-500",
     },
     {
       id: 5,
@@ -48,7 +46,7 @@ const FeaturedProducts = () => {
       oldPrice: "$50",
       image: "/image/product6.jpg",
       status: "Sale",
-      tagColor: "bg-red-500",
+      tagColor: "bg-[#F5813F]",
     },
     {
       id: 7,
@@ -56,7 +54,7 @@ const FeaturedProducts = () => {
       price: "$70",
       image: "/image/product7.jpg",
       status: "New",
-      tagColor: "bg-teal-500",
+      tagColor: "bg-[#01AD5A]",
     },
     {
       id: 8,
@@ -64,8 +62,6 @@ const FeaturedProducts = () => {
       price: "$60",
       oldPrice: "$75",
       image: "/image/product8.jpg",
-      status: "Hot",
-      tagColor: "bg-yellow-500",
     },
   ];
 

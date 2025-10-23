@@ -35,7 +35,7 @@ const CompanyLogo = () => {
               alt={`Company Logo ${index + 1}`}
               className="
                 w-[80px] sm:w-[90px] md:w-[100px] lg:w-[110px]
-                h-auto object-contain opacity-80 hover:opacity-100
+                h-auto object-contain 
                 transition-opacity duration-300
               "
             />

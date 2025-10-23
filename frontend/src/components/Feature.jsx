@@ -1,28 +1,34 @@
 import React from "react";
-import { FaBox, FaTruck, FaClock, FaShieldAlt } from "react-icons/fa";
 
 const features = [
   {
     id: 1,
-    icon: <FaBox />,
+    icon: <img className="w-[46px] h-[46px] " src="/public/image/box.png" />,
     title: "Discount",
     desc: "Every week new sales",
   },
   {
     id: 2,
-    icon: <FaTruck />,
+    icon: (
+      <img
+        className="w-[46px] h-[46px] "
+        src="/public/image/delivery-truck.png"
+      />
+    ),
     title: "Free Delivery",
     desc: "100% Free for all orders",
   },
   {
     id: 3,
-    icon: <FaClock />,
+    icon: (
+      <img className="w-[46px] h-[46px] " src="/public/image/24-hours.png" />
+    ),
     title: "Great Support 24/7",
     desc: "We care your experiences",
   },
   {
     id: 4,
-    icon: <FaShieldAlt />,
+    icon: <img className="w-[46px] h-[46px] " src="/public/image/shield.png" />,
     title: "Secure Payment",
     desc: "100% Secure Payment Method",
   },
@@ -32,13 +38,7 @@ const Feature = () => {
   return (
     <section
       className="
-        z-20 
-        max-w-[1320px] 
-        w-full 
-        mx-auto 
-        px-4 sm:px-6 lg:px-10 
-        relative 
-        lg:left-1/2 lg:-translate-x-1/2 lg:bottom-16
+        z-20  max-w-[1320px] w-full mx-auto  relative lg:left-1/2 lg:-translate-x-1/2 lg:bottom-16
       "
     >
       <div
@@ -60,10 +60,14 @@ const Feature = () => {
               lg:hover:scale-105 transition-transform duration-300
             "
           >
-            <span className="text-3xl ">{item.icon}</span>
+            <span className="">{item.icon}</span>
             <div className="text-left">
-              <h3 className="font-semibold text-black text-lg">{item.title}</h3>
-              <p className="text-gray-500 text-sm">{item.desc}</p>
+              <h3 className="font-medium text-[#272343] text-[18px]">
+                {item.title}
+              </h3>
+              <p className="text-[#9A9CAA] text-[15px] font-normal">
+                {item.desc}
+              </p>
             </div>
           </div>
         ))}

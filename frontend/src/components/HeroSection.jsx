@@ -1,30 +1,33 @@
 import React, { useRef, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
+import { FaArrowRight, FaArrowLeft } from "react-icons/fa6";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const HeroSection = () => {
   const slides = [
     {
       id: 1,
-      title: "Modern Comfort for Your Home",
-      desc: "Discover elegant furniture designed to bring comfort and style to every room.",
+      subtitle: "WELCOME TO CHAIREY",
+      title: "Best Furniture Collection For Your Interior.",
       image: "/Product Image.png",
-      discount: 30,
+      discount: 54,
     },
     {
       id: 2,
-      title: "Timeless Wooden Collections",
-      desc: "Crafted from the finest wood, our pieces blend tradition with modern aesthetics.",
+      subtitle: "MODERN DESIGN",
+      title: "Timeless Wooden Collections That Inspire Warmth.",
       image: "/image/product1.jpg",
-      discount: 45,
+      discount: 40,
     },
     {
       id: 3,
-      title: "Luxury Meets Simplicity",
-      desc: "Upgrade your living space with minimalist yet luxurious furniture pieces.",
+      subtitle: "LUXURY COMFORT",
+      title: "Minimalist Sofas With Maximum Comfort.",
       image: "/image/product2.jpg",
-      discount: 50,
+      discount: 45,
     },
   ];
 
@@ -43,14 +46,17 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative w-full bg-[#F0F2F3] overflow-hidden rounded-b-lg py-8 sm:py-12 lg:py-20">
-      <div className="absolute inset-0 bg-gradient-to-r from-[#e1e3e6]/70 to-[#f0f2f3]/70 z-10"></div>
-
+    <section className="relative !h-auto min-h-[700px] md:min-h-[850px] w-full flex items-center bg-[#F0F2F3] overflow-hidden rounded-b-[48px]">
+      <div className="absolute right-[5%] top-[5%] -translate-y-[40%] w-[750px] h-[750px] bg-[#E1E3E5] rounded-full z-10"></div>
       <div className="relative z-20 w-full max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10">
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
-          pagination={{ clickable: true }}
-          autoplay={{ delay: 4000 }}
+          pagination={{
+            clickable: true,
+            bulletClass: "custom-bullet",
+            bulletActiveClass: "custom-bullet-active",
+          }}
+          autoplay={{ delay: 4000, disableOnInteraction: false }}
           loop={true}
           onSwiper={(swiper) => (swiperRef.current = swiper)}
           spaceBetween={30}
@@ -60,31 +66,52 @@ const HeroSection = () => {
         >
           {slides.map((slide) => (
             <SwiperSlide key={slide.id}>
-              <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-8 md:gap-12 min-h-[450px] md:min-h-[550px]">
-                <div className="w-full md:w-1/2 flex flex-col justify-center text-left">
-                  <h2 className="text-gray-700 text-sm uppercase tracking-wide mb-2">
-                    {slide.title}
+              <div className="flex flex-col-reverse md:flex-row items-center justify-betweenmx-4 sm:mx-6 md:mx-8 lg:mx-10 gap-8 md:gap-6 lg:gap-10">
+                <div className="w-full md:w-[631px] flex flex-col justify-center text-left">
+                  <h2 className="font-normal text-[14px] leading-[100%] tracking-[0.12em] uppercase text-[#272343] mb-3">
+                    {slide.subtitle}
                   </h2>
-                  <p className="text-[20px] sm:text-[26px] md:text-[34px] lg:text-[42px] font-bold text-gray-800 mb-5 leading-snug">
-                    {slide.desc}
+                  <p className="text-[#272343] text-[28px] sm:text-[36px] md:text-[48px] lg:text-[68px] font-bold leading-[110%] mb-8 max-w-[90%]">
+                    {slide.title}
                   </p>
-                  <button className="bg-[#029FAE] text-white px-5 py-2 sm:px-6 sm:py-3 rounded-lg hover:bg-teal-600 transition-all duration-300 flex items-center gap-2 shadow-md w-fit">
+                  <button className="bg-[#029FAE] text-white text-[16px] flex items-center gap-3 px-6 py-3 rounded-[8px] hover:bg-teal-600 transition-all duration-300 shadow-md w-fit">
                     Shop Now
-                    <FaArrowRightLong />
+                    <img
+                      src="/image/Right 24px.png"
+                      alt="arrow"
+                      className="w-5 h-5 object-contain"
+                    />
                   </button>
                 </div>
+                <div className="relative w-full md:w-[747px] flex items-center justify-center">
+                  <div
+                    className="
+                      w-full 
+                      max-w-[320px] sm:max-w-[420px] md:max-w-[500px] lg:max-w-[520px] 
+                      aspect-[520/694] 
+                      overflow-hidden flex items-center justify-center 
+                      rounded-2xl
+                    "
+                  >
+                    <img
+                      src={slide.image}
+                      alt={slide.title}
+                      className="
+                        w-full h-full 
+                        object-cover 
+                        transition-transform duration-500 
+                        relative z-20
+                      "
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
 
-                <div className="relative w-full md:w-1/2 flex items-center justify-center">
-                  <img
-                    src={slide.image}
-                    alt={slide.title}
-                    className="w-[80%] sm:w-[70%] md:w-[85%] object-contain rounded-lg"
-                  />
-                  <div className="absolute top-[8%] right-[10%] bg-white rounded-full w-16 h-16 sm:w-20 sm:h-20 flex flex-col items-center justify-center text-center shadow-lg z-30 p-1">
-                    <span className="text-lg sm:text-2xl text-red-600 font-bold">
+                  <div className="absolute top-[10%] right-[15%] bg-white rounded-full w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 flex flex-col items-center justify-center text-center shadow-md z-30 p-2">
+                    <span className="text-base sm:text-lg md:text-xl font-bold text-[#EA3F3F]">
                       {slide.discount}%
                     </span>
-                    <span className="text-[10px] sm:text-xs text-gray-600">
+                    <span className="text-[9px] sm:text-[10px] md:text-[11px] text-gray-600">
                       Discount
                     </span>
                   </div>
@@ -93,24 +120,22 @@ const HeroSection = () => {
             </SwiperSlide>
           ))}
         </Swiper>
+        <div className="custom-pagination flex justify-center mt-3 md:mt-4 lg:mt-2"></div>
+        <div className="max-w-[1564px]">
+          <button
+            ref={prevRef}
+            className="hidden lg:flex absolute left-0 top-1/2 -translate-y-1/2 z-30 items-center justify-center w-10 h-10 rounded-full bg-white hover:bg-gray-100 shadow transition-all"
+          >
+            <FaArrowLeft className="text-[#029FAE]" />
+          </button>
 
-        <button
-          ref={prevRef}
-          className="hidden lg:flex absolute -left-10 top-1/2 -translate-y-1/2 
-          z-30 items-center justify-center w-12 h-12 rounded-full 
-          bg-white shadow-md hover:bg-gray-100 hover:shadow-lg transition-all"
-        >
-          <FaArrowLeftLong className="text-[#029FAE]" />
-        </button>
-
-        <button
-          ref={nextRef}
-          className="hidden lg:flex absolute -right-10 top-1/2 -translate-y-1/2 
-          z-30 items-center justify-center w-12 h-12 rounded-full 
-          bg-white shadow-md hover:bg-gray-100 hover:shadow-lg transition-all"
-        >
-          <FaArrowRightLong className="text-[#029FAE]" />
-        </button>
+          <button
+            ref={nextRef}
+            className="hidden lg:flex absolute right-0 top-1/2 -translate-y-1/2 z-30 items-center justify-center w-10 h-10 rounded-full bg-white hover:bg-gray-100 shadow transition-all"
+          >
+            <FaArrowRight className="text-[#029FAE]" />
+          </button>
+        </div>
       </div>
     </section>
   );

@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
+import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import SliderSpecial from "../common/SliderSpecial";
 
 const TopCategories = () => {
@@ -53,18 +53,18 @@ const TopCategories = () => {
 
   return (
     <section className="relative pb-8 w-full max-w-[1740px] mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
-      <div className="flex items-center justify-between py-8 mb-8">
+      <div className="flex items-center justify-between py-6">
         <h3 className="text-2xl font-bold text-gray-800">Top Categories</h3>
         <div className="flex items-center gap-3">
           <button
             ref={prevRef}
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-teal-500 hover:text-white transition-all duration-300"
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-200 hover:bg-teal-500 hover:text-white transition-all duration-300"
           >
             <FaArrowLeftLong />
           </button>
           <button
             ref={nextRef}
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-teal-500 hover:text-white transition-all duration-300"
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-200 hover:bg-teal-500 hover:text-white transition-all duration-300"
           >
             <FaArrowRightLong />
           </button>

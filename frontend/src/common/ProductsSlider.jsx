@@ -22,7 +22,9 @@ const ProductsSlider = ({ title, products = [], slidesToShow = 4 }) => {
     <section className="relative pb-8">
       {title && (
         <div className="flex items-center justify-between mb-8">
-          <h3 className="text-2xl font-bold text-gray-800">{title}</h3>
+          <h3 className="!font-semibold text-[#272343] text-[32px] leading-[110%] tracking-normal">
+            {title}
+          </h3>
           <div className="flex items-center gap-3">
             <button
               ref={prevRef}
@@ -67,50 +69,53 @@ const ProductsSlider = ({ title, products = [], slidesToShow = 4 }) => {
       >
         {products.map((item) => (
           <SwiperSlide key={item.id}>
-            <div className="rounded-xl overflow-hidden bg-white shadow-sm hover:shadow-lg transition-all duration-300 group cursor-pointer">
-              <div className="relative w-full h-[250px]">
+            <div className=" overflow-hidden transition-all duration-300 group cursor-pointer">
+              <div className="relative w-[auto] h-[312px] rounded-[6px] overflow-hidden">
                 <img
                   src={item.image}
                   alt={item.name}
                   className="w-full h-full object-cover"
                 />
-                {item.status && (
-                  <span
-                    className={`absolute top-3 left-3 text-white text-xs font-semibold px-3 py-1 rounded-sm shadow-md ${item.tagColor}`}
-                  >
-                    {item.status}
-                  </span>
-                )}
-
-                <button
-                  onClick={() => toggleLike(item.id)}
-                  className="absolute top-3 right-3 w-9 h-9 flex items-center justify-center rounded-sm bg-white/90 hover:bg-red-50 shadow-md transition-all duration-300"
-                >
-                  {liked[item.id] ? (
-                    <AiFillHeart className="text-red-500 text-[18px]" />
-                  ) : (
-                    <AiOutlineHeart className="text-gray-600 hover:text-red-500 text-[18px]" />
+                <div>
+                  {item.status && (
+                    <span
+                      className={`absolute flex top-4 left-4 text-white text-[13px] font-semibold px-3 py-1 items-center rounded-sm shadow-md ${item.tagColor}`}
+                    >
+                      {item.status}
+                    </span>
                   )}
-                </button>
+
+                  <button
+                    onClick={() => toggleLike(item.id)}
+                    className="absolute top-4 right-5 w-9 h-9 flex items-center  justify-center rounded-sm bg-white/90 hover:bg-red-50 shadow-md transition-all duration-300"
+                  >
+                    {liked[item.id] ? (
+                      <AiFillHeart className="text-red-500 text-[18px]" />
+                    ) : (
+                      <AiOutlineHeart className="text-gray-600 hover:text-red-500 text-[18px]" />
+                    )}
+                  </button>
+                </div>
               </div>
 
-              <div className="p-4">
-                <p className="text-sm font-medium text-gray-800">{item.name}</p>
-                <div className="flex items-center justify-between mt-2">
+              <div className="py-4 ">
+                <span className="font-normal text-[16px] text-base leading-[130%] text-[#272343] group-hover:text-[#029FAE]">
+                  {item.name}
+                </span>
+                <div className="flex items-center justify-between ">
                   <div className="flex items-center gap-2">
-                    <span className="text-lg font-semibold text-gray-800">
+                    <span className="font-inter font-semibold text-[18px] leading-[110%] text-[#272343] capitalize">
                       {item.price}
                     </span>
                     {item.oldPrice && (
-                      <span className="text-sm text-gray-400 line-through">
+                      <span className="text-sm font-normal text-[#9A9CAA] line-through">
                         {item.oldPrice}
                       </span>
                     )}
                   </div>
-
                   <button
-                    onClick={() => addToCart()}
-                    className="w-11 h-11 flex items-center justify-center rounded-md bg-gray-100 hover:bg-[#029FAE] hover:text-white transition-all duration-300"
+                    onClick={() => addToCart(item)}
+                    className="w-11 h-11 flex items-center justify-center rounded-md bg-gray-100 group-hover:bg-[#029FAE] group-hover:text-white transition-all duration-300 -translate-y-[30%]"
                   >
                     <FiShoppingCart className="text-[18px]" />
                   </button>
