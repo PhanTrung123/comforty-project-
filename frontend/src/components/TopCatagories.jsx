@@ -52,9 +52,11 @@ const TopCategories = () => {
   const nextRef = useRef(null);
 
   return (
-    <section className="relative pb-8 w-full max-w-[1740px] mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
-      <div className="flex items-center justify-between py-6">
-        <h3 className="text-2xl font-bold text-gray-800">Top Categories</h3>
+    <section className="relative pb-8 ">
+      <div className="max-w-[1320px] w-full  mx-auto flex items-center justify-between py-6">
+        <h3 className="!font-semibold text-[#272343] text-[32px] leading-[110%] tracking-normal pb-4">
+          Top Categories
+        </h3>
         <div className="flex items-center gap-3">
           <button
             ref={prevRef}
@@ -70,7 +72,6 @@ const TopCategories = () => {
           </button>
         </div>
       </div>
-
       <SliderSpecial
         products={categories}
         prevRef={prevRef}

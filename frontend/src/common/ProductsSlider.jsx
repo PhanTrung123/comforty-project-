@@ -19,24 +19,25 @@ const ProductsSlider = ({ title, products = [], slidesToShow = 4 }) => {
   };
 
   return (
-    <section className="relative pb-8">
+    <section className="relative py-8 ">
       {title && (
-        <div className="flex items-center justify-between mb-8">
-          <h3 className="!font-semibold text-[#272343] text-[32px] leading-[110%] tracking-normal">
+        <div className="flex items-center justify-between mb-6 sm:mb-8 gap-3 flex-nowrap">
+          <h3 className="text-[18px] xs:text-[20px] sm:text-[24px] md:text-[32px] font-semibold text-[#272343] leading-[110%] truncate">
             {title}
           </h3>
-          <div className="flex items-center gap-3">
+
+          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
             <button
               ref={prevRef}
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-teal-500 hover:text-white transition-all duration-300"
+              className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-teal-500 hover:text-white transition-all duration-300"
             >
-              <FaArrowLeftLong />
+              <FaArrowLeftLong className="text-[14px] sm:text-[16px]" />
             </button>
             <button
               ref={nextRef}
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-teal-500 hover:text-white transition-all duration-300"
+              className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-teal-500 hover:text-white transition-all duration-300"
             >
-              <FaArrowRightLong />
+              <FaArrowRightLong className="text-[14px] sm:text-[16px]" />
             </button>
           </div>
         </div>
@@ -69,8 +70,8 @@ const ProductsSlider = ({ title, products = [], slidesToShow = 4 }) => {
       >
         {products.map((item) => (
           <SwiperSlide key={item.id}>
-            <div className=" overflow-hidden transition-all duration-300 group cursor-pointer">
-              <div className="relative w-[auto] h-[312px] rounded-[6px] overflow-hidden">
+            <div className="group cursor-pointer overflow-hidden transition-all duration-300">
+              <div className="relative w-full h-[220px] sm:h-[260px] md:h-[312px] rounded-[6px] overflow-hidden">
                 <img
                   src={item.image}
                   alt={item.name}
@@ -79,7 +80,7 @@ const ProductsSlider = ({ title, products = [], slidesToShow = 4 }) => {
                 <div>
                   {item.status && (
                     <span
-                      className={`absolute flex top-4 left-4 text-white text-[13px] font-semibold px-3 py-1 items-center rounded-sm shadow-md ${item.tagColor}`}
+                      className={`absolute flex top-3 left-3 sm:top-4 sm:left-4 text-white text-[11px] sm:text-[13px] font-semibold px-2 sm:px-3 py-[2px] sm:py-1 rounded-sm shadow-md ${item.tagColor}`}
                     >
                       {item.status}
                     </span>
@@ -87,37 +88,38 @@ const ProductsSlider = ({ title, products = [], slidesToShow = 4 }) => {
 
                   <button
                     onClick={() => toggleLike(item.id)}
-                    className="absolute top-4 right-5 w-9 h-9 flex items-center  justify-center rounded-sm bg-white/90 hover:bg-red-50 shadow-md transition-all duration-300"
+                    className="absolute top-3 right-3 sm:top-4 sm:right-5 w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-sm bg-white/90 hover:bg-red-50 shadow-md transition-all duration-300"
                   >
                     {liked[item.id] ? (
-                      <AiFillHeart className="text-red-500 text-[18px]" />
+                      <AiFillHeart className="text-red-500 text-[16px] sm:text-[18px]" />
                     ) : (
-                      <AiOutlineHeart className="text-gray-600 hover:text-red-500 text-[18px]" />
+                      <AiOutlineHeart className="text-gray-600 hover:text-red-500 text-[16px] sm:text-[18px]" />
                     )}
                   </button>
                 </div>
               </div>
 
-              <div className="py-4 ">
-                <span className="font-normal text-[16px] text-base leading-[130%] text-[#272343] group-hover:text-[#029FAE]">
+              <div className="py-3 sm:py-4">
+                <span className="block truncate font-normal text-[14px] sm:text-[16px] leading-[130%] text-[#272343] transition-colors duration-300 group-hover:text-[#029FAE]">
                   {item.name}
                 </span>
-                <div className="flex items-center justify-between ">
+                <div className="flex items-center justify-between mt-1 sm:mt-2">
                   <div className="flex items-center gap-2">
-                    <span className="font-inter font-semibold text-[18px] leading-[110%] text-[#272343] capitalize">
+                    <span className="font-semibold text-[16px] sm:text-[18px] text-[#272343] capitalize">
                       {item.price}
                     </span>
+
                     {item.oldPrice && (
-                      <span className="text-sm font-normal text-[#9A9CAA] line-through">
+                      <span className="text-xs sm:text-sm font-normal text-[#9A9CAA] line-through">
                         {item.oldPrice}
                       </span>
                     )}
                   </div>
                   <button
                     onClick={() => addToCart(item)}
-                    className="w-11 h-11 flex items-center justify-center rounded-md bg-gray-100 group-hover:bg-[#029FAE] group-hover:text-white transition-all duration-300 -translate-y-[30%]"
+                    className="w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center rounded-md bg-gray-100 text-[#272343] transition-all duration-300 group-hover:bg-[#029FAE] group-hover:text-white -translate-y-[20%] sm:-translate-y-[30%]"
                   >
-                    <FiShoppingCart className="text-[18px]" />
+                    <FiShoppingCart className="text-[16px] sm:text-[18px]" />
                   </button>
                 </div>
               </div>

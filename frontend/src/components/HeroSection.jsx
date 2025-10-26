@@ -46,9 +46,9 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative !h-auto min-h-[700px] md:min-h-[850px] w-full flex items-center bg-[#F0F2F3] overflow-hidden rounded-b-[48px]">
+    <section className="relative mt-8 md:mt-0 !h-auto min-h-[700px] md:min-h-[850px] w-full flex items-center bg-[#F0F2F3] overflow-hidden rounded-b-[48px]">
       <div className="absolute right-[5%] top-[5%] -translate-y-[40%] w-[750px] h-[750px] bg-[#E1E3E5] rounded-full z-10"></div>
-      <div className="relative z-20 w-full max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10">
+      <div className="relative z-20 w-full max-w-[1564px] mx-auto px-4 sm:px-6 lg:px-10">
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           pagination={{
@@ -121,21 +121,20 @@ const HeroSection = () => {
           ))}
         </Swiper>
         <div className="custom-pagination flex justify-center mt-3 md:mt-4 lg:mt-2"></div>
-        <div className="max-w-[1564px]">
-          <button
-            ref={prevRef}
-            className="hidden lg:flex absolute left-0 top-1/2 -translate-y-1/2 z-30 items-center justify-center w-10 h-10 rounded-full bg-white hover:bg-gray-100 shadow transition-all"
-          >
-            <FaArrowLeft className="text-[#029FAE]" />
-          </button>
 
-          <button
-            ref={nextRef}
-            className="hidden lg:flex absolute right-0 top-1/2 -translate-y-1/2 z-30 items-center justify-center w-10 h-10 rounded-full bg-white hover:bg-gray-100 shadow transition-all"
-          >
-            <FaArrowRight className="text-[#029FAE]" />
-          </button>
-        </div>
+        <button
+          ref={prevRef}
+          className="hidden lg:flex absolute left-0 top-1/2 -translate-y-1/2 z-30 items-center justify-center w-10 h-10 rounded-full bg-white hover:bg-gray-100 shadow transition-all"
+        >
+          <FaArrowLeft className="text-[#029FAE]" />
+        </button>
+
+        <button
+          ref={nextRef}
+          className="hidden lg:flex absolute right-0 top-1/2 -translate-y-1/2 z-30 items-center justify-center w-10 h-10 rounded-full bg-white hover:bg-gray-100 shadow transition-all"
+        >
+          <FaArrowRight className="text-[#029FAE]" />
+        </button>
       </div>
     </section>
   );

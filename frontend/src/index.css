@@ -29,15 +29,6 @@ ul {
   @apply list-none p-0 m-0;
 }
 
-/* h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @apply font-semibold text-gray-900;
-} */
-
 .slick-slide > div {
   display: flex;
   justify-content: center;
@@ -55,4 +46,14 @@ h6 {
 
 .custom-bullet-active {
   @apply bg-[#029FAE] w-5;
+}
+
+.custom-select option {
+  color: black;
+  background-color: white;
+}
+
+.custom-select option:hover {
+  background-color: #007580;
+  color: white;
 }

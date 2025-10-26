@@ -27,24 +27,60 @@ const CommentSlider = ({ comments, title }) => {
 
   return (
     <section className="relative w-full py-16 bg-[#f7f8f9]">
-      <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-8">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-10 text-center sm:text-left">
-          <h3 className="text-2xl sm:text-[32px] font-semibold capitalize text-[#272343] mb-4 sm:mb-0">
+      <div className="w-full max-w-[1280px] mx-auto">
+        <div
+          className="
+    flex items-center justify-between 
+    flex-nowrap
+    gap-3 sm:gap-6 
+    mb-10 
+    text-left
+  "
+        >
+          <h3
+            className="
+      text-[20px] sm:text-[28px] md:text-[32px] 
+      font-semibold 
+      capitalize 
+      text-[#272343] 
+      truncate
+    "
+          >
             {title}
           </h3>
 
-          <div className="flex justify-center sm:justify-end gap-4">
+          {/* Buttons */}
+          <div
+            className="
+      flex items-center gap-3 sm:gap-4 
+      shrink-0
+    "
+          >
             <button
               ref={prevRef}
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-white text-gray-700 shadow-sm border border-gray-200 hover:bg-[#029FAE] hover:text-white transition-all duration-300"
+              className="
+        w-9 h-9 sm:w-10 sm:h-10 
+        flex items-center justify-center 
+        rounded-full bg-white text-gray-700 
+        shadow-sm border border-gray-200 
+        hover:bg-[#029FAE] hover:text-white 
+        transition-all duration-300
+      "
             >
-              <FaArrowLeftLong />
+              <FaArrowLeftLong className="text-[14px] sm:text-[16px]" />
             </button>
             <button
               ref={nextRef}
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-white text-gray-700 shadow-sm border border-gray-200 hover:bg-[#029FAE] hover:text-white transition-all duration-300"
+              className="
+        w-9 h-9 sm:w-10 sm:h-10 
+        flex items-center justify-center 
+        rounded-full bg-white text-gray-700 
+        shadow-sm border border-gray-200 
+        hover:bg-[#029FAE] hover:text-white 
+        transition-all duration-300
+      "
             >
-              <FaArrowRightLong />
+              <FaArrowRightLong className="text-[14px] sm:text-[16px]" />
             </button>
           </div>
         </div>

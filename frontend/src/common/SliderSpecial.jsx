@@ -1,12 +1,12 @@
-import React, { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import styles from "./SliderSpecial.module.css";
 
 const SliderSpecial = ({ products = [], prevRef, nextRef }) => {
   const swiperRef = useRef(null);
-  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     if (!swiperRef.current || !prevRef?.current || !nextRef?.current) return;
@@ -19,67 +19,83 @@ const SliderSpecial = ({ products = [], prevRef, nextRef }) => {
   }, [prevRef, nextRef]);
 
   return (
-    <Swiper
-      modules={[Navigation]}
-      onSwiper={(swiper) => (swiperRef.current = swiper)}
-      slidesPerView={1}
-      centeredSlides={true}
-      loop={true}
-      spaceBetween={20}
-      breakpoints={{
-        640: { slidesPerView: 1 },
-        768: { slidesPerView: 3 },
-        1024: { slidesPerView: 5 },
-      }}
-      onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-      className="w-full py-6 overflow-hidden"
-    >
-      {products.map((item, index) => {
-        const total = products.length;
-        let diff = Math.abs(activeIndex - index);
-        diff = Math.min(diff, total - diff);
+    <div className="relative w-full flex justify-center overflow-visible ">
+      <Swiper
+        modules={[Navigation]}
+        onSwiper={(swiper) => {
+          swiperRef.current = swiper;
+          setTimeout(() => {
+            swiper.update();
+            swiper.slideToLoop(0, 0);
+          }, 400);
+        }}
+        slidesPerView="auto"
+        centeredSlides={true}
+        loop={true}
+        spaceBetween={24}
+        onSlideChange={(swiper) => {
+          const total = products.length;
+          const activeIndex =
+            typeof swiper.realIndex === "number" ? swiper.realIndex : 0;
 
-        let opacity = 1;
-        let scale = 1;
-        if (diff === 0) scale = 1;
-        else if (diff === 1) {
-          scale = 0.92;
-          opacity = 0.9;
-        } else if (diff === 2) {
-          scale = 0.85;
-          opacity = 0.7;
-        } else {
-          scale = 0.8;
-          opacity = 0.5;
-        }
+          const leftIndex = (activeIndex - 1 + total) % total;
+          const rightIndex = (activeIndex + 1) % total;
 
-        return (
-          <SwiperSlide key={item.id}>
-            <div
-              className="rounded-xl overflow-hidden shadow-md cursor-pointer transition-all duration-500"
-              style={{
-                transform: `scale(${scale})`,
-                opacity: opacity,
-              }}
-            >
-              <div className="relative">
+          swiper.slides.forEach((slide) => {
+            const realIndex = parseInt(slide.dataset.swiperSlideIndex);
+            const inner = slide.querySelector(".slide-content");
+            if (!inner || isNaN(realIndex)) return;
+
+            if (realIndex === leftIndex || realIndex === rightIndex) {
+              inner.style.opacity = 1;
+            } else if (realIndex === activeIndex) {
+              inner.style.opacity = 1;
+            } else {
+              inner.style.opacity = 0.4;
+            }
+          });
+        }}
+        className="!overflow-visible w-full mx-auto"
+        breakpoints={{
+          // 320: { slidesPerView: 1, spaceBetween: 12 },
+          // 640: { slidesPerView: 3, spaceBetween: 16 },
+          // 1024: { slidesPerView: 3, spaceBetween: 20 },
+          // 1300: { slidesPerView: "auto", spaceBetween: 24 },
+          320: { slidesPerView: 1, spaceBetween: 12 },
+          480: { slidesPerView: 1.2, spaceBetween: 14 }, // thêm để mobile mượt hơn
+          640: { slidesPerView: 2.2, spaceBetween: 16 }, // tablet nhỏ
+          768: { slidesPerView: 2.5, spaceBetween: 18 }, // tablet lớn
+          1024: { slidesPerView: 3, spaceBetween: 20 },
+          1300: { slidesPerView: "auto", spaceBetween: 24 },
+        }}
+      >
+        {products.map((item) => (
+          <SwiperSlide
+            key={item.id}
+            className={`!flex justify-center ${styles.swiperSlide}`}
+          >
+            <div className="slide-content rounded-xl overflow-hidden shadow-md cursor-pointer transition-all duration-500 w-[424px] aspect-[1/1] sm:w-[340px] md:w-[360px] lg:w-[424px]">
+              <div className="relative w-full h-full">
                 <img
                   src={item.image}
                   alt={item.name}
-                  className="w-full h-[300px] md:h-[320px] object-cover"
+                  className="w-full h-full object-cover rounded-xl"
                 />
-                <div className="absolute bottom-0 left-0 w-full bg-black/50 text-white p-3 md:p-4">
-                  <h4 className="!text-white font-semibold text-base md:text-lg">
-                    {item.name}
-                  </h4>
-                  <p className="text-xs md:text-sm">{item.quantity}</p>
+                <div className="absolute bottom-0 left-0 w-full bg-black/50 text-white p-4">
+                  <h4 className="font-semibold text-lg">{item.name}</h4>
+                  <p className="text-sm">{item.quantity}</p>
                 </div>
               </div>
             </div>
           </SwiperSlide>
-        );
-      })}
-    </Swiper>
+        ))}
+      </Swiper>
+
+      <div className="pointer-events-none absolute inset-0 flex justify-between">
+        <div className="w-[120px] hidden lg:block bg-gradient-to-r from-white via-white/60 to-transparent" />
+        <div className="w-[120px] hidden lg:block bg-gradient-to-l from-white via-white/60 to-transparent" />
+      </div>
+    </div>
   );
 };
 

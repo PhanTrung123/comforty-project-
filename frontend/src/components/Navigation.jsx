@@ -7,6 +7,7 @@ import {
   FiMenu,
   FiAlertCircle,
   FiCheck,
+  FiX,
 } from "react-icons/fi";
 import { FaSearch } from "react-icons/fa";
 import { useCart } from "../context/CartContext";
@@ -15,7 +16,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const Navigation = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showCart, setShowCart] = useState(false);
-  const { cartItems, cartCount, clearCart } = useCart();
+  const { cartItems, cartCount, removeFromCart, clearCart } = useCart();
   const cartRef = useRef(null);
 
   const topBarData = {
@@ -81,7 +82,7 @@ const Navigation = () => {
         </div>
       </div>
       <div className="bg-[#f0f2f3] text-gray-800 w-full">
-        <div className="max-w-[1320px] mx-auto  flex flex-wrap items-center justify-between gap-3 p-4">
+        <div className="max-w-[1320px] mx-auto flex flex-nowrap items-center justify-between gap-3 p-4 ">
           <img
             src="/Logo.png"
             alt="Comforty Logo"
@@ -120,18 +121,18 @@ const Navigation = () => {
               </div>
 
               {cartCount > 0 && (
-                <span className=" bg-[#007580] text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                <span className="bg-[#007580] text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
                   {cartCount}
                 </span>
               )}
             </button>
-            <button className="w-[40px] items-center flex justify-center h-[40px] bg-white border border-gray-300 rounded-md hover:text-[#007580] transition">
+            <button className="w-[40px] flex items-center justify-center h-[40px] bg-white border border-gray-300 rounded-md hover:text-[#007580] transition">
               <img
                 src="/image/heart.png"
                 className="w-[22px] h-[22px] object-cover"
               />
             </button>
-            <button className="w-[40px] items-center flex justify-center h-[40px] bg-white border border-gray-300 rounded-md hover:text-[#007580] transition">
+            <button className="w-[40px] flex items-center justify-center h-[40px] bg-white border border-gray-300 rounded-md hover:text-[#007580] transition">
               <img
                 src="/image/user.png"
                 className="w-[22px] h-[22px] object-cover"
@@ -159,41 +160,50 @@ const Navigation = () => {
                     </div>
                   ) : (
                     <>
-                      <div className="max-h-[240px] overflow-y-auto space-y-3">
+                      <div className="max-h-[300px] overflow-y-auto space-y-3 pr-1">
                         {cartItems.map((item) => (
                           <div
                             key={item.id}
-                            className="flex items-center justify-between border-b border-gray-100 pb-2"
+                            className="relative flex items-center justify-between border-b border-gray-100 pb-2 pr-7 group"
                           >
                             <div className="flex items-center gap-3">
                               <img
                                 src={item.image}
                                 alt={item.name}
-                                className="w-12 h-12 rounded-md object-cover"
+                                className="w-12 h-12 rounded-md object-cover flex-shrink-0"
                               />
-                              <div>
-                                <p className="text-sm font-medium text-[#272343]">
+                              <div className="min-w-0">
+                                <p className="text-sm font-medium text-[#272343] truncate">
                                   {item.name}
                                 </p>
-                                <p className="text-xs text-[#272343]">
+                                <p className="text-xs text-[#9a9caa]">
                                   {item.quantity} × {item.price}
                                 </p>
                               </div>
                             </div>
-                            <span className="font-semibold text-[#272343]">
+                            <span className="text-sm font-semibold text-[#272343] whitespace-nowrap">
                               $
                               {(
                                 item.quantity *
                                 parseFloat(item.price.replace("$", ""))
                               ).toFixed(2)}
                             </span>
+                            <button
+                              onClick={() => removeFromCart(item.id)}
+                              title="Remove item"
+                              className="
+          absolute right-0 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 text-[#272343] hover:text-[#007580] bg-white text-sm"
+                            >
+                              <FiX className="w-4 h-4" />
+                            </button>
                           </div>
                         ))}
                       </div>
+
                       <div className="flex justify-between items-center mt-4">
                         <button
                           onClick={clearCart}
-                          className="text-sm text-[#272343] hover:text-red-500 transition"
+                          className="text-sm text-[#272343] hover:text-[#007580] transition"
                         >
                           Clear All
                         </button>
@@ -209,12 +219,12 @@ const Navigation = () => {
           </div>
         </div>
       </div>
-      <div className="bg-white text-gray-800 border-t  border-gray-200 w-full">
-        <div className="max-w-[1320px] mx-auto  flex flex-wrap justify-between items-center px-4 py-6">
+      <div className="bg-white text-gray-800 border-t border-gray-200 w-full">
+        <div className="max-w-[1320px] mx-auto flex items-center justify-between px-4 py-4 gap-3 flex-nowrap">
           <div className="flex items-center space-x-4 sm:space-x-6 flex-wrap">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="border border-gray-300 rounded px-4 py-2 text-[14px] gap-3 bg-white hover:bg-gray-50 flex items-center "
+              className="border border-gray-300 rounded px-4 py-2 text-[14px] gap-2 bg-white hover:bg-gray-50 flex items-center whitespace-nowrap flex-shrink-0"
             >
               <FiMenu className="text-[20px]" />
               <span className="font-medium text-sm">All Categories</span>
@@ -231,11 +241,9 @@ const Navigation = () => {
               ))}
             </div>
           </div>
-          <div className="text-[14px] sm:text-[14px] text-[#636270] mt-2 sm:mt-0 text-center sm:text-right w-full sm:w-auto">
-            Contact:{" "}
-            <span className="font-bold ml-1 text-[14px] text-[#272343]">
-              {contactNumber}
-            </span>
+          <div className="text-[14px] text-[#636270] flex items-center gap-2 flex-shrink-0 whitespace-nowrap">
+            <span>Contact:</span>
+            <span className="font-bold text-[#272343]">{contactNumber}</span>
           </div>
         </div>
         {mobileMenuOpen && (
