@@ -61,11 +61,11 @@ const SliderSpecial = ({ products = [], prevRef, nextRef }) => {
           // 640: { slidesPerView: 3, spaceBetween: 16 },
           // 1024: { slidesPerView: 3, spaceBetween: 20 },
           // 1300: { slidesPerView: "auto", spaceBetween: 24 },
-          320: { slidesPerView: 1, spaceBetween: 12 },
-          480: { slidesPerView: 1.2, spaceBetween: 14 }, // thêm để mobile mượt hơn
-          640: { slidesPerView: 2.2, spaceBetween: 16 }, // tablet nhỏ
-          768: { slidesPerView: 2.5, spaceBetween: 18 }, // tablet lớn
-          1024: { slidesPerView: 3, spaceBetween: 20 },
+          320: { slidesPerView: "auto", spaceBetween: 12 },
+          480: { slidesPerView: "auto", spaceBetween: 14 }, // thêm để mobile mượt hơn
+          640: { slidesPerView: "auto", spaceBetween: 16 }, // tablet nhỏ
+          768: { slidesPerView: "auto", spaceBetween: 18 }, // tablet lớn
+          1024: { slidesPerView: "auto", spaceBetween: 20 },
           1300: { slidesPerView: "auto", spaceBetween: 24 },
         }}
       >

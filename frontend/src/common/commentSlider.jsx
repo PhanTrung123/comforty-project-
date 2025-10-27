@@ -48,8 +48,6 @@ const CommentSlider = ({ comments, title }) => {
           >
             {title}
           </h3>
-
-          {/* Buttons */}
           <div
             className="
       flex items-center gap-3 sm:gap-4 
