@@ -3,7 +3,9 @@ import React from "react";
 const features = [
   {
     id: 1,
-    icon: <img className="w-[46px] h-[46px] " src="/public/image/box.png" />,
+    icon: (
+      <img className="w-[46px] h-[46px]" src="/image/box.png" alt="Discount" />
+    ),
     title: "Discount",
     desc: "Every week new sales",
   },
@@ -11,8 +13,9 @@ const features = [
     id: 2,
     icon: (
       <img
-        className="w-[64px] h-[38px] "
-        src="/public/image/delivery-truck.png"
+        className="w-[64px] h-[38px]"
+        src="/image/delivery-truck.png"
+        alt="Free Delivery"
       />
     ),
     title: "Free Delivery",
@@ -21,14 +24,24 @@ const features = [
   {
     id: 3,
     icon: (
-      <img className="w-[50px] h-[50px] " src="/public/image/24-hours.png" />
+      <img
+        className="w-[50px] h-[50px]"
+        src="/image/24-hours.png"
+        alt="Great Support"
+      />
     ),
     title: "Great Support 24/7",
     desc: "We care your experiences",
   },
   {
     id: 4,
-    icon: <img className="w-[50px] h-[50px] " src="/public/image/shield.png" />,
+    icon: (
+      <img
+        className="w-[50px] h-[50px]"
+        src="/image/shield.png"
+        alt="Secure Payment"
+      />
+    ),
     title: "Secure Payment",
     desc: "100% Secure Payment Method",
   },
@@ -36,11 +49,7 @@ const features = [
 
 const Feature = () => {
   return (
-    <section
-      className="
-        z-20  max-w-[1320px] w-full mx-auto  relative lg:left-1/2 lg:-translate-x-1/2 lg:bottom-16  !h-[139px]
-      "
-    >
+    <section className="z-20 max-w-[1320px] w-full mx-auto relative lg:left-1/2 lg:-translate-x-1/2 lg:bottom-16 !h-[139px]">
       <div
         className="
           w-full bg-white rounded-[12px] shadow-md
@@ -49,7 +58,7 @@ const Feature = () => {
           py-6 sm:py-8 lg:py-0
           px-6 sm:px-8 lg:px-10
           items-center justify-between
-          lg:h-36 mt-10 md:mt-0
+          lg:h-36 mt-10
         "
       >
         {features.map((item) => (
@@ -60,8 +69,8 @@ const Feature = () => {
               lg:hover:scale-105 transition-transform duration-300 h-[50px]
             "
           >
-            <span className="">{item.icon}</span>
-            <div className="text-left gap-6 ">
+            <span>{item.icon}</span>
+            <div className="text-left gap-6">
               <h3 className="font-medium text-[#272343] leading-[110%] text-[18px]">
                 {item.title}
               </h3>
