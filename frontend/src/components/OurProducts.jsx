@@ -29,7 +29,7 @@ const OurProducts = () => {
       price: "$20",
       image: "/image/product1.jpg",
       status: "New",
-      tagColor: "bg-teal-500",
+      tagColor: "bg-[#01ad5a]",
     },
     {
       id: 2,
@@ -38,7 +38,7 @@ const OurProducts = () => {
       oldPrice: "$30",
       image: "/image/product2.jpg",
       status: "Sales",
-      tagColor: "bg-red-500",
+      tagColor: "bg-[#f5813f]",
     },
     {
       id: 3,
@@ -79,39 +79,41 @@ const OurProducts = () => {
   ];
 
   return (
-    <section className="relative pb-8 mt-8 ">
-      <div className="flex items-center justify-center mb-8">
+    <section className="relative  md:max-h-[919px] lg:mt-20 lg:mb-19 ">
+      <div className="flex items-center justify-center mb-4 mt-10 xs:mt-0">
         <h3 className="text-[24px] sm:text-[28px] md:text-[32px] font-semibold text-[#272343] leading-[110%]">
           Our Products
         </h3>
       </div>
 
-      <div className="font-medium flex flex-wrap justify-center mb-8 text-[14px] sm:text-[16px] gap-3 sm:gap-5 tracking-[0.05em] text-[#9A9CAA] text-center">
-        {tabItems.map(({ text, path }) => (
-          <button
-            key={path}
-            onClick={() => {
-              setActiveTab(path);
-              navigate(path);
-            }}
-            className={`relative pb-1 uppercase transition-all duration-300 hover:text-[#272343] ${
-              activeTab === path
-                ? "text-[#272343] after:content-[''] after:absolute after:left-0 after:-bottom-[3px] after:w-full after:h-[2px] after:bg-teal-600"
-                : ""
-            }`}
-          >
-            {text}
-          </button>
-        ))}
+      <div className=" h-[34px] flex items-center justify-center mx-auto  mb-[40px] mt-10 xs:mt-0">
+        <div className="font-medium flex flex-wrap justify-center text-[14px] sm:text-[16px] gap-3 sm:gap-5 tracking-[0.05em] text-[#9A9CAA] text-center ">
+          {tabItems.map(({ text, path }) => (
+            <button
+              key={path}
+              onClick={() => {
+                setActiveTab(path);
+                navigate(path);
+              }}
+              className={`relative pb-1 uppercase transition-all duration-300 hover:text-[#272343] ${
+                activeTab === path
+                  ? "text-[#272343] after:content-[''] after:absolute after:left-0 after:-bottom-[3px] after:w-full after:h-[2px] after:bg-teal-600"
+                  : ""
+              }`}
+            >
+              {text}
+            </button>
+          ))}
+        </div>
       </div>
 
-      <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 ">
+      <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8 ">
         {productsList.map((item) => (
           <div
             key={item.id}
             className="group overflow-hidden transition-all duration-300 cursor-pointer"
           >
-            <div className="relative w-full h-[220px] sm:h-[260px] md:h-[312px] rounded-[6px] overflow-hidden ">
+            <div className="relative w-full h-[220px] sm:h-[260px] md:h-[312px] rounded-[6px] overflow-hidden aspect-square md:aspect-auto ">
               <img
                 src={item.image}
                 alt={item.name}
@@ -136,7 +138,7 @@ const OurProducts = () => {
               </button>
             </div>
 
-            <div className="py-4 sm:py-4">
+            <div className="sm:py-4 lg:py-0 lg:mt-[14px] mt-10 xs:mt-0">
               <span className="font-normal text-[14px] sm:text-[16px] leading-[130%] text-[#272343] transition-colors duration-300 group-hover:text-[#029FAE] block truncate">
                 {item.name}
               </span>

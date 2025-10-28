@@ -9,11 +9,12 @@ import CompanyLogo from "../components/CompanyLogo";
 import Feature from "../components/Feature";
 import FeaturedProducts from "../components/FeaturedProducts";
 import OurProducts from "../components/OurProducts";
+import Copyright from "./Copyright";
 
 const Layout = () => {
   return (
     <div className="flex flex-col min-h-screen bg-white font-sans overflow-x-hidden">
-      <header className="w-full sm:h-[180px] lg:h-[204px]">
+      <header className="w-full sm:h-[180px] lg:h-[204px] border-b border-b-[#e1e3e6]">
         <Navigation />
       </header>
       <section className="w-full mx-0 px-4 sm:px-0 md:max-w-[1740px] md:mx-auto">
@@ -32,7 +33,7 @@ const Layout = () => {
         <FeaturedProducts />
       </section>
 
-      <section className="w-full flex justify-center mt-10 px-4 sm:px-0">
+      <section className="w-full flex justify-center  px-4 sm:px-0">
         <div className="w-full overflow-visible">
           <TopCategories />
         </div>
@@ -42,17 +43,22 @@ const Layout = () => {
         <OurProducts />
       </section>
 
-      <section className="flex-1 w-full mx-auto px-4 sm:px-0">
+      <section className="flex-1 w-full mx-auto ">
         <Testimonial />
       </section>
 
-      <section className="w-full max-w-[1320px] mx-auto px-4 sm:px-0">
+      <section className="w-full max-w-[1320px] mx-auto px-4 sm:px-0 sm:mb-[40px] md:mb-[103px] mb-10 xs:mb-0">
         <RecentlyAdd />
       </section>
-      <footer className="w-full border-t border-b border-[#E1E3E5] bg-white">
-        <div className="max-w-[1320px] w-full mx-auto ">
+      <footer className="w-full border-t border-b border-[#e9eaec] bg-white">
+        <div className="max-w-[1320px] w-full mx-auto px-4 sm:px-0">
           <Footer />
         </div>
+        <section className="flex-1 border-t border-[#e9eaec] w-full mx-auto px-4 sm:px-0">
+          <div className="max-w-[1320px] w-full mx-auto px-4 sm:px-0">
+            <Copyright />
+          </div>
+        </section>
       </footer>
     </div>
   );

@@ -9,16 +9,17 @@ const RecentlyAdd = () => {
       price: "$25",
       oldPrice: "$40",
       image: "/image/product1.jpg",
-      status: "Sale",
-      tagColor: "bg-red-500",
+      status: "New",
+      tagColor: "bg-[#01ad5a]",
     },
     {
       id: 2,
       name: "Office Chair Pro",
       price: "$35",
       image: "/image/product2.jpg",
-      status: "New",
-      tagColor: "bg-teal-500",
+
+      status: "Sale",
+      tagColor: "bg-[#F5813F]",
     },
     {
       id: 3,
@@ -32,8 +33,6 @@ const RecentlyAdd = () => {
       price: "$45",
       oldPrice: "$60",
       image: "/image/product4.jpg",
-      status: "Hot",
-      tagColor: "bg-yellow-500",
     },
     {
       id: 4,
@@ -41,8 +40,6 @@ const RecentlyAdd = () => {
       price: "$45",
       oldPrice: "$60",
       image: "/image/product5.jpg",
-      status: "Hot",
-      tagColor: "bg-yellow-500",
     },
     {
       id: 4,
@@ -50,8 +47,6 @@ const RecentlyAdd = () => {
       price: "$45",
       oldPrice: "$60",
       image: "/image/product6.jpg",
-      status: "Hot",
-      tagColor: "bg-yellow-500",
     },
   ];
 
@@ -59,9 +54,12 @@ const RecentlyAdd = () => {
     <ProductsSlider
       title="Recently Added"
       products={recentlyAdd}
-      itemsPage={4}
+      slidesToShow={4}
       gridCols="md:grid-cols-4"
       showPagination={true}
+      extraMt={48}
+      disableTitleMt={true}
+      disableNavMt={true}
     />
   );
 };

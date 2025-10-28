@@ -10,12 +10,7 @@ const CommentSlider = ({ comments, title }) => {
   const swiperRef = useRef(null);
 
   useEffect(() => {
-    if (
-      swiperRef.current &&
-      swiperRef.current.params &&
-      prevRef.current &&
-      nextRef.current
-    ) {
+    if (swiperRef.current && prevRef.current && nextRef.current) {
       swiperRef.current.params.navigation.prevEl = prevRef.current;
       swiperRef.current.params.navigation.nextEl = nextRef.current;
 
@@ -26,57 +21,22 @@ const CommentSlider = ({ comments, title }) => {
   }, []);
 
   return (
-    <section className="relative w-full py-16 bg-[#f7f8f9]">
-      <div className="w-full max-w-[1280px] mx-auto">
-        <div
-          className="
-    flex items-center justify-between 
-    flex-nowrap
-    gap-3 sm:gap-6 
-    mb-10 
-    text-left
-  "
-        >
-          <h3
-            className="
-      text-[20px] sm:text-[28px] md:text-[32px] 
-      font-semibold 
-      capitalize 
-      text-[#272343] 
-      truncate
-    "
-          >
+    <section className="relative w-full py-20 bg-[#f0f2f3]">
+      <div className="w-full px-4 md:px-0 max-w-[1320px] mx-auto">
+        <div className="flex items-center justify-between flex-nowrap gap-3 sm:gap-6 mb-10 text-left">
+          <h3 className="text-[20px] sm:text-[28px] md:text-[32px] font-semibold capitalize text-[#272343] truncate">
             {title}
           </h3>
-          <div
-            className="
-      flex items-center gap-3 sm:gap-4 
-      shrink-0
-    "
-          >
+          <div className="flex items-center gap-3 sm:gap-4 shrink-0">
             <button
               ref={prevRef}
-              className="
-        w-9 h-9 sm:w-10 sm:h-10 
-        flex items-center justify-center 
-        rounded-full bg-white text-gray-700 
-        shadow-sm border border-gray-200 
-        hover:bg-[#029FAE] hover:text-white 
-        transition-all duration-300
-      "
+              className="w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center rounded-full bg-white text-gray-700 shadow-sm border border-gray-200 hover:bg-[#029FAE] hover:text-white transition-all duration-300"
             >
               <FaArrowLeftLong className="text-[14px] sm:text-[16px]" />
             </button>
             <button
               ref={nextRef}
-              className="
-        w-9 h-9 sm:w-10 sm:h-10 
-        flex items-center justify-center 
-        rounded-full bg-white text-gray-700 
-        shadow-sm border border-gray-200 
-        hover:bg-[#029FAE] hover:text-white 
-        transition-all duration-300
-      "
+              className="w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center rounded-full bg-white text-gray-700 shadow-sm border border-gray-200 hover:bg-[#029FAE] hover:text-white transition-all duration-300"
             >
               <FaArrowRightLong className="text-[14px] sm:text-[16px]" />
             </button>
@@ -100,26 +60,26 @@ const CommentSlider = ({ comments, title }) => {
         >
           {comments.map((info) => (
             <SwiperSlide key={info.id}>
-              <div className="relative bg-white h-[340px] rounded-2xl border  border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 p-6 sm:p-8 flex flex-col justify-between overflow-hidden">
+              <div className="relative bg-white h-[345px] max-w-[648px] rounded-xl border border-gray-200 transition-all duration-300 p-10 sm:pt-10 sm:px-10 flex flex-col overflow-hidden">
                 <img
                   src="/image/double_quotes_r 1.png"
                   alt="quote"
-                  className="absolute bottom-0 right-6 w-[80px] h-[80px] sm:w-[140px] sm:h-[140px]  object-contain select-none pointer-events-none"
+                  className="absolute bottom-0 right-6 w-[80px] h-[80px] sm:w-[163px] sm:h-[163px] object-contain select-none pointer-events-none"
                 />
 
-                <div className="relative z-10">
-                  <div className="border-l-[3px] border-[#029FAE] pl-5">
-                    <p className="text-[#636270] text-[18px] font-normal leading-[150%] line-clamp-6">
+                <div className="relative z-10 md:max-w-[568px] flex-1">
+                  <div className="border-l-[3px] border-[#029FAE] pl-6 ">
+                    <p className="text-[#636270] text-[18px] md:text-[20px] font-normal leading-[150%] line-clamp-6">
                       {info.description}
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 relative z-10 mt-6">
+                <div className="flex items-center gap-3 relative z-10 mt-[25px]">
                   <img
                     src={info.avatar}
                     alt={info.name}
-                    className="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border border-gray-200 shadow"
+                    className="w-14 h-14 sm:w-15 sm:h-15 rounded-full object-cover border border-gray-200 shadow"
                   />
                   <div>
                     <h4 className="text-[#272343] font-semibold text-[18px] sm:text-[20px] leading-[130%] capitalize">

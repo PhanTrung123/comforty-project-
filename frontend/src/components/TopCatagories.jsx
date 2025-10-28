@@ -52,26 +52,28 @@ const TopCategories = () => {
   const nextRef = useRef(null);
 
   return (
-    <section className="relative pb-8 ">
-      <div className="max-w-[1320px] w-full  mx-auto flex items-center justify-between py-6">
-        <h3 className="!font-semibold text-[#272343] text-[32px] leading-[110%] tracking-normal pb-4">
+    <section className="relative ">
+      <div className="max-w-[1320px] w-full mx-auto flex items-center justify-between mt-20 mb-10">
+        <h3 className="text-[24px] sm:text-[28px] md:text-[32px] font-semibold text-[#272343] leading-[110%] tracking-normal">
           Top Categories
         </h3>
+
         <div className="flex items-center gap-3">
           <button
             ref={prevRef}
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-200 hover:bg-teal-500 hover:text-white transition-all duration-300"
+            className="w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center rounded-full bg-gray-200 hover:bg-teal-500 hover:text-white transition-all duration-300"
           >
-            <FaArrowLeftLong />
+            <FaArrowLeftLong className="text-[16px]" />
           </button>
           <button
             ref={nextRef}
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-200 hover:bg-teal-500 hover:text-white transition-all duration-300"
+            className="w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center rounded-full bg-gray-200 hover:bg-teal-500 hover:text-white transition-all duration-300"
           >
-            <FaArrowRightLong />
+            <FaArrowRightLong className="text-[16px]" />
           </button>
         </div>
       </div>
+
       <SliderSpecial
         products={categories}
         prevRef={prevRef}

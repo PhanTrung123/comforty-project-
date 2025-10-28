@@ -7,7 +7,14 @@ import { FiShoppingCart } from "react-icons/fi";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 
-const ProductsSlider = ({ title, products = [], slidesToShow = 4 }) => {
+const ProductsSlider = ({
+  title,
+  products = [],
+  slidesToShow = 4,
+  className = "",
+  extraMt = 0,
+  disableTitleMt = false,
+}) => {
   const [liked, setLiked] = useState({});
   const prevRef = useRef(null);
   const nextRef = useRef(null);
@@ -19,9 +26,16 @@ const ProductsSlider = ({ title, products = [], slidesToShow = 4 }) => {
   };
 
   return (
-    <section className="relative py-8 ">
+    <section
+      className={`relative ${className}`}
+      style={{ marginTop: extraMt ? `calc(32px + ${extraMt}px)` : undefined }}
+    >
       {title && (
-        <div className="flex items-center justify-between mb-6 sm:mb-8 gap-3 flex-nowrap">
+        <div
+          className={`flex items-center justify-between flex-nowrap mb-[40px] ${
+            disableTitleMt ? "" : "mt-[32px]"
+          }`}
+        >
           <h3 className="text-[18px] xs:text-[20px] sm:text-[24px] md:text-[32px] font-semibold text-[#272343] leading-[110%] truncate">
             {title}
           </h3>
@@ -29,13 +43,13 @@ const ProductsSlider = ({ title, products = [], slidesToShow = 4 }) => {
           <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
             <button
               ref={prevRef}
-              className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-teal-500 hover:text-white transition-all duration-300"
+              className="w-8 h-8 sm:w-11 sm:h-11 flex items-center justify-center rounded-full bg-gray-100 hover:bg-teal-500 hover:text-white transition-all duration-300"
             >
               <FaArrowLeftLong className="text-[14px] sm:text-[16px]" />
             </button>
             <button
               ref={nextRef}
-              className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-teal-500 hover:text-white transition-all duration-300"
+              className="w-8 h-8 sm:w-11 sm:h-11 flex items-center justify-center rounded-full bg-gray-100 hover:bg-teal-500 hover:text-white transition-all duration-300"
             >
               <FaArrowRightLong className="text-[14px] sm:text-[16px]" />
             </button>
@@ -66,7 +80,7 @@ const ProductsSlider = ({ title, products = [], slidesToShow = 4 }) => {
           768: { slidesPerView: 3, spaceBetween: 20 },
           1024: { slidesPerView: slidesToShow, spaceBetween: 24 },
         }}
-        className="overflow-hidden !pb-2"
+        className="overflow-hidden "
       >
         {products.map((item) => (
           <SwiperSlide key={item.id}>
@@ -99,8 +113,8 @@ const ProductsSlider = ({ title, products = [], slidesToShow = 4 }) => {
                 </div>
               </div>
 
-              <div className="py-3 sm:py-4">
-                <span className="block truncate font-normal text-[14px] sm:text-[16px] leading-[130%] text-[#272343] transition-colors duration-300 group-hover:text-[#029FAE]">
+              <div className="">
+                <span className="block mt-[14px] truncate font-normal text-[14px] sm:text-[16px] leading-[130%] text-[#272343] transition-colors duration-300 group-hover:text-[#029FAE]">
                   {item.name}
                 </span>
                 <div className="flex items-center justify-between mt-1 sm:mt-2">

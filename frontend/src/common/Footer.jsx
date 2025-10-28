@@ -1,11 +1,4 @@
 import React from "react";
-import {
-  FaFacebookF,
-  FaInstagram,
-  FaTwitter,
-  FaYoutube,
-  FaPinterestP,
-} from "react-icons/fa";
 
 const Footer = () => {
   const footerData = {
@@ -13,11 +6,11 @@ const Footer = () => {
     description:
       "Vivamus tristique odio sit amet velit semper, eu posuere turpis interdum. Cras egestas purus.",
     socialLinks: [
-      { icon: <FaFacebookF size={20} />, href: "#" },
-      { icon: <FaTwitter size={20} />, href: "#" },
-      { icon: <FaInstagram size={20} />, href: "#" },
-      { icon: <FaPinterestP size={20} />, href: "#" },
-      { icon: <FaYoutube size={20} />, href: "#" },
+      { icon: "/image/Facebook---Negative 2.png", href: "#" },
+      { icon: "/image/Twitter---Negative 1@2x.png", href: "#" },
+      { icon: "/image/Instagram 1.png", href: "#" },
+      { icon: "/image/Pinterest---Negative 1.png", href: "#" },
+      { icon: "/image/YouTube---Negative 1.png", href: "#" },
     ],
     footerLinks: [
       {
@@ -52,9 +45,9 @@ const Footer = () => {
   };
 
   return (
-    <footer>
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-8 py-10">
-        <div className="flex flex-col">
+    <footer className="md:h-[343px] flex items-center">
+      <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_2.3fr]  gap-8 py-10 ">
+        <div className="flex flex-col md:w-[350px]">
           <img
             src={footerData.logo}
             alt="Brand Logo"
@@ -64,36 +57,33 @@ const Footer = () => {
             {footerData.description}
           </p>
 
-          <div className="flex flex-row gap-3 items-center">
+          <div className="flex flex-row gap-1 items-center">
             {footerData.socialLinks.map((social, i) => (
               <a
                 key={i}
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`w-10 h-10 rounded-full flex items-center justify-center transition transform hover:scale-125 ${
-                  social.color ? "" : "text-gray-600 hover:text-[#007580]"
-                }`}
-                style={{
-                  color: social.color,
-                }}
-                onMouseEnter={(e) => {
-                  if (social.color) {
-                    e.currentTarget.style.backgroundColor = social.color;
-                    e.currentTarget.style.color = "#fff";
-                    e.currentTarget.style.border = `1px solid ${social.color}`;
-                  } else {
-                    e.currentTarget.style.color = "#007580";
-                    e.currentTarget.style.border = "1px solid #007580";
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = "transparent";
-                  e.currentTarget.style.color = social.color || "#333";
-                  e.currentTarget.style.border = "none";
-                }}
+                className="
+                  group
+                  w-[38px] h-[38px]
+                  rounded-full
+                  flex items-center justify-center
+                  border border-transparent
+                  transition-all duration-300 ease-in-out
+                  hover:border-[#007580]
+                "
               >
-                {social.icon}
+                <img
+                  src={social.icon}
+                  alt={`social-${i}`}
+                  className="
+                    w-[16px] h-[16px]
+                    object-contain
+                    transition-transform duration-300
+                    group-hover:scale-110
+                  "
+                />
               </a>
             ))}
           </div>
@@ -101,24 +91,24 @@ const Footer = () => {
 
         {footerData.footerLinks.map((link, index) => (
           <div key={index} className="flex flex-col">
-            <h4 className="!text-[#9A9CAA] font-medium uppercase mb-3">
+            <h4 className="!text-[#9A9CAA] font-medium leading-[110%] !text-[14px] uppercase mb-3">
               {link.title}
             </h4>
 
             {link.input ? (
               <>
-                <div className="flex flex-col lg:flex-row gap-3 w-full">
+                <div className="flex flex-col lg:flex-row gap-3 sm:w-full md:max-w-[424px]">
                   <input
                     type="email"
                     placeholder="Your email"
-                    className="flex-grow min-w-0 border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-teal-500 w-full"
+                    className="flex-grow min-w-0 md:text-[16px] text-[#a4a6b3] border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-teal-500 w-full"
                   />
                   <button className="bg-[#029FAE] text-white px-5 py-2 rounded-md hover:bg-[#008490] transition w-full lg:w-auto">
                     Subscribe
                   </button>
                 </div>
 
-                <p className=" mt-3 font-inter font-normal text-[15px] leading-[150%] text-[#7d7b8e]">
+                <p className="mt-3 font-inter font-normal text-[15px] leading-[150%] text-[#7d7b8e]">
                   {link.description}
                 </p>
               </>
@@ -136,17 +126,6 @@ const Footer = () => {
             )}
           </div>
         ))}
-      </div>
-
-      <div className="gap-4 py-4 flex flex-col sm:flex-row justify-between border-gray-200 items-center text-sm text-[#9A9CAA]">
-        <p>
-          {footerData.copyright.split("Zakirsoft")[0]}
-          <span className="font-medium text-[#272343]">Zakirsoft</span>
-        </p>
-        <img
-          src={footerData.paymentImg}
-          className="hidden md:block w-56 opacity-50 object-contain h-auto grayscale"
-        />
       </div>
     </footer>
   );

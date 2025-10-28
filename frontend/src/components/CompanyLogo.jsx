@@ -12,13 +12,13 @@ const CompanyLogo = () => {
   ];
 
   return (
-    <section className="w-full flex justify-center bg-white py-6">
+    <section className="w-full flex justify-center bg-white mt-60 sm:mt-30 md:mt-0">
       <div
         className="
-          w-full max-w-[1320px] 
+          w-full max-w-[1320px] md:max-h-[139px]
           flex flex-wrap md:flex-nowrap 
           items-center justify-center md:justify-between
-          gap-6 sm:gap-8 px-4
+          gap-6 md:gap-[106px] px-4
         "
       >
         {logos.map((logo, index) => (

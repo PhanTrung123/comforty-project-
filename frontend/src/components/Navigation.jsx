@@ -89,18 +89,17 @@ const Navigation = () => {
             className="w-[120px] sm:w-[166px] h-[40px] object-contain"
           />
           <div className="flex-1 hidden md:flex justify-center">
-            <div className="relative w-full max-w-md">
+            <div className="relative w-full md:w-[413px]">
               <input
                 type="text"
                 placeholder="Search here..."
-                className="w-full p-2 pl-3 pr-10 rounded outline-none text-[16px] bg-white border !text-[#9a9caa] border-gray-300"
+                className="w-full h-[44px] pl-4 pr-11 rounded-md border border-gray-300 bg-white text-[16px] text-[#9a9caa] placeholder:text-[#9a9caa] outline-none focus:border-[#029FAE] focus:ring-1 focus:ring-[#029FAE] transition-all"
               />
-              <span className="cursor-pointer absolute inset-y-0 right-3 flex items-center">
-                <img
-                  src="/image/search.png"
-                  className="w-[22px] h-[22px] object-cover"
-                />
-              </span>
+              <img
+                src="/image/search.png"
+                alt="Search"
+                className="absolute right-3 top-1/2 -translate-y-1/2 w-[20px] h-[20px] object-contain opacity-70 cursor-pointer hover:opacity-100 transition"
+              />
             </div>
           </div>
           <div className="relative flex gap-3" ref={cartRef}>
@@ -221,14 +220,15 @@ const Navigation = () => {
       </div>
       <div className="bg-white text-gray-800 border-t border-gray-200 w-full">
         <div className="max-w-[1320px] mx-auto flex items-center justify-between px-4 py-4 gap-3 flex-nowrap">
-          <div className="flex items-center space-x-4 sm:space-x-6 flex-wrap">
+          <div className="flex items-center w-[547px] space-x-4 sm:space-x-6 flex-wrap">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="border border-gray-300 rounded px-4 py-2 text-[14px] gap-2 bg-white hover:bg-gray-50 flex items-center whitespace-nowrap flex-shrink-0"
+              className="flex items-center justify-center gap-2 w-[176px] h-[44px] border border-gray-300 rounded-md bg-white text-[14px] text-[#272343] hover:bg-gray-50 transition whitespace-nowrap flex-shrink-0"
             >
               <FiMenu className="text-[20px]" />
-              <span className="font-medium text-sm">All Categories</span>
+              <span className="font-medium">All Categories</span>
             </button>
+
             <div className="hidden md:flex gap-2 items-center space-x-6">
               {navLinks.map((link, i) => (
                 <Link
@@ -241,9 +241,14 @@ const Navigation = () => {
               ))}
             </div>
           </div>
+
           <div className="text-[14px] text-[#636270] flex items-center gap-2 flex-shrink-0 whitespace-nowrap">
-            <span>Contact:</span>
-            <span className="font-bold text-[#272343]">{contactNumber}</span>
+            <span className="font-inter font-normal text-[14px] leading-[110%] text-[#636270]">
+              Contact:
+            </span>
+            <span className="font-semibold leading-[110%] text-[#272343]">
+              {contactNumber}
+            </span>
           </div>
         </div>
         {mobileMenuOpen && (

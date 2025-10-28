@@ -11,7 +11,7 @@ const features = [
     id: 2,
     icon: (
       <img
-        className="w-[46px] h-[46px] "
+        className="w-[64px] h-[38px] "
         src="/public/image/delivery-truck.png"
       />
     ),
@@ -21,14 +21,14 @@ const features = [
   {
     id: 3,
     icon: (
-      <img className="w-[46px] h-[46px] " src="/public/image/24-hours.png" />
+      <img className="w-[50px] h-[50px] " src="/public/image/24-hours.png" />
     ),
     title: "Great Support 24/7",
     desc: "We care your experiences",
   },
   {
     id: 4,
-    icon: <img className="w-[46px] h-[46px] " src="/public/image/shield.png" />,
+    icon: <img className="w-[50px] h-[50px] " src="/public/image/shield.png" />,
     title: "Secure Payment",
     desc: "100% Secure Payment Method",
   },
@@ -38,7 +38,7 @@ const Feature = () => {
   return (
     <section
       className="
-        z-20  max-w-[1320px] w-full mx-auto  relative lg:left-1/2 lg:-translate-x-1/2 lg:bottom-16
+        z-20  max-w-[1320px] w-full mx-auto  relative lg:left-1/2 lg:-translate-x-1/2 lg:bottom-16  !h-[139px]
       "
     >
       <div
@@ -49,7 +49,7 @@ const Feature = () => {
           py-6 sm:py-8 lg:py-0
           px-6 sm:px-8 lg:px-10
           items-center justify-between
-          lg:h-36
+          lg:h-36 mt-10 md:mt-0
         "
       >
         {features.map((item) => (
@@ -57,15 +57,15 @@ const Feature = () => {
             key={item.id}
             className="
               flex items-center gap-4 
-              lg:hover:scale-105 transition-transform duration-300
+              lg:hover:scale-105 transition-transform duration-300 h-[50px]
             "
           >
             <span className="">{item.icon}</span>
-            <div className="text-left">
-              <h3 className="font-medium text-[#272343] text-[18px]">
+            <div className="text-left gap-6 ">
+              <h3 className="font-medium text-[#272343] leading-[110%] text-[18px]">
                 {item.title}
               </h3>
-              <p className="text-[#9A9CAA] text-[15px] font-normal">
+              <p className="text-[#9A9CAA] text-[15px] leading-[110%] font-normal">
                 {item.desc}
               </p>
             </div>
