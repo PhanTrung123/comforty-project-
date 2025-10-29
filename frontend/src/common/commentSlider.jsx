@@ -21,10 +21,10 @@ const CommentSlider = ({ comments, title }) => {
   }, []);
 
   return (
-    <section className="relative w-full py-20 bg-[#f0f2f3]">
-      <div className="w-full px-4 md:px-0 max-w-[1320px] mx-auto">
+    <section className="relative w-full py-10 md:py-12 lg:py-20 bg-[#f0f2f3]">
+      <div className="w-full px-4 xl:px-0 max-w-[1320px] mx-auto">
         <div className="flex items-center justify-between flex-nowrap gap-3 sm:gap-6 mb-10 text-left">
-          <h3 className="text-[20px] sm:text-[28px] md:text-[32px] font-semibold capitalize text-[#272343] truncate">
+          <h3 className="text-[18px] xs:text-[20px] sm:text-[24px] lg:text-[32px] font-semibold capitalize text-[#272343] truncate">
             {title}
           </h3>
           <div className="flex items-center gap-3 sm:gap-4 shrink-0">
@@ -53,23 +53,22 @@ const CommentSlider = ({ comments, title }) => {
             nextEl: nextRef.current,
           }}
           breakpoints={{
-            0: { slidesPerView: 1, spaceBetween: 16 },
-            768: { slidesPerView: 2, spaceBetween: 24 },
+            1024: { slidesPerView: 2, spaceBetween: 24 },
           }}
           className="pb-4"
         >
           {comments.map((info) => (
             <SwiperSlide key={info.id}>
-              <div className="relative bg-white h-[345px] max-w-[648px] rounded-xl border border-gray-200 transition-all duration-300 p-10 sm:pt-10 sm:px-10 flex flex-col overflow-hidden">
+              <div className="relative bg-white md:h-[345px] w-full lg:max-w-[648px] rounded-xl border border-gray-200 transition-all duration-300 p-6 md:p-10 sm:pt-10 sm:px-10 flex flex-col overflow-hidden">
                 <img
                   src="/image/double_quotes_r 1.png"
                   alt="quote"
-                  className="absolute bottom-0 right-6 w-[80px] h-[80px] sm:w-[163px] sm:h-[163px] object-contain select-none pointer-events-none"
+                  className="absolute bottom-0 xs:bottom-6 sm:bottom-4 md:bottom-0 right-6 w-[100px] h-[100px] md:w-[140px] md:h-[140px] xl:w-[163px] xl:h-[163px] object-contain select-none pointer-events-none"
                 />
 
-                <div className="relative z-10 md:max-w-[568px] flex-1">
+                <div className="relative z-10 lg:max-w-[568px] flex-1">
                   <div className="border-l-[3px] border-[#029FAE] pl-6 ">
-                    <p className="text-[#636270] text-[18px] md:text-[20px] font-normal leading-[150%] line-clamp-6">
+                    <p className="text-[#636270] text-[14px] md:text-[18px] lg:text-[20px] font-normal leading-[150%] line-clamp-6">
                       {info.description}
                     </p>
                   </div>
@@ -82,10 +81,10 @@ const CommentSlider = ({ comments, title }) => {
                     className="w-14 h-14 sm:w-15 sm:h-15 rounded-full object-cover border border-gray-200 shadow"
                   />
                   <div>
-                    <h4 className="text-[#272343] font-semibold text-[18px] sm:text-[20px] leading-[130%] capitalize">
+                    <h4 className="text-[#272343] font-semibold text-[18px] lg:text-[20px] leading-[130%] capitalize">
                       {info.name}
                     </h4>
-                    <p className="text-[14px] sm:text-[16px] font-normal text-[#9A9CAA] mt-1">
+                    <p className="text-[14px] lg:text-[16px] font-normal text-[#9A9CAA] mt-1">
                       {info.position}
                     </p>
                   </div>

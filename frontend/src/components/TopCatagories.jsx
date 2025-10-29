@@ -54,7 +54,7 @@ const TopCategories = () => {
   return (
     <section className="relative ">
       <div className="max-w-[1320px] w-full mx-auto flex items-center justify-between mt-20 mb-10">
-        <h3 className="text-[24px] sm:text-[28px] md:text-[32px] font-semibold text-[#272343] leading-[110%] tracking-normal">
+        <h3 className="text-[18px] xs:text-[20px] sm:text-[24px] lg:text-[32px] font-semibold text-[#272343] leading-[110%] truncate tracking-normal">
           Top Categories
         </h3>
 

@@ -45,19 +45,19 @@ const Footer = () => {
   };
 
   return (
-    <footer className="md:h-[343px] flex items-center">
-      <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_2.3fr]  gap-8 py-10 ">
-        <div className="flex flex-col md:w-[350px]">
+    <footer className="lg:h-[343px] flex items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr_1fr_2.3fr]  gap-8 py-10 ">
+        <div className="flex flex-col lg:w-[350px]">
           <img
             src={footerData.logo}
             alt="Brand Logo"
             className="w-[120px] sm:w-[166px] h-[40px] object-contain"
           />
-          <p className="text-[16px] text-gray-600 my-4">
+          <p className="text-[14px] md:text-[16px] text-gray-600 my-4">
             {footerData.description}
           </p>
 
-          <div className="flex flex-row gap-1 items-center">
+          <div className="flex flex-row gap-4 lg:gap-1 items-center">
             {footerData.socialLinks.map((social, i) => (
               <a
                 key={i}
@@ -97,7 +97,7 @@ const Footer = () => {
 
             {link.input ? (
               <>
-                <div className="flex flex-col lg:flex-row gap-3 sm:w-full md:max-w-[424px]">
+                <div className="flex flex-col lg:flex-row gap-3 sm:w-full lg:max-w-[424px]">
                   <input
                     type="email"
                     placeholder="Your email"
@@ -108,7 +108,7 @@ const Footer = () => {
                   </button>
                 </div>
 
-                <p className="mt-3 font-inter font-normal text-[15px] leading-[150%] text-[#7d7b8e]">
+                <p className="mt-3 font-inter font-normal text-[14px] md:text-[16px] leading-[150%] text-[#7d7b8e]">
                   {link.description}
                 </p>
               </>

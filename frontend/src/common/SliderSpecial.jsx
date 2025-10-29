@@ -81,8 +81,10 @@ const SliderSpecial = ({ products = [], prevRef, nextRef }) => {
                   alt={item.name}
                   className="w-full h-full object-cover rounded-xl"
                 />
-                <div className="absolute bottom-0 left-0 w-full bg-black/50 text-white p-4">
-                  <h4 className="font-semibold text-lg">{item.name}</h4>
+                <div className="absolute bottom-0 left-0 w-full bg-black/50 text-white px-10 py-8  sm:p-4">
+                  <h4 className="font-semibold text-[16px] lg:text-lg">
+                    {item.name}
+                  </h4>
                   <p className="text-sm">{item.quantity}</p>
                 </div>
               </div>

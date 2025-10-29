@@ -89,7 +89,7 @@ const Navigation = () => {
             className="w-[120px] sm:w-[166px] h-[40px] object-contain"
           />
           <div className="flex-1 hidden md:flex justify-center">
-            <div className="relative w-full md:w-[413px]">
+            <div className="relative w-full md:w-[300px] xl:w-[413px]">
               <input
                 type="text"
                 placeholder="Search here..."
@@ -219,13 +219,13 @@ const Navigation = () => {
         </div>
       </div>
       <div className="bg-white text-gray-800 border-t border-gray-200 w-full">
-        <div className="max-w-[1320px] mx-auto flex items-center justify-between px-4 py-4 gap-3 flex-nowrap">
+        <div className="max-w-[1320px] mx-auto flex items-center justify-between px-4 py-4 sm:gap-3 flex-nowrap">
           <div className="flex items-center w-[547px] space-x-4 sm:space-x-6 flex-wrap">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="flex items-center justify-center gap-2 w-[176px] h-[44px] border border-gray-300 rounded-md bg-white text-[14px] text-[#272343] hover:bg-gray-50 transition whitespace-nowrap flex-shrink-0"
+              className="flex cursor-pointer md:cursor-none items-center justify-center gap-2 w-[176px] h-[44px] border border-gray-300 rounded-md bg-white text-[14px] text-[#272343] hover:bg-gray-50 transition whitespace-nowrap flex-shrink-0"
             >
-              <FiMenu className="text-[20px]" />
+              <FiMenu className="text-[18px] md:text-[20px]" />
               <span className="font-medium">All Categories</span>
             </button>
 
@@ -242,7 +242,7 @@ const Navigation = () => {
             </div>
           </div>
 
-          <div className="text-[14px] text-[#636270] flex items-center gap-2 flex-shrink-0 whitespace-nowrap">
+          <div className="text-[12px] sm:text-[14px] text-[#636270] flex items-center gap-2 flex-shrink-0 whitespace-nowrap">
             <span className="font-inter font-normal text-[14px] leading-[110%] text-[#636270]">
               Contact:
             </span>
@@ -252,7 +252,7 @@ const Navigation = () => {
           </div>
         </div>
         {mobileMenuOpen && (
-          <div className="md:hidden bg-gray-50 border-t border-gray-200">
+          <div className="md:hidden w-full bg-gray-50 border-t border-gray-200 !z-1000">
             <div className="flex flex-col px-4 py-2 space-y-2">
               {navLinks.map((link, i) => (
                 <Link

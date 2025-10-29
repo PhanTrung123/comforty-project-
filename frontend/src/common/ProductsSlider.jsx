@@ -36,7 +36,7 @@ const ProductsSlider = ({
             disableTitleMt ? "" : "mt-[32px]"
           }`}
         >
-          <h3 className="text-[18px] xs:text-[20px] sm:text-[24px] md:text-[32px] font-semibold text-[#272343] leading-[110%] truncate">
+          <h3 className="text-[18px] xs:text-[20px] sm:text-[24px] lg:text-[32px] font-semibold text-[#272343] leading-[110%] truncate">
             {title}
           </h3>
 
@@ -77,7 +77,6 @@ const ProductsSlider = ({
         breakpoints={{
           0: { slidesPerView: 1, spaceBetween: 16 },
           480: { slidesPerView: 2, spaceBetween: 16 },
-          768: { slidesPerView: 3, spaceBetween: 20 },
           1024: { slidesPerView: slidesToShow, spaceBetween: 24 },
         }}
         className="overflow-hidden "
@@ -117,7 +116,7 @@ const ProductsSlider = ({
                 <span className="block mt-[14px] truncate font-normal text-[14px] sm:text-[16px] leading-[130%] text-[#272343] transition-colors duration-300 group-hover:text-[#029FAE]">
                   {item.name}
                 </span>
-                <div className="flex items-center justify-between mt-1 sm:mt-2">
+                <div className="flex items-center justify-between mt-1 lg:mt-2">
                   <div className="flex items-center gap-2">
                     <span className="font-semibold text-[16px] sm:text-[18px] text-[#272343] capitalize">
                       {item.price}
