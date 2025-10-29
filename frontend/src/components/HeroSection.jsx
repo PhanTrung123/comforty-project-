@@ -12,21 +12,21 @@ const HeroSection = () => {
       id: 1,
       subtitle: "WELCOME TO CHAIREY",
       title: "Best Furniture Collection for your interior.",
-      image: "/Product Image.png",
+      image: "/image/Product_image.png",
       discount: 54,
     },
     {
       id: 2,
       subtitle: "MODERN DESIGN",
       title: "Timeless Wooden Collections That Inspire Warmth.",
-      image: "/image/product1.jpg",
+      image: "/image/Product_01.jpg",
       discount: 40,
     },
     {
       id: 3,
       subtitle: "LUXURY COMFORT",
       title: "Minimalist Sofas With Maximum Comfort.",
-      image: "/image/product2.jpg",
+      image: "/image/Product_02.jpg",
       discount: 45,
     },
   ];
@@ -77,7 +77,7 @@ const HeroSection = () => {
                   <button className="bg-[#029FAE] text-white text-[16px] flex items-center gap-3 px-6 py-3 rounded-[8px] hover:bg-teal-600 transition-all duration-300 shadow-md w-fit mb-[10%] md:mb-[0%] md:-mt-[25%] lg:-mt-0">
                     Shop Now
                     <img
-                      src="/image/Right 24px.png"
+                      src="/icons/Right.png"
                       alt="arrow"
                       className="w-5 h-5 object-contain"
                     />

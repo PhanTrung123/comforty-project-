@@ -2,15 +2,15 @@ import React from "react";
 
 const Footer = () => {
   const footerData = {
-    logo: "/Logo.png",
+    logo: "/icons/Logo.png",
     description:
       "Vivamus tristique odio sit amet velit semper, eu posuere turpis interdum. Cras egestas purus.",
     socialLinks: [
-      { icon: "/image/Facebook---Negative 2.png", href: "#" },
-      { icon: "/image/Twitter---Negative 1@2x.png", href: "#" },
-      { icon: "/image/Instagram 1.png", href: "#" },
-      { icon: "/image/Pinterest---Negative 1.png", href: "#" },
-      { icon: "/image/YouTube---Negative 1.png", href: "#" },
+      { icon: "/icons/Facebook.png", href: "#" },
+      { icon: "/icons/Twitter.png", href: "#" },
+      { icon: "/icons/Instagram.png", href: "#" },
+      { icon: "/icons/Pinterest.png", href: "#" },
+      { icon: "/icons/Youtube.png", href: "#" },
     ],
     footerLinks: [
       {
@@ -40,8 +40,6 @@ const Footer = () => {
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt erat enim.",
       },
     ],
-    paymentImg: "/payment.png",
-    copyright: "© 2021 - Blogy — Designed & Developed by Zakirsoft",
   };
 
   return (

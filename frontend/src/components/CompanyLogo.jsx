@@ -2,13 +2,13 @@ import React from "react";
 
 const CompanyLogo = () => {
   const logos = [
-    "/logo1.png",
-    "/logo2.png",
-    "/logo3.png",
-    "/logo4.png",
-    "/logo5.png",
-    "/logo6.png",
-    "/logo7.png",
+    "/icons/Logo_01.png",
+    "/icons/Logo_02.png",
+    "/icons/Logo_03.png",
+    "/icons/Logo_04.png",
+    "/icons/Logo_05.png",
+    "/icons/Logo_06.png",
+    "/icons/Logo_07.png",
   ];
 
   return (

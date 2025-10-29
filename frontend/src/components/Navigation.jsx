@@ -2,14 +2,12 @@ import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   FiShoppingCart,
-  FiHeart,
-  FiUser,
   FiMenu,
   FiAlertCircle,
   FiCheck,
   FiX,
 } from "react-icons/fi";
-import { FaSearch } from "react-icons/fa";
+
 import { useCart } from "../context/CartContext";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -84,7 +82,7 @@ const Navigation = () => {
       <div className="bg-[#f0f2f3] text-gray-800 w-full">
         <div className="max-w-[1320px] mx-auto flex flex-nowrap items-center justify-between gap-3 p-4 ">
           <img
-            src="/Logo.png"
+            src="/icons/Logo.png"
             alt="Comforty Logo"
             className="w-[120px] sm:w-[166px] h-[40px] object-contain"
           />
@@ -96,7 +94,7 @@ const Navigation = () => {
                 className="w-full h-[44px] pl-4 pr-11 rounded-md border border-gray-300 bg-white text-[16px] text-[#9a9caa] placeholder:text-[#9a9caa] outline-none focus:border-[#029FAE] focus:ring-1 focus:ring-[#029FAE] transition-all"
               />
               <img
-                src="/image/search.png"
+                src="/icons/Search.png"
                 alt="Search"
                 className="absolute right-3 top-1/2 -translate-y-1/2 w-[20px] h-[20px] object-contain opacity-70 cursor-pointer hover:opacity-100 transition"
               />
@@ -111,7 +109,7 @@ const Navigation = () => {
             >
               <div className="flex items-center gap-2 text-black">
                 <img
-                  src="/image/cart.png"
+                  src="/icons/Cart.png"
                   className="w-[17px] h-[17px] object-cover"
                 />
                 <span className="text-[13px] font-medium text-[#272343] leading-[110%]">
@@ -127,13 +125,13 @@ const Navigation = () => {
             </button>
             <button className="w-[40px] flex items-center justify-center h-[40px] bg-white border border-gray-300 rounded-md hover:text-[#007580] transition">
               <img
-                src="/image/heart.png"
+                src="/icons/Heart.png"
                 className="w-[22px] h-[22px] object-cover"
               />
             </button>
             <button className="w-[40px] flex items-center justify-center h-[40px] bg-white border border-gray-300 rounded-md hover:text-[#007580] transition">
               <img
-                src="/image/user.png"
+                src="/icons/User.png"
                 className="w-[22px] h-[22px] object-cover"
               />
             </button>

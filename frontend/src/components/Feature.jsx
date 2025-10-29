@@ -4,7 +4,7 @@ const features = [
   {
     id: 1,
     icon: (
-      <img className="w-[46px] h-[46px]" src="/image/box.png" alt="Discount" />
+      <img className="w-[46px] h-[46px]" src="/icons/Box.png" alt="Discount" />
     ),
     title: "Discount",
     desc: "Every week new sales",
@@ -14,7 +14,7 @@ const features = [
     icon: (
       <img
         className="w-[64px] h-[38px]"
-        src="/image/delivery-truck.png"
+        src="/icons/Delivery_truck.png"
         alt="Free Delivery"
       />
     ),
@@ -26,7 +26,7 @@ const features = [
     icon: (
       <img
         className="w-[50px] h-[50px]"
-        src="/image/24-hours.png"
+        src="/icons/24_hours.png"
         alt="Great Support"
       />
     ),
@@ -38,7 +38,7 @@ const features = [
     icon: (
       <img
         className="w-[50px] h-[50px]"
-        src="/image/shield.png"
+        src="/icons/Shield.png"
         alt="Secure Payment"
       />
     ),

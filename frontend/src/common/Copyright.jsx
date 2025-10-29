@@ -2,7 +2,7 @@ import React from "react";
 
 const Copyright = () => {
   const copyrightData = {
-    paymentImg: "/payment.png",
+    paymentImg: "/icons/Payment.png",
     copyright: "© 2021 - Blogy — Designed & Developed by Zakirsoft",
   };
   return (
