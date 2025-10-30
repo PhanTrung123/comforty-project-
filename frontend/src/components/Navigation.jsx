@@ -2,7 +2,8 @@ import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { FiShoppingCart, FiMenu, FiX } from "react-icons/fi";
 import { useCart } from "../context/CartContext";
-import { AnimatePresence } from "framer-motion";
+// eslint-disable-next-line no-unused-vars
+import { AnimatePresence, motion } from "framer-motion";
 
 const Navigation = ({ data }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
