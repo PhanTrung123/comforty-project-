@@ -1,51 +1,5 @@
 import React from "react";
-
-const features = [
-  {
-    id: 1,
-    icon: (
-      <img className="w-[46px] h-[46px]" src="/icons/Box.png" alt="Discount" />
-    ),
-    title: "Discount",
-    desc: "Every week new sales",
-  },
-  {
-    id: 2,
-    icon: (
-      <img
-        className="w-[64px] h-[38px]"
-        src="/icons/Delivery_truck.png"
-        alt="Free Delivery"
-      />
-    ),
-    title: "Free Delivery",
-    desc: "100% Free for all orders",
-  },
-  {
-    id: 3,
-    icon: (
-      <img
-        className="w-[50px] h-[50px]"
-        src="/icons/24_hours.png"
-        alt="Great Support"
-      />
-    ),
-    title: "Great Support 24/7",
-    desc: "We care your experiences",
-  },
-  {
-    id: 4,
-    icon: (
-      <img
-        className="w-[50px] h-[50px]"
-        src="/icons/Shield.png"
-        alt="Secure Payment"
-      />
-    ),
-    title: "Secure Payment",
-    desc: "100% Secure Payment Method",
-  },
-];
+import { features } from "../../data/siteData";
 
 const Feature = () => {
   return (
@@ -64,12 +18,13 @@ const Feature = () => {
         {features.map((item) => (
           <div
             key={item.id}
-            className="
-              flex items-center gap-4 
-              lg:hover:scale-105 transition-transform duration-300 h-[50px]
-            "
+            className="flex items-center gap-4 lg:hover:scale-105 transition-transform duration-300 h-[50px]"
           >
-            <span className="">{item.icon}</span>
+            <img
+              src={item.iconSrc}
+              alt={item.iconAlt}
+              className={`w-[${item.iconWidth}px] h-[${item.iconHeight}px]`}
+            />
             <div className="text-left gap-6">
               <h3 className="font-medium text-[#272343] leading-[110%] text-14px md:text-[16px] lg:text-[18px]">
                 {item.title}

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { useCart } from "../context/CartContext";
+import { ourProductsData } from "../../data/siteData";
 
 const OurProducts = () => {
   const [liked, setLiked] = useState({});
@@ -14,75 +15,13 @@ const OurProducts = () => {
     setLiked((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
-  const tabItems = [
-    { text: "All", path: "/" },
-    { text: "Newest", path: "/newest" },
-    { text: "Trending", path: "/trending" },
-    { text: "Best Sellers", path: "/best-sellers" },
-    { text: "Featured", path: "/featured" },
-  ];
-
-  const productsList = [
-    {
-      id: 1,
-      name: "Library Stool Chair",
-      price: "$20",
-      image: "/image/Product_01.jpg",
-      status: "New",
-      tagColor: "bg-[#01ad5a]",
-    },
-    {
-      id: 2,
-      name: "Library Stool Chair",
-      price: "$20",
-      oldPrice: "$30",
-      image: "/image/Product_02.jpg",
-      status: "Sales",
-      tagColor: "bg-[#f5813f]",
-    },
-    {
-      id: 3,
-      name: "Library Stool Chair",
-      price: "$20",
-      image: "/image/Product_03.jpg",
-    },
-    {
-      id: 4,
-      name: "Library Stool Chair",
-      price: "$20",
-      image: "/image/Product_04.jpg",
-    },
-    {
-      id: 5,
-      name: "Library Stool Chair",
-      price: "$20",
-      image: "/image/Product_05.jpg",
-    },
-    {
-      id: 6,
-      name: "Library Stool Chair",
-      price: "$20",
-      image: "/image/Product_06.jpg",
-    },
-    {
-      id: 7,
-      name: "Library Stool Chair",
-      price: "$20",
-      image: "/image/Product_07.jpg",
-    },
-    {
-      id: 8,
-      name: "Library Stool Chair",
-      price: "$20",
-      image: "/image/Product_08.jpg",
-    },
-  ];
+  const { title, tabItems, productsList } = ourProductsData;
 
   return (
     <section className="relative lg:max-h-[919px] lg:mt-20 lg:mb-20 ">
       <div className="flex items-center justify-center lg:mb-4 mb-0 mt-20 lg:mt-0">
         <h3 className="text-[20px] xs:text-[24px] sm:text-[24px] lg:text-[32px] font-semibold text-[#272343] leading-[110%]">
-          Our Products
+          {title}
         </h3>
       </div>
 

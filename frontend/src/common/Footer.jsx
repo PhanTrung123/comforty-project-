@@ -1,50 +1,10 @@
 import React from "react";
+import { footerData } from "../../data/siteData";
 
 const Footer = () => {
-  const footerData = {
-    logo: "/icons/Logo.png",
-    description:
-      "Vivamus tristique odio sit amet velit semper, eu posuere turpis interdum. Cras egestas purus.",
-    socialLinks: [
-      { icon: "/icons/Facebook.png", href: "#" },
-      { icon: "/icons/Twitter.png", href: "#" },
-      { icon: "/icons/Instagram.png", href: "#" },
-      { icon: "/icons/Pinterest.png", href: "#" },
-      { icon: "/icons/Youtube.png", href: "#" },
-    ],
-    footerLinks: [
-      {
-        title: "Category",
-        items: [
-          "Sofa",
-          "Armchair",
-          "Wing Chair",
-          "Desk Chair",
-          "Wooden Chair",
-          "Park Bench",
-        ],
-      },
-      {
-        title: "Support",
-        items: [
-          "Help & Support",
-          "Terms & Conditions",
-          "Privacy Policy",
-          "Help",
-        ],
-      },
-      {
-        title: "Newsletter",
-        input: true,
-        description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt erat enim.",
-      },
-    ],
-  };
-
   return (
     <footer className="lg:h-[343px] flex items-center">
-      <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr_1fr_2.3fr]  gap-8 py-10 ">
+      <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr_1fr_2.3fr] gap-8 py-10">
         <div className="flex flex-col lg:w-[350px]">
           <img
             src={footerData.logo}
@@ -62,25 +22,12 @@ const Footer = () => {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="
-                  group
-                  w-[38px] h-[38px]
-                  rounded-full
-                  flex items-center justify-center
-                  border border-transparent
-                  transition-all duration-300 ease-in-out
-                  hover:border-[#007580]
-                "
+                className="group w-[38px] h-[38px] rounded-full flex items-center justify-center border border-transparent transition-all duration-300 ease-in-out hover:border-[#007580]"
               >
                 <img
                   src={social.icon}
                   alt={`social-${i}`}
-                  className="
-                    w-[16px] h-[16px]
-                    object-contain
-                    transition-transform duration-300
-                    group-hover:scale-110
-                  "
+                  className="w-[16px] h-[16px] object-contain transition-transform duration-300 group-hover:scale-110"
                 />
               </a>
             ))}

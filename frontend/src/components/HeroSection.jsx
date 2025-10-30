@@ -5,32 +5,9 @@ import { FaArrowRight, FaArrowLeft } from "react-icons/fa6";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { slides } from "../../data/siteData";
 
 const HeroSection = () => {
-  const slides = [
-    {
-      id: 1,
-      subtitle: "WELCOME TO CHAIREY",
-      title: "Best Furniture Collection for your interior.",
-      image: "/image/Product_image.png",
-      discount: 54,
-    },
-    {
-      id: 2,
-      subtitle: "MODERN DESIGN",
-      title: "Timeless Wooden Collections That Inspire Warmth.",
-      image: "/image/Product_01.jpg",
-      discount: 40,
-    },
-    {
-      id: 3,
-      subtitle: "LUXURY COMFORT",
-      title: "Minimalist Sofas With Maximum Comfort.",
-      image: "/image/Product_02.jpg",
-      discount: 45,
-    },
-  ];
-
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const swiperRef = useRef(null);
@@ -75,7 +52,7 @@ const HeroSection = () => {
                     {slide.title}
                   </p>
                   <button className="bg-[#029FAE] text-white text-[16px] flex items-center gap-3 px-6 py-3 rounded-[8px] hover:bg-teal-600 transition-all duration-300 shadow-md w-fit mb-[10%] md:mb-[0%] md:-mt-[25%] lg:-mt-0">
-                    Shop Now
+                    {slide.buttonText}
                     <img
                       src="/icons/Right.png"
                       alt="arrow"
@@ -83,6 +60,7 @@ const HeroSection = () => {
                     />
                   </button>
                 </div>
+
                 <div className="relative w-full md:w-[747px] flex items-center justify-center transition-transform duration-300 md:translate-x-0  xl:translate-x-0 2xl:translate-x-40">
                   <div
                     className="
@@ -95,13 +73,8 @@ const HeroSection = () => {
                   >
                     <img
                       src={slide.image}
-                      alt={slide.title}
-                      className="
-                        w-full h-full 
-                        object-cover 
-                        transition-transform duration-500 
-                        relative z-20
-                      "
+                      alt={slide.imageAlt}
+                      className="w-full h-full object-cover transition-transform duration-500 relative z-20"
                       loading="lazy"
                       decoding="async"
                     />
@@ -120,7 +93,6 @@ const HeroSection = () => {
             </SwiperSlide>
           ))}
         </Swiper>
-        <div className="custom-pagination flex justify-center mt-3 md:mt-4 lg:mt-2"></div>
 
         <button
           ref={prevRef}
@@ -131,7 +103,7 @@ const HeroSection = () => {
 
         <button
           ref={nextRef}
-          className="hidden w-[52px] h-[52px] xl:right-[3%] 2xl:right-[0%] lg:flex absolute right-0 top-1/2 -translate-y-1/2 z-30 items-center justify-center  rounded-full bg-white hover:bg-gray-100 shadow transition-all"
+          className="hidden w-[52px] h-[52px] xl:right-[3%] 2xl:right-[0%] lg:flex absolute right-0 top-1/2 -translate-y-1/2 z-30 items-center justify-center rounded-full bg-white hover:bg-gray-100 shadow transition-all"
         >
           <FaArrowRight className="text-[#029FAE]" />
         </button>

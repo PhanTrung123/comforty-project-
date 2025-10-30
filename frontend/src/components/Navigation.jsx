@@ -1,15 +1,9 @@
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  FiShoppingCart,
-  FiMenu,
-  FiAlertCircle,
-  FiCheck,
-  FiX,
-} from "react-icons/fi";
-
+import { FiShoppingCart, FiMenu, FiX } from "react-icons/fi";
 import { useCart } from "../context/CartContext";
 import { motion, AnimatePresence } from "framer-motion";
+import { topBarData } from "../../data/siteData";
 
 const Navigation = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -17,72 +11,55 @@ const Navigation = () => {
   const { cartItems, cartCount, removeFromCart, clearCart } = useCart();
   const cartRef = useRef(null);
 
-  const topBarData = {
-    promo: { icon: <FiCheck />, text: "Free Shipping on All Orders Over $50" },
-    languages: [
-      { label: "Eng", value: "en" },
-      { label: "Vi", value: "vi" },
-    ],
-    links: [
-      { label: "Faqs", href: "#" },
-      { label: "Need Help?", href: "/help", icon: <FiAlertCircle /> },
-    ],
-  };
-
-  const navLinks = [
-    { name: "Home", path: "/" },
-    { name: "Shop", path: "/shop" },
-    { name: "Product", path: "/product" },
-    { name: "Pages", path: "/pages" },
-    { name: "About", path: "/about" },
-  ];
-
-  const contactNumber = "(808) 555-0111";
+  const { promo, languages, links, navLinks, contactNumber, icons } =
+    topBarData;
 
   return (
     <nav className="text-white w-full bg-[#272343]">
       <div className="w-full border-b border-gray-700">
         <div className="max-w-[1320px] mx-auto flex flex-wrap items-center justify-center md:justify-between py-2 px-4 text-xs md:text-sm text-gray-400">
           <p className="flex items-center gap-1">
-            {topBarData.promo.icon}
-            {topBarData.promo.text}
+            <img
+              src={icons.check}
+              alt="Check"
+              className="w-4 h-4 object-contain"
+            />
+            {promo.text}
           </p>
 
           <div className="hidden md:flex items-center gap-4 text-sm">
             <select className="bg-transparent text-gray-400 rounded px-2 py-1 hover:text-white transition">
-              {topBarData.languages.map((lang) => (
+              {languages.map((lang) => (
                 <option key={lang.value} value={lang.value}>
                   {lang.label}
                 </option>
               ))}
             </select>
 
-            {topBarData.links.map((item, i) =>
-              item.icon ? (
-                <a
-                  key={i}
-                  href={item.href}
-                  className="hover:text-white transition flex items-center gap-1"
-                >
-                  {item.icon} {item.label}
-                </a>
-              ) : (
-                <a
-                  key={i}
-                  href={item.href}
-                  className="hover:text-white transition"
-                >
-                  {item.label}
-                </a>
-              )
-            )}
+            {links.map((item, i) => (
+              <a
+                key={i}
+                href={item.href}
+                className="hover:text-white transition flex items-center gap-1"
+              >
+                {item.icon && (
+                  <img
+                    src={icons.alert}
+                    alt="Alert"
+                    className="w-4 h-4 object-contain"
+                  />
+                )}
+                {item.label}
+              </a>
+            ))}
           </div>
         </div>
       </div>
+
       <div className="bg-[#f0f2f3] text-gray-800 w-full">
         <div className="max-w-[1320px] mx-auto flex flex-nowrap items-center justify-between gap-3 p-4 ">
           <img
-            src="/icons/Logo.png"
+            src={icons.logo}
             alt="Comforty Logo"
             className="w-[120px] sm:w-[166px] h-[40px] object-contain"
           />
@@ -94,12 +71,13 @@ const Navigation = () => {
                 className="w-full h-[44px] pl-4 pr-11 rounded-md border border-gray-300 bg-white text-[16px] text-[#9a9caa] placeholder:text-[#9a9caa] outline-none focus:border-[#029FAE] focus:ring-1 focus:ring-[#029FAE] transition-all"
               />
               <img
-                src="/icons/Search.png"
+                src={icons.search}
                 alt="Search"
                 className="absolute right-3 top-1/2 -translate-y-1/2 w-[20px] h-[20px] object-contain opacity-70 cursor-pointer hover:opacity-100 transition"
               />
             </div>
           </div>
+
           <div className="relative flex gap-3" ref={cartRef}>
             <button
               onClick={() => setShowCart((prev) => !prev)}
@@ -109,7 +87,7 @@ const Navigation = () => {
             >
               <div className="flex items-center gap-2 text-black">
                 <img
-                  src="/icons/Cart.png"
+                  src={icons.cart}
                   className="w-[17px] h-[17px] object-cover"
                 />
                 <span className="text-[13px] font-medium text-[#272343] leading-[110%]">
@@ -125,13 +103,13 @@ const Navigation = () => {
             </button>
             <button className="w-[40px] flex items-center justify-center h-[40px] bg-white border border-gray-300 rounded-md hover:text-[#007580] transition">
               <img
-                src="/icons/Heart.png"
+                src={icons.heart}
                 className="w-[22px] h-[22px] object-cover"
               />
             </button>
             <button className="w-[40px] flex items-center justify-center h-[40px] bg-white border border-gray-300 rounded-md hover:text-[#007580] transition">
               <img
-                src="/icons/User.png"
+                src={icons.user}
                 className="w-[22px] h-[22px] object-cover"
               />
             </button>
@@ -188,8 +166,7 @@ const Navigation = () => {
                             <button
                               onClick={() => removeFromCart(item.id)}
                               title="Remove item"
-                              className="
-          absolute right-0 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 text-[#272343] hover:text-[#007580] bg-white text-sm"
+                              className="absolute right-0 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 text-[#272343] hover:text-[#007580] bg-white text-sm"
                             >
                               <FiX className="w-4 h-4" />
                             </button>
