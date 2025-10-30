@@ -1,9 +1,8 @@
 import React from "react";
 import CommentSlider from "../common/commentSlider";
-import { testimonialsData } from "../../data/siteData";
 
-const Testimonial = () => {
-  const { title, comments } = testimonialsData;
+const Testimonial = ({ testimonials }) => {
+  const { title, comments } = testimonials;
 
   return (
     <section className="">

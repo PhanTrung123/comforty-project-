@@ -1,7 +1,6 @@
 import React from "react";
-import { logosCompany } from "../../data/siteData";
 
-const CompanyLogo = () => {
+const CompanyLogo = ({ logos }) => {
   return (
     <section className="w-full flex justify-center bg-white mt-0 sm:mt-30 md:mt-0">
       <div
@@ -12,7 +11,7 @@ const CompanyLogo = () => {
           gap-6 md:gap-10 xl:gap-[106px] px-4
         "
       >
-        {logosCompany.map((logo, index) => (
+        {logos.map((logo, index) => (
           <div
             key={index}
             className="

@@ -1,9 +1,10 @@
 import React from "react";
 import ProductsSlider from "../common/ProductsSlider";
-import { recentlyAddedData } from "../../data/siteData";
 
-const RecentlyAdd = () => {
-  const { title, products, config } = recentlyAddedData;
+const RecentlyAdd = ({ data }) => {
+  if (!data) return null;
+  const { title, products, config } = data;
+
   return <ProductsSlider title={title} products={products} {...config} />;
 };
 

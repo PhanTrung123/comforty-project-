@@ -1,11 +1,9 @@
 import React from "react";
 import ProductsSlider from "../common/ProductsSlider";
-import { featuredProduct } from "../../data/siteData";
 
-const FeaturedProducts = () => {
-  return (
-    <ProductsSlider title={featuredProduct.title} products={featuredProduct} />
-  );
+const FeaturedProducts = ({ products }) => {
+  const title = products.title || "Featured Products";
+  return <ProductsSlider title={title} products={products.items || products} />;
 };
 
 export default FeaturedProducts;

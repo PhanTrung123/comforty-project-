@@ -1,22 +1,21 @@
 import React from "react";
-import { footerData } from "../../data/siteData";
 
-const Footer = () => {
+const Footer = ({ data }) => {
   return (
     <footer className="lg:h-[343px] flex items-center">
       <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr_1fr_2.3fr] gap-8 py-10">
         <div className="flex flex-col lg:w-[350px]">
           <img
-            src={footerData.logo}
+            src={data.logo}
             alt="Brand Logo"
             className="w-[120px] sm:w-[166px] h-[40px] object-contain"
           />
           <p className="text-[14px] md:text-[16px] text-gray-600 my-4">
-            {footerData.description}
+            {data.description}
           </p>
 
           <div className="flex flex-row gap-4 lg:gap-1 items-center">
-            {footerData.socialLinks.map((social, i) => (
+            {data.socialLinks.map((social, i) => (
               <a
                 key={i}
                 href={social.href}
@@ -34,7 +33,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {footerData.footerLinks.map((link, index) => (
+        {data.footerLinks.map((link, index) => (
           <div key={index} className="flex flex-col">
             <h4 className="!text-[#9A9CAA] font-medium leading-[110%] !text-[14px] uppercase mb-3">
               {link.title}

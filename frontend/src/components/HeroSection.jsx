@@ -5,9 +5,8 @@ import { FaArrowRight, FaArrowLeft } from "react-icons/fa6";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { slides } from "../../data/siteData";
 
-const HeroSection = () => {
+const HeroSection = ({ slides }) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const swiperRef = useRef(null);

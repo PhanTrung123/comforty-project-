@@ -3,30 +3,29 @@ import { useNavigate } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { useCart } from "../context/CartContext";
-import { ourProductsData } from "../../data/siteData";
 
-const OurProducts = () => {
+const OurProducts = ({ data }) => {
   const [liked, setLiked] = useState({});
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("/");
   const { addToCart } = useCart();
 
+  const { title, tabItems, productsList } = data;
+
   const toggleLike = (id) => {
     setLiked((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
-  const { title, tabItems, productsList } = ourProductsData;
-
   return (
-    <section className="relative lg:max-h-[919px] lg:mt-20 lg:mb-20 ">
+    <section className="relative lg:max-h-[919px] lg:mt-20 lg:mb-20">
       <div className="flex items-center justify-center lg:mb-4 mb-0 mt-20 lg:mt-0">
         <h3 className="text-[20px] xs:text-[24px] sm:text-[24px] lg:text-[32px] font-semibold text-[#272343] leading-[110%]">
           {title}
         </h3>
       </div>
 
-      <div className=" h-[34px] flex items-center justify-center mx-auto  mb-[40px] mt-10 xs:mt-0">
-        <div className="font-medium flex flex-wrap justify-center text-[14px] lg:text-[16px] gap-3 sm:gap-5 tracking-[0.05em] text-[#9A9CAA] text-center ">
+      <div className="h-[34px] flex items-center justify-center mx-auto mb-[40px] mt-10 xs:mt-0">
+        <div className="font-medium flex flex-wrap justify-center text-[14px] lg:text-[16px] gap-3 sm:gap-5 tracking-[0.05em] text-[#9A9CAA] text-center">
           {tabItems.map(({ text, path }) => (
             <button
               key={path}
@@ -46,17 +45,17 @@ const OurProducts = () => {
         </div>
       </div>
 
-      <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10 sm:gap-y-8 ">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10 sm:gap-y-8">
         {productsList.map((item) => (
           <div
             key={item.id}
             className="group overflow-hidden transition-all duration-300 cursor-pointer"
           >
-            <div className="relative w-full h-[220px] sm:h-[260px] md:h-[312px] rounded-[6px] overflow-hidden aspect-square md:aspect-auto ">
+            <div className="relative w-full h-[220px] sm:h-[260px] md:h-[312px] rounded-[6px] overflow-hidden aspect-square md:aspect-auto">
               <img
                 src={item.image}
                 alt={item.name}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 "
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
               {item.status && (
                 <span
@@ -77,7 +76,7 @@ const OurProducts = () => {
               </button>
             </div>
 
-            <div className=" sm:py-4 lg:py-0 lg:mt-[14px] mt-4 xs:mt-10 md:mt-0">
+            <div className="sm:py-4 lg:py-0 lg:mt-[14px] mt-4 xs:mt-10 md:mt-0">
               <span className="font-normal text-[14px] sm:text-[16px] leading-[130%] text-[#272343] transition-colors duration-300 group-hover:text-[#029FAE] block truncate">
                 {item.name}
               </span>

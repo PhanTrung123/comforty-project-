@@ -2,17 +2,15 @@ import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { FiShoppingCart, FiMenu, FiX } from "react-icons/fi";
 import { useCart } from "../context/CartContext";
-import { motion, AnimatePresence } from "framer-motion";
-import { topBarData } from "../../data/siteData";
+import { AnimatePresence } from "framer-motion";
 
-const Navigation = () => {
+const Navigation = ({ data }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const { cartItems, cartCount, removeFromCart, clearCart } = useCart();
   const cartRef = useRef(null);
 
-  const { promo, languages, links, navLinks, contactNumber, icons } =
-    topBarData;
+  const { promo, languages, links, navLinks, contactNumber, icons } = data;
 
   return (
     <nav className="text-white w-full bg-[#272343]">

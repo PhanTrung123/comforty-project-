@@ -1,7 +1,6 @@
 import React from "react";
-import { features } from "../../data/siteData";
 
-const Feature = () => {
+const Feature = ({ features }) => {
   return (
     <section className="z-20 max-w-[1320px] w-full mx-auto mt-[-72px] max-md:mt-0 relative">
       <div
@@ -23,10 +22,10 @@ const Feature = () => {
             <img
               src={item.iconSrc}
               alt={item.iconAlt}
-              className={`w-[${item.iconWidth}px] h-[${item.iconHeight}px]`}
+              style={{ width: item.iconWidth, height: item.iconHeight }}
             />
-            <div className="text-left gap-6">
-              <h3 className="font-medium text-[#272343] leading-[110%] text-14px md:text-[16px] lg:text-[18px]">
+            <div className="text-left gap-1">
+              <h3 className="font-medium text-[#272343] leading-[110%] text-[14px] md:text-[16px] lg:text-[18px]">
                 {item.title}
               </h3>
               <p className="text-[#9A9CAA] text-[13px] mt-1 lg:text-[15px] leading-[110%] font-normal">

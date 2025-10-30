@@ -442,3 +442,12 @@ export const footerData = {
     },
   ],
 };
+
+// -----------------------------------------------
+
+// Copyright
+
+export const copyrightData = {
+  paymentImg: "/icons/Payment.png",
+  copyright: "© 2021 - Blogy — Designed & Developed by Zakirsoft",
+};
