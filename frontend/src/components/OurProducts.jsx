@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { useCart } from "../context/CartContext";
+import { toast } from "react-toastify";
 
 const OurProducts = ({ data }) => {
   const [liked, setLiked] = useState({});
@@ -14,6 +15,10 @@ const OurProducts = ({ data }) => {
 
   const toggleLike = (id) => {
     setLiked((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
+  const handleAddToCart = (item) => {
+    addToCart(item);
+    toast.success(`${item.name} đã được thêm vào giỏ hàng!`);
   };
 
   return (
@@ -92,7 +97,7 @@ const OurProducts = ({ data }) => {
                   )}
                 </div>
                 <button
-                  onClick={() => addToCart(item)}
+                  onClick={() => handleAddToCart(item)}
                   className="w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center rounded-md bg-gray-100 text-[#272343] transition-all duration-300 group-hover:bg-[#029FAE] group-hover:text-white -translate-y-[20%] sm:-translate-y-[30%]"
                 >
                   <FiShoppingCart className="text-[16px] sm:text-[18px]" />
