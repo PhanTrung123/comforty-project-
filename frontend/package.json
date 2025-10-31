@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build": "cd frontend && vite build"
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.8",
