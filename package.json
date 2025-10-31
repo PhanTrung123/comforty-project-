@@ -4,7 +4,7 @@
   "private": true,
   "devDependencies": {
     "concurrently": "^9.2.1",
-    "vite": "^latest"
+    "vite": "latest"
   },
   "scripts": {
     "dev": "concurrently \"npm run dev:fe\" \"npm run dev:be\"",
