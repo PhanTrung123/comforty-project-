@@ -5,13 +5,15 @@ import SliderSpecial from "../common/SliderSpecial";
 const TopCategories = ({ categories }) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
-  if (!categories) return null;
+  const hasData =
+    categories && (categories.items?.length > 0 || categories.length > 0);
+  // if (!categories) return null;
 
   return (
     <section className="relative ">
       <div className="max-w-[1320px] w-full mx-auto flex items-center justify-between mt-20 mb-10">
         <h3 className="text-[18px] xs:text-[20px] sm:text-[24px] lg:text-[32px] font-semibold text-[#272343] leading-[110%] truncate tracking-normal">
-          {categories.title}
+          Top Categories
         </h3>
 
         <div className="flex items-center gap-3">
@@ -30,11 +32,17 @@ const TopCategories = ({ categories }) => {
         </div>
       </div>
 
-      <SliderSpecial
-        products={categories.items}
-        prevRef={prevRef}
-        nextRef={nextRef}
-      />
+      {hasData ? (
+        <SliderSpecial
+          products={categories.items || categories}
+          prevRef={prevRef}
+          nextRef={nextRef}
+        />
+      ) : (
+        <div className="w-full text-center py-10 text-gray-500  ">
+          Không có dữ liệu sản phẩm nổi bật để hiển thị.
+        </div>
+      )}
     </section>
   );
 };

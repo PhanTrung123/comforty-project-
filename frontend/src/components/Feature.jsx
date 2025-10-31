@@ -1,6 +1,45 @@
 import React from "react";
 
-const Feature = ({ features }) => {
+const Feature = () => {
+  const features = [
+    {
+      id: 1,
+      iconSrc: "/icons/Box.png",
+      iconAlt: "Discount",
+      iconWidth: 46,
+      iconHeight: 46,
+      title: "Discount",
+      desc: "Every week new sales",
+    },
+    {
+      id: 2,
+      iconSrc: "/icons/Delivery_truck.png",
+      iconAlt: "Free Delivery",
+      iconWidth: 64,
+      iconHeight: 38,
+      title: "Free Delivery",
+      desc: "100% Free for all orders",
+    },
+    {
+      id: 3,
+      iconSrc: "/icons/24_hours.png",
+      iconAlt: "Great Support",
+      iconWidth: 50,
+      iconHeight: 50,
+      title: "Great Support 24/7",
+      desc: "We care your experiences",
+    },
+    {
+      id: 4,
+      iconSrc: "/icons/Shield.png",
+      iconAlt: "Secure Payment",
+      iconWidth: 50,
+      iconHeight: 50,
+      title: "Secure Payment",
+      desc: "100% Secure Payment Method",
+    },
+  ];
+
   return (
     <section className="z-20 max-w-[1320px] w-full mx-auto mt-[-72px] max-md:mt-0 relative">
       <div

@@ -12,67 +12,44 @@ import OurProducts from "../components/OurProducts";
 import Copyright from "./Copyright";
 
 const Layout = ({ data = {} }) => {
-  const {
-    topBarData = {},
-    slides = [],
-    features = [],
-    logosCompany = [],
-    featuredProducts = [],
-    topCategories = [],
-    ourProductsData = {},
-    testimonialsData = {},
-    recentlyAddedData = {},
-    footerData = {},
-    copyrightData = {},
-  } = data;
-
   return (
     <div className="flex flex-col min-h-screen bg-white overflow-x-hidden">
       <header className="w-full border-b border-b-[#e1e3e6]">
-        <Navigation data={topBarData} className="h-full" />
+        <Navigation data={data?.topBarData || {}} />
       </header>
-
       <section className="w-full mx-0 px-4 xl:px-0 md:max-w-[1740px] md:mx-auto">
-        <HeroSection slides={slides} />
+        <HeroSection slides={data?.slides || []} />
       </section>
-
       <section className="flex-1 w-full max-w-[1320px] mx-auto sm:px-4 xl:px-0">
-        <Feature features={features} />
+        <Feature features={data?.features || []} />
       </section>
-
       <section className="flex-1 w-full max-w-[1320px] mx-auto px-4 xl:px-0 mt-[26px]">
-        <CompanyLogo logos={logosCompany} />
+        <CompanyLogo logos={data?.logosCompany || []} />
       </section>
-
       <section className="flex-1 w-full max-w-[1320px] mx-auto px-4 xl:px-0">
-        <FeaturedProducts products={featuredProducts} />
+        <FeaturedProducts products={data?.featuredProducts || []} />
       </section>
-
       <section className="w-full flex justify-center px-4 xl:px-0">
         <div className="w-full overflow-visible">
-          <TopCategories categories={topCategories} />
+          <TopCategories categories={data?.topCategories || []} />
         </div>
       </section>
-
       <section className="flex-1 w-full max-w-[1320px] mx-auto px-4 xl:px-0">
-        <OurProducts data={ourProductsData} />
-      </section>
-
+        <OurProducts data={data?.ourProductsData || []} />
+      </section>{" "}
       <section className="flex-1 w-full mx-auto">
-        <Testimonial testimonials={testimonialsData} />
+        <Testimonial testimonials={data?.testimonialsData || []} />
       </section>
-
       <section className="w-full max-w-[1320px] mx-auto px-4 xl:px-0 sm:mb-[40px] lg:mb-[103px] mb-10 xs:mb-0">
-        <RecentlyAdd data={recentlyAddedData} />
+        <RecentlyAdd data={data?.recentlyAddedData || []} />
       </section>
-
       <footer className="w-full border-t border-b border-[#e9eaec] bg-white">
         <div className="max-w-[1320px] w-full mx-auto px-4 xl:px-0">
-          <Footer data={footerData} />
+          <Footer data={data?.footerData || {}} />
         </div>
         <section className="flex-1 border-t border-[#e9eaec] w-full mx-auto px-4 sm:px-0">
           <div className="max-w-[1320px] w-full mx-auto px-4 xl:px-0">
-            <Copyright data={copyrightData} />
+            <Copyright data={data?.copyrightData || {}} />
           </div>
         </section>
       </footer>

@@ -1,6 +1,5 @@
 // Navigation
 export const topBarData = {
-  promo: { icon: "check", text: "Free Shipping on All Orders Over $50" },
   languages: [
     { label: "Eng", value: "en" },
     { label: "Vi", value: "vi" },
@@ -17,16 +16,6 @@ export const topBarData = {
     { name: "About", path: "/about" },
   ],
   contactNumber: "(808) 555-0111",
-
-  icons: {
-    logo: "/icons/Logo.png",
-    check: "/icons/Check.png",
-    alert: "icons/Alert_circle.png",
-    cart: "/icons/Cart.png",
-    heart: "/icons/Heart.png",
-    user: "/icons/User.png",
-    search: "/icons/Search.png",
-  },
 };
 
 // -----------------------------------------------
@@ -64,64 +53,8 @@ export const slides = [
 
 // -----------------------------------------------
 
-// Feature
-export const features = [
-  {
-    id: 1,
-    iconSrc: "/icons/Box.png",
-    iconAlt: "Discount",
-    iconWidth: 46,
-    iconHeight: 46,
-    title: "Discount",
-    desc: "Every week new sales",
-  },
-  {
-    id: 2,
-    iconSrc: "/icons/Delivery_truck.png",
-    iconAlt: "Free Delivery",
-    iconWidth: 64,
-    iconHeight: 38,
-    title: "Free Delivery",
-    desc: "100% Free for all orders",
-  },
-  {
-    id: 3,
-    iconSrc: "/icons/24_hours.png",
-    iconAlt: "Great Support",
-    iconWidth: 50,
-    iconHeight: 50,
-    title: "Great Support 24/7",
-    desc: "We care your experiences",
-  },
-  {
-    id: 4,
-    iconSrc: "/icons/Shield.png",
-    iconAlt: "Secure Payment",
-    iconWidth: 50,
-    iconHeight: 50,
-    title: "Secure Payment",
-    desc: "100% Secure Payment Method",
-  },
-];
-
-// -----------------------------------------------
-
-// CompanyLogo
-export const logosCompany = [
-  { src: "/icons/Logo_01.png", alt: "Logo Company 01" },
-  { src: "/icons/Logo_02.png", alt: "Logo Company 02" },
-  { src: "/icons/Logo_03.png", alt: "Logo Company 03" },
-  { src: "/icons/Logo_04.png", alt: "Logo Company 04" },
-  { src: "/icons/Logo_05.png", alt: "Logo Company 05" },
-  { src: "/icons/Logo_06.png", alt: "Logo Company 06" },
-  { src: "/icons/Logo_07.png", alt: "Logo Company 07" },
-];
-
-// -----------------------------------------------
-
 // FeatureProduct
 export const featuredProducts = {
-  title: "Featured Products",
   items: [
     {
       id: 1,
@@ -190,7 +123,6 @@ export const featuredProducts = {
 
 // topCategories
 export const topCategories = {
-  title: "Top Categories",
   items: [
     {
       id: 1,
@@ -241,14 +173,6 @@ export const topCategories = {
 
 // ourProduct
 export const ourProductsData = {
-  title: "Our Products",
-  tabItems: [
-    { text: "All", path: "/" },
-    { text: "Newest", path: "/newest" },
-    { text: "Trending", path: "/trending" },
-    { text: "Best Sellers", path: "/best-sellers" },
-    { text: "Featured", path: "/featured" },
-  ],
   productsList: [
     {
       id: 1,
@@ -311,7 +235,6 @@ export const ourProductsData = {
 // Testimonial
 
 export const testimonialsData = {
-  title: "What client says about us",
   comments: [
     {
       id: 1,
@@ -345,7 +268,6 @@ export const testimonialsData = {
 // Recently Add
 
 export const recentlyAddedData = {
-  title: "Recently Added",
   products: [
     {
       id: 1,
@@ -354,7 +276,6 @@ export const recentlyAddedData = {
       oldPrice: "$40",
       image: "/image/Product_01.jpg",
       status: "New",
-      tagColor: "bg-[#01ad5a]",
     },
     {
       id: 2,
@@ -362,7 +283,6 @@ export const recentlyAddedData = {
       price: "$35",
       image: "/image/Product_02.jpg",
       status: "Sale",
-      tagColor: "bg-[#F5813F]",
     },
     {
       id: 3,
@@ -390,64 +310,6 @@ export const recentlyAddedData = {
       oldPrice: "$50",
       image: "/image/Product_06.jpg",
       status: "Sale",
-      tagColor: "bg-[#F5813F]",
     },
   ],
-  config: {
-    slidesToShow: 4,
-    gridCols: "md:grid-cols-4",
-    showPagination: true,
-    extraMt: 48,
-    disableTitleMt: true,
-    disableNavMt: true,
-  },
-};
-
-// -----------------------------------------------
-
-// Footer
-
-export const footerData = {
-  logo: "/icons/Logo.png",
-  description:
-    "Vivamus tristique odio sit amet velit semper, eu posuere turpis interdum. Cras egestas purus.",
-  socialLinks: [
-    { icon: "/icons/Facebook.png", href: "#" },
-    { icon: "/icons/Twitter.png", href: "#" },
-    { icon: "/icons/Instagram.png", href: "#" },
-    { icon: "/icons/Pinterest.png", href: "#" },
-    { icon: "/icons/Youtube.png", href: "#" },
-  ],
-  footerLinks: [
-    {
-      title: "Category",
-      items: [
-        "Sofa",
-        "Armchair",
-        "Wing Chair",
-        "Desk Chair",
-        "Wooden Chair",
-        "Park Bench",
-      ],
-    },
-    {
-      title: "Support",
-      items: ["Help & Support", "Terms & Conditions", "Privacy Policy", "Help"],
-    },
-    {
-      title: "Newsletter",
-      input: true,
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt erat enim.",
-    },
-  ],
-};
-
-// -----------------------------------------------
-
-// Copyright
-
-export const copyrightData = {
-  paymentImg: "/icons/Payment.png",
-  copyright: "© 2021 - Blogy — Designed & Developed by Zakirsoft",
 };

@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { FiShoppingCart, FiMenu, FiX } from "react-icons/fi";
 import { useCart } from "../context/CartContext";
-// eslint-disable-next-line no-unused-vars
 import { AnimatePresence, motion } from "framer-motion";
 
 const Navigation = ({ data }) => {
@@ -10,8 +9,7 @@ const Navigation = ({ data }) => {
   const [showCart, setShowCart] = useState(false);
   const { cartItems, cartCount, removeFromCart, clearCart } = useCart();
   const cartRef = useRef(null);
-
-  const { promo, languages, links, navLinks, contactNumber, icons } = data;
+  if (!data) return null;
 
   return (
     <nav className="text-white w-full bg-[#272343]">
@@ -19,38 +17,39 @@ const Navigation = ({ data }) => {
         <div className="max-w-[1320px] mx-auto flex flex-wrap items-center justify-center md:justify-between py-2 px-4 text-xs md:text-sm text-gray-400">
           <p className="flex items-center gap-1">
             <img
-              src={icons.check}
+              src="/icons/Check.png"
               alt="Check"
               className="w-4 h-4 object-contain"
             />
-            {promo.text}
+            Free Shipping on All Orders Over $50
           </p>
 
           <div className="hidden md:flex items-center gap-4 text-sm">
             <select className="bg-transparent text-gray-400 rounded px-2 py-1 hover:text-white transition">
-              {languages.map((lang) => (
+              {data?.languages?.map((lang) => (
                 <option key={lang.value} value={lang.value}>
                   {lang.label}
                 </option>
               ))}
             </select>
 
-            {links.map((item, i) => (
-              <a
-                key={i}
-                href={item.href}
-                className="hover:text-white transition flex items-center gap-1"
-              >
-                {item.icon && (
-                  <img
-                    src={icons.alert}
-                    alt="Alert"
-                    className="w-4 h-4 object-contain"
-                  />
-                )}
-                {item.label}
-              </a>
-            ))}
+            <a
+              href="#"
+              className="hover:text-white transition flex items-center gap-1"
+            >
+              Faqs
+            </a>
+            <a
+              href="/help"
+              className="hover:text-white transition flex items-center gap-1"
+            >
+              <img
+                src="/icons/Alert_circle.png"
+                alt="Alert"
+                className="w-4 h-4 object-contain"
+              />
+              Need Help?
+            </a>
           </div>
         </div>
       </div>
@@ -58,7 +57,7 @@ const Navigation = ({ data }) => {
       <div className="bg-[#f0f2f3] text-gray-800 w-full">
         <div className="max-w-[1320px] mx-auto flex flex-nowrap items-center justify-between gap-3 p-4 ">
           <img
-            src={icons.logo}
+            src="/icons/Logo.png"
             alt="Comforty Logo"
             className="w-[120px] sm:w-[166px] h-[40px] object-contain"
           />
@@ -70,7 +69,7 @@ const Navigation = ({ data }) => {
                 className="w-full h-[44px] pl-4 pr-11 rounded-md border border-gray-300 bg-white text-[16px] text-[#9a9caa] placeholder:text-[#9a9caa] outline-none focus:border-[#029FAE] focus:ring-1 focus:ring-[#029FAE] transition-all"
               />
               <img
-                src={icons.search}
+                src="/icons/Search.png"
                 alt="Search"
                 className="absolute right-3 top-1/2 -translate-y-1/2 w-[20px] h-[20px] object-contain opacity-70 cursor-pointer hover:opacity-100 transition"
               />
@@ -86,8 +85,9 @@ const Navigation = ({ data }) => {
             >
               <div className="flex items-center gap-2 text-black">
                 <img
-                  src={icons.cart}
+                  src="/icons/Cart.png"
                   className="w-[17px] h-[17px] object-cover"
+                  alt="Cart"
                 />
                 <span className="text-[13px] font-medium text-[#272343] leading-[110%]">
                   Cart
@@ -102,14 +102,16 @@ const Navigation = ({ data }) => {
             </button>
             <button className="w-[40px] flex items-center justify-center h-[40px] bg-white border border-gray-300 rounded-md hover:text-[#007580] transition">
               <img
-                src={icons.heart}
+                src="/icons/Heart.png"
                 className="w-[22px] h-[22px] object-cover"
+                alt="Heart"
               />
             </button>
             <button className="w-[40px] flex items-center justify-center h-[40px] bg-white border border-gray-300 rounded-md hover:text-[#007580] transition">
               <img
-                src={icons.user}
+                src="/icons/User.png"
                 className="w-[22px] h-[22px] object-cover"
+                alt="User"
               />
             </button>
             <AnimatePresence>
@@ -204,15 +206,36 @@ const Navigation = ({ data }) => {
             </button>
 
             <div className="hidden md:flex gap-2 items-center space-x-6">
-              {navLinks.map((link, i) => (
-                <Link
-                  key={i}
-                  to={link.path}
-                  className="hover:text-[#007580] text-[14px] text-[#636270] transition"
-                >
-                  {link.name}
-                </Link>
-              ))}
+              <Link
+                to="/"
+                className="hover:text-[#007580] text-[14px] text-[#636270] transition"
+              >
+                Home
+              </Link>
+              <Link
+                to="/shop"
+                className="hover:text-[#007580] text-[14px] text-[#636270] transition"
+              >
+                Shop
+              </Link>
+              <Link
+                to="/product"
+                className="hover:text-[#007580] text-[14px] text-[#636270] transition"
+              >
+                Product
+              </Link>
+              <Link
+                to="/pages"
+                className="hover:text-[#007580] text-[14px] text-[#636270] transition"
+              >
+                Pages
+              </Link>
+              <Link
+                to="/about"
+                className="hover:text-[#007580] text-[14px] text-[#636270] transition"
+              >
+                About
+              </Link>
             </div>
           </div>
 
@@ -221,14 +244,14 @@ const Navigation = ({ data }) => {
               Contact:
             </span>
             <span className="font-semibold leading-[110%] text-[#272343]">
-              {contactNumber}
+              {data?.contactNumber || "(000) 000-0000"}
             </span>
           </div>
         </div>
         {mobileMenuOpen && (
           <div className="md:hidden w-full bg-gray-50 border-t border-gray-200 !z-1000">
             <div className="flex flex-col px-4 py-2 space-y-2">
-              {navLinks.map((link, i) => (
+              {data?.navLinks.map((link, i) => (
                 <Link
                   key={i}
                   to={link.path}
