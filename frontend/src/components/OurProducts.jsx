@@ -21,7 +21,7 @@ const OurProducts = ({ data }) => {
   const handleAddToCart = (item) => {
     addToCart(item);
     toast.success(`${item.name} đã được thêm vào giỏ hàng!`, {
-      position: "bottom-right",
+      position: "top-right",
       autoClose: 2000,
     });
   };

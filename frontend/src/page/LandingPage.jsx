@@ -15,7 +15,9 @@ const LandingPage = () => {
   useEffect(() => {
     const fetchLandingData = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/landing");
+        const res = await axios.get(
+          `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/landing`
+        );
         console.log("API response:", res.data);
         setLandingData(res.data || {});
       } catch (err) {

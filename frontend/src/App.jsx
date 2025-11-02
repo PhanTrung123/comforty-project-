@@ -18,14 +18,14 @@ const App = () => {
       <ToastContainer
         position="top-right"
         autoClose={2000}
-        hideProgressBar="false"
+        hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
         rtl={false}
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        toastClassName="bg-white border border-gray-300 shadow-lg rounded-xl p-4 flex items-center gap-2"
+        toastClassName="bg-white border border-gray-300 shadow-lg rounded-xl !p-6 flex items-center gap-2"
       />
     </Router>
   );
