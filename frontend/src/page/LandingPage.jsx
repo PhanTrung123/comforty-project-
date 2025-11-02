@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../common/Layout";
 import axios from "axios";
-import * as fallbackData from "../../data/siteData";
+import * as fallbackData from "../../../database/data/siteData";
 import { toast, ToastContainer } from "react-toastify";
 import { ClipLoader } from "react-spinners";
 

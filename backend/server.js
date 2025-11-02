@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const siteData = require("../frontend/data/siteData");
+const siteData = require("../database/data/siteData");
 require("dotenv").config();
 
 const app = express();
@@ -15,5 +15,5 @@ app.get("/api/landing", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`✅ Server running on http://localhost:${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });
