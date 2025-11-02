@@ -11,11 +11,11 @@ import FeaturedProducts from "../components/FeaturedProducts";
 import OurProducts from "../components/OurProducts";
 import Copyright from "./Copyright";
 
-const Layout = ({ data = {} }) => {
+const Layout = ({ data = {}, isFallback = false }) => {
   return (
     <div className="flex flex-col min-h-screen bg-white overflow-x-hidden">
       <header className="w-full border-b border-b-[#e1e3e6]">
-        <Navigation data={data?.topBarData || {}} />
+        <Navigation data={data?.topBarData || {}} isFallback={isFallback} />
       </header>
       <section className="w-full mx-0 px-4 xl:px-0 md:max-w-[1740px] md:mx-auto">
         <HeroSection slides={data?.slides || []} />

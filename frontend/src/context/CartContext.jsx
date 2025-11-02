@@ -2,8 +2,9 @@ import React, { createContext, useState, useContext, useEffect } from "react";
 
 const CartContext = createContext();
 
-export const CartProvider = ({ children }) => {
+export const CartProvider = ({ children, isFallback }) => {
   const [cartItems, setCartItems] = useState(() => {
+    if (isFallback) return [];
     try {
       const stored = localStorage.getItem("cartItems");
       const parsed = stored ? JSON.parse(stored) : [];
@@ -15,8 +16,10 @@ export const CartProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-  }, [cartItems]);
+    if (!isFallback) {
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    }
+  }, [cartItems, isFallback]);
 
   const addToCart = (product) => {
     setCartItems((prev) => {

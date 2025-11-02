@@ -39,8 +39,8 @@ const TopCategories = ({ categories }) => {
           nextRef={nextRef}
         />
       ) : (
-        <div className="w-full text-center py-10 text-gray-500  ">
-          Không có dữ liệu sản phẩm nổi bật để hiển thị.
+        <div className="w-full text-center text-gray-500 text-sm sm:text-base md:text-lg font-medium py-10 sm:py-16 md:py-20 px-4">
+          No top category data available for display.
         </div>
       )}
     </section>

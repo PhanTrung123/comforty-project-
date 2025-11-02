@@ -39,8 +39,8 @@ const Testimonial = ({ testimonials }) => {
             nextRef={nextRef}
           />
         ) : (
-          <div className="text-center py-12 text-gray-500 text-[15px] sm:text-[17px] font-medium">
-            Hiện chưa có đánh giá nào
+          <div className="w-full text-center text-gray-500 text-sm sm:text-base md:text-lg font-medium py-10 sm:py-16 md:py-20 px-4">
+            There are no reviews yet.
           </div>
         )}
       </div>

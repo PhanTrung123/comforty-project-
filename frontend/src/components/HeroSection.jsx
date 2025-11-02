@@ -96,8 +96,8 @@ const HeroSection = ({ slides }) => {
             ))}
           </Swiper>
         ) : (
-          <div className="w-full text-center py-20 text-gray-500 text-[16px] font-medium">
-            Hiện chưa có slide nào để hiển thị.
+          <div className="w-full text-center text-gray-500 text-sm sm:text-base md:text-lg font-medium py-10 sm:py-16 md:py-20 px-4">
+            No slides are available for display.
           </div>
         )}
 

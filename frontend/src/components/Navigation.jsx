@@ -4,12 +4,16 @@ import { FiShoppingCart, FiMenu, FiX } from "react-icons/fi";
 import { useCart } from "../context/CartContext";
 import { AnimatePresence, motion } from "framer-motion";
 
-const Navigation = ({ data }) => {
+const Navigation = ({ data, isFallback }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const { cartItems, cartCount, removeFromCart, clearCart } = useCart();
   const cartRef = useRef(null);
   if (!data) return null;
+
+  const isCartDisabled = isFallback;
+  const displayCartItems = isCartDisabled ? [] : cartItems;
+  const displayCartCount = isCartDisabled ? 0 : cartCount;
 
   return (
     <nav className="text-white w-full bg-[#272343]">
@@ -94,9 +98,9 @@ const Navigation = ({ data }) => {
                 </span>
               </div>
 
-              {cartCount > 0 && (
+              {displayCartCount > 0 && (
                 <span className="bg-[#007580] text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
-                  {cartCount}
+                  {displayCartCount}
                 </span>
               )}
             </button>
@@ -129,10 +133,14 @@ const Navigation = ({ data }) => {
                     Your Cart
                   </h4>
 
-                  {cartItems.length === 0 ? (
+                  {displayCartItems.length === 0 ? (
                     <div className="flex flex-col items-center justify-center text-center text-gray-500 py-8">
                       <FiShoppingCart className="text-4xl mb-2 text-gray-400" />
-                      <p className="text-sm font-medium">Your cart is empty.</p>
+                      <p className="text-sm font-medium">
+                        {isFallback
+                          ? "Your cart is empty."
+                          : "Your cart is empty."}
+                      </p>
                     </div>
                   ) : (
                     <>

@@ -42,8 +42,8 @@ const RecentlyAdd = ({ data }) => {
             disableTitleMt={true}
           />
         ) : (
-          <div className="text-center text-gray-500 text-[15px] sm:text-[17px] font-medium py-12">
-            Hiện chưa có sản phẩm nào được thêm gần đây.
+          <div className="w-full text-center text-gray-500 text-sm sm:text-base md:text-lg font-medium py-10 sm:py-16 md:py-20 px-4">
+            No products have been added recently.
           </div>
         )}
       </div>
