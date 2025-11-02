@@ -4,7 +4,6 @@ const cors = require("cors");
 const siteData = require("../frontend/data/siteData");
 
 const app = express();
-const PORT = 5000;
 
 app.use(cors());
 
