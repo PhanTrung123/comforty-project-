@@ -11,7 +11,7 @@ const Cart1 = () => {
       desc: "Extra cheese and topping",
       price: 681,
       qty: 1,
-      img: "/public/image/Cake_01.jpg",
+      img: "/image/Cake_01.jpg",
     },
     {
       id: 2,
@@ -19,7 +19,7 @@ const Cart1 = () => {
       desc: "Extra cheese and topping",
       price: 681,
       qty: 1,
-      img: "/public/image/Cake_02.jpg",
+      img: "/image/Cake_02.jpg",
     },
     {
       id: 3,
@@ -27,7 +27,7 @@ const Cart1 = () => {
       desc: "Extra garlic",
       price: 681,
       qty: 1,
-      img: "/public/image/Cake_03.jpg",
+      img: "/image/Cake_03.jpg",
     },
   ];
 
@@ -40,7 +40,7 @@ const Cart1 = () => {
         <div className="lg:shadow rounded-[15px]  mx-auto  xl:flex max-w-[1320px] justify-between gap-[55px]">
           <div className="py-[25px] px-[25px] lg:py-[50px]  lg:px-[45px] bg-white w-full  ">
             <div className="flex items-center">
-              <img src="/public/icons/arrow.png" alt="arrow" />
+              <img src="/icons/arrow.png" alt="arrow" />
               <h3 className="font-semibold text-[18px] leading-[100%] text-[#1E1E1E]">
                 Shopping Continue
               </h3>
@@ -77,7 +77,7 @@ const Cart1 = () => {
                       <span className="font-semibold text-[18px] lg:text-[22px] lining-nums proportional-nums ">
                         {item.qty}
                       </span>
-                      <img src="/public/icons/Scale.png" />
+                      <img src="/icons/Scale.png" />
                     </div>
                   </div>
                 </div>
@@ -86,13 +86,13 @@ const Cart1 = () => {
                     <span className="font-semibold text-[22px] lining-nums proportional-nums ">
                       {item.qty}
                     </span>
-                    <img src="/public/icons/Scale.png" />
+                    <img src="/icons/Scale.png" />
                   </div>
                   <span className="font-medium ml-auto text-[14px] leading-[100%] ">
                     ${item.price}
                   </span>
                   <button className="w-[20px] h-[20px] md:w-[25px] md:h-[25px] ml-[20px] lg:ml-[38px] items-center flex cursor-pointer  ">
-                    <img src="/public/icons/trash.png" className="" />
+                    <img src="/icons/trash.png" className="" />
                   </button>
                 </div>
               </div>
@@ -105,7 +105,7 @@ const Cart1 = () => {
                   Card Details
                 </h3>
                 <img
-                  src="/public/image/User.jpg"
+                  src="/image/User.jpg"
                   className="w-[50px] h-[50px] object-cover rounded-[8px]"
                 />
               </div>
@@ -116,17 +116,17 @@ const Cart1 = () => {
                 <div className="w-full flex-wrap lg:flex-nowrap gap-[17px] flex flex-row mt-[14px] mx-auto justify-center ">
                   <div className="">
                     <div className="w-[75px] h-[55px] flex items-center bg-[rgba(217,217,217,0.2)] rounded-[5px]">
-                      <img src="/public/image/Icon_bank_01.png" />
+                      <img src="/image/Icon_bank_01.png" />
                     </div>
                   </div>
                   <div className="">
                     <div className="w-[75px] h-[55px] flex items-center bg-[rgba(217,217,217,0.2)] rounded-[5px]">
-                      <img src="/public/image/Icon_bank_02.png" />
+                      <img src="/image/Icon_bank_02.png" />
                     </div>
                   </div>{" "}
                   <div className="">
                     <div className="w-[75px] h-[55px] flex items-center bg-[rgba(217,217,217,0.2)] rounded-[5px]">
-                      <img src="/public/image/Icon_bank_03.png" />
+                      <img src="/image/Icon_bank_03.png" />
                     </div>
                   </div>{" "}
                   <div>
