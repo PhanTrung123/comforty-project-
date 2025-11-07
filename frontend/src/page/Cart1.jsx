@@ -37,7 +37,7 @@ const Cart1 = () => {
         <Navigation data={{}} />
       </header>
       <div className="w-full  my-10">
-        <div className="lg:shadow rounded-[15px]  mx-auto  xl:flex max-w-[1320px] justify-between gap-[55px]">
+        <div className=" rounded-[15px]  mx-auto  xl:flex max-w-[1320px] justify-between gap-[55px]">
           <div className="py-[25px] px-[25px] lg:py-[50px]  lg:px-[45px] bg-white w-full  ">
             <div className="flex items-center">
               <img src="/icons/arrow.png" alt="arrow" />
@@ -207,7 +207,7 @@ const Cart1 = () => {
                   <div className="flex items-center gap-2 text-[rgba(254,252,252,1)]">
                     <span>Checkout</span>
                     <img
-                      src="/public/icons/Right_02.png"
+                      src="/icons/Right_02.png"
                       className="w-[25px] h-[25px]"
                     />
                   </div>
@@ -217,7 +217,7 @@ const Cart1 = () => {
           </div>
         </div>
       </div>
-      {/* <footer className="w-full border-t border-b border-[#e9eaec] bg-white">
+      <footer className="w-full border-t border-b border-[#e9eaec] bg-white">
         <div className="max-w-[1320px] w-full mx-auto px-4 xl:px-0">
           <Footer />
         </div>
@@ -226,7 +226,7 @@ const Cart1 = () => {
             <Copyright />
           </div>
         </section>
-      </footer> */}
+      </footer>
     </div>
   );
 };
