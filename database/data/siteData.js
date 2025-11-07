@@ -51,6 +51,12 @@ export const slides = [
   },
 ];
 
+// bỏ
+// list 5 cate
+// thêm product cho đủ 20 sản phẩm
+// code màn danh sách sản phẩm (list cate, list sản phẩm) tab
+// code màn chi tiết sản phẩm
+
 // -----------------------------------------------
 
 // FeatureProduct
@@ -64,6 +70,7 @@ export const featuredProducts = {
       image: "/image/Product_01.jpg",
       status: "New",
       tagColor: "bg-[#01AD5A]",
+      categoryId: 1,
     },
     {
       id: 2,

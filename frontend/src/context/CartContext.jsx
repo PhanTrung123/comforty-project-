@@ -4,13 +4,10 @@ const CartContext = createContext();
 
 export const CartProvider = ({ children, isFallback }) => {
   const [cartItems, setCartItems] = useState(() => {
-    if (isFallback) return [];
     try {
       const stored = localStorage.getItem("cartItems");
-      const parsed = stored ? JSON.parse(stored) : [];
-      return Array.isArray(parsed) ? parsed : [];
-    } catch (error) {
-      console.error("Lỗi parse localStorage:", error);
+      return stored ? JSON.parse(stored) : [];
+    } catch {
       return [];
     }
   });
@@ -21,7 +18,19 @@ export const CartProvider = ({ children, isFallback }) => {
     }
   }, [cartItems, isFallback]);
 
+  useEffect(() => {
+    const stored = localStorage.getItem("cartItems");
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      if (JSON.stringify(parsed) !== JSON.stringify(cartItems)) {
+        setCartItems(parsed);
+      }
+    }
+  }, []);
+
   const addToCart = (product) => {
+    if (!product || !product.id) return;
+
     setCartItems((prev) => {
       const existing = prev.find((item) => item.id === product.id);
       if (existing) {
@@ -42,13 +51,66 @@ export const CartProvider = ({ children, isFallback }) => {
 
   const clearCart = () => setCartItems([]);
 
-  const cartCount = Array.isArray(cartItems)
-    ? cartItems.reduce((sum, item) => sum + item.quantity, 0)
-    : 0;
+  const increaseQuantity = (id) => {
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
+  };
+
+  const decreaseQuantity = (id) => {
+    setCartItems((prev) =>
+      prev
+        .map((item) =>
+          item.id === id
+            ? { ...item, quantity: Math.max(item.quantity - 1, 1) }
+            : item
+        )
+        .filter((item) => item.quantity > 0)
+    );
+  };
+
+  const setQuantity = (id, quantity) => {
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, quantity: Math.max(quantity, 1) } : item
+      )
+    );
+  };
+
+  const getItemTotal = (item) => {
+    const price =
+      typeof item.price === "string"
+        ? parseFloat(item.price.replace("$", "")) || 0
+        : item.price || 0;
+    return price * item.quantity;
+  };
+
+  const cartCount = cartItems.reduce(
+    (sum, item) => sum + (item.quantity || 0),
+    0
+  );
+
+  const cartTotal = cartItems.reduce(
+    (sum, item) => sum + getItemTotal(item),
+    0
+  );
 
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, removeFromCart, clearCart, cartCount }}
+      value={{
+        cartItems,
+        addToCart,
+        removeFromCart,
+        clearCart,
+        increaseQuantity,
+        decreaseQuantity,
+        setQuantity,
+        getItemTotal,
+        cartCount,
+        cartTotal,
+      }}
     >
       {children}
     </CartContext.Provider>

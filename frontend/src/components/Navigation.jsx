@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FiShoppingCart, FiMenu, FiX } from "react-icons/fi";
 import { useCart } from "../context/CartContext";
 import { AnimatePresence, motion } from "framer-motion";
@@ -7,7 +7,8 @@ import { AnimatePresence, motion } from "framer-motion";
 const Navigation = ({ data, isFallback }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showCart, setShowCart] = useState(false);
-  const { cartItems, cartCount, removeFromCart, clearCart } = useCart();
+  const { cartItems, cartCount } = useCart();
+  const navigate = useNavigate();
   const cartRef = useRef(null);
   if (!data) return null;
 
@@ -63,7 +64,10 @@ const Navigation = ({ data, isFallback }) => {
           <img
             src="/icons/Logo.png"
             alt="Comforty Logo"
-            className="w-[120px] sm:w-[166px] h-[40px] object-contain"
+            className="w-[120px] sm:w-[166px] h-[40px] object-contain cursor-pointer"
+            onClick={() => {
+              navigate("/");
+            }}
           />
           <div className="flex-1 hidden md:flex justify-center">
             <div className="relative w-full md:w-[300px] xl:w-[413px]">
@@ -82,7 +86,10 @@ const Navigation = ({ data, isFallback }) => {
 
           <div className="relative flex gap-3" ref={cartRef}>
             <button
-              onClick={() => setShowCart((prev) => !prev)}
+              onClick={() => {
+                setShowCart(false);
+                setTimeout(() => navigate("/cart"), 100);
+              }}
               onMouseEnter={() => setShowCart(true)}
               onMouseLeave={() => setShowCart(false)}
               className="relative gap-2 flex items-center justify-center w-[110px] sm:w-[120px] h-[40px] bg-white border border-gray-300 rounded-md hover:text-[#007580] hover:bg-gray-50 transition"
@@ -99,9 +106,9 @@ const Navigation = ({ data, isFallback }) => {
               </div>
 
               {displayCartCount > 0 && (
-                <span className="bg-[#007580] text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                <div className="bg-[#007580] text-white text-[11px] font-semibold w-5 h-5 flex items-center justify-center rounded-full leading-none">
                   {displayCartCount}
-                </span>
+                </div>
               )}
             </button>
             <button className="w-[40px] flex items-center justify-center h-[40px] bg-white border border-gray-300 rounded-md hover:text-[#007580] transition">
@@ -130,7 +137,7 @@ const Navigation = ({ data, isFallback }) => {
                   className="absolute right-0 top-full mt-3 w-[280px] sm:w-[320px] md:w-[360px] bg-white rounded-2xl shadow-xl border border-gray-100 p-4 z-50"
                 >
                   <h4 className="text-lg font-semibold mb-3 text-[#272343]">
-                    Your Cart
+                    New products added
                   </h4>
 
                   {displayCartItems.length === 0 ? (
@@ -161,36 +168,28 @@ const Navigation = ({ data, isFallback }) => {
                                   {item.name}
                                 </p>
                                 <p className="text-xs text-[#9a9caa]">
-                                  {item.quantity} × {item.price}
+                                  x {item.quantity}
                                 </p>
                               </div>
                             </div>
                             <span className="text-sm font-semibold text-[#272343] whitespace-nowrap">
                               $
-                              {(
-                                item.quantity *
-                                parseFloat(item.price.replace("$", ""))
-                              ).toFixed(2)}
+                              {parseFloat(item.price.replace("$", "")).toFixed(
+                                2
+                              )}
                             </span>
-                            <button
-                              onClick={() => removeFromCart(item.id)}
-                              title="Remove item"
-                              className="absolute right-0 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 text-[#272343] hover:text-[#007580] bg-white text-sm"
-                            >
-                              <FiX className="w-4 h-4" />
-                            </button>
                           </div>
                         ))}
                       </div>
 
-                      <div className="flex justify-between items-center mt-4">
+                      <div className="flex justify-end items-center mt-4">
                         <button
-                          onClick={clearCart}
-                          className="text-sm text-[#272343] hover:text-[#007580] transition"
+                          onClick={() => {
+                            setShowCart(false);
+                            navigate("/cart");
+                          }}
+                          className="bg-[#007580] text-white px-4 py-2 rounded-md text-sm hover:bg-[#029FAE] transition"
                         >
-                          Clear All
-                        </button>
-                        <button className="bg-[#007580] text-white px-4 py-2 rounded-md text-sm hover:bg-[#029FAE] transition">
                           Checkout
                         </button>
                       </div>
