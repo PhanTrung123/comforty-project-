@@ -12,7 +12,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 const Products = () => {
   const { addToCart } = useCart();
-  const [activeFilter, setActiveFilter] = useState("popular");
+  const [activeFilter, setActiveFilter] = useState("Popular");
   const [priceSort, setPriceSort] = useState("");
   const [filterProduct, setFilterProduct] = useState([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
@@ -46,10 +46,12 @@ const Products = () => {
 
   useEffect(() => {
     let products = [...featuredProducts.items];
-    if (activeFilter === "new") {
+    if (activeFilter === "New") {
       products = products.filter((p) => p.status === "New");
-    } else if (activeFilter === "sale") {
+    } else if (activeFilter === "Sale") {
       products = products.filter((p) => p.status === "Sale");
+    } else {
+      products = [...featuredProducts.items];
     }
     if (selectedCategoryId) {
       products = products.filter((p) => p.categoryId === selectedCategoryId);
@@ -78,7 +80,8 @@ const Products = () => {
               <button
                 onClick={() => {
                   setSelectedCategoryId(null);
-                  setActiveFilter("popular");
+                  setActiveFilter("Popular");
+                  navigate("/products");
                 }}
                 className="text-[17px] font-semibold text-[#272343] capitalize"
               >
@@ -198,61 +201,67 @@ const Products = () => {
             </div>
 
             <div className="grid grid-cols-4 max-xl:grid-cols-3 max-sm:grid-cols-2 gap-[16px] max-xl:gap-[14px] my-[20px]">
-              {filterProduct.map((product) => (
-                <div key={product.id}>
-                  <div
-                    onClick={() => navigate(`/products/${product.id}`)}
-                    className="group cursor-pointer"
-                  >
-                    <div className="overflow-hidden transition-all duration-300 relative mt-[20px] max-md:mt-[18px] mb-[12px]">
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-full h-[200px] max-lg:h-[180px] max-md:aspect-square object-cover rounded-md"
-                      />
-                      {product.status && (
-                        <span
-                          className={`absolute top-3 left-3 max-sm:top-2 max-sm:left-2 text-white max-sm:text-[11px] text-[13px] font-semibold px-2 sm:px-3 py-[2px] sm:py-1 rounded-sm shadow-md ${
-                            product.status === "Sale"
-                              ? "bg-[#F5813F]"
-                              : "bg-[#01ad5a]"
-                          }`}
-                        >
-                          {product.status}
-                        </span>
-                      )}
-                    </div>
-
-                    <div className="flex justify-between items-center mt-0 max-md:mt-[2px]">
-                      <div>
-                        <span className="mt-0 truncate max-md:mt-[15px] text-[16px] max-xl:text-[14px]  leading-[130%] text-[#272343] transition-colors duration-300 group-hover:text-[#029FAE]">
-                          {product.name}
-                        </span>
-                        <div className="flex gap-[6px] items-center mt-[10px] max-xl:mt-[8px]">
-                          <span className="font-semibold text-[16px] max-xl:text-[14px]  text-[#272343]">
-                            {product.price}
+              {filterProduct.length > 0 ? (
+                filterProduct.map((product) => (
+                  <div key={product.id}>
+                    <div
+                      onClick={() => navigate(`/products/${product.id}`)}
+                      className="group cursor-pointer"
+                    >
+                      <div className="overflow-hidden transition-all duration-300 relative mt-[20px] max-md:mt-[18px] mb-[12px]">
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          className="w-full h-[200px] max-lg:h-[180px] max-md:aspect-square object-cover rounded-md"
+                        />
+                        {product.status && (
+                          <span
+                            className={`absolute top-3 left-3 max-sm:top-2 max-sm:left-2 text-white max-sm:text-[11px] text-[13px] font-semibold px-2 sm:px-3 py-[2px] sm:py-1 rounded-sm shadow-md ${
+                              product.status === "Sale"
+                                ? "bg-[#F5813F]"
+                                : "bg-[#01ad5a]"
+                            }`}
+                          >
+                            {product.status}
                           </span>
-                          {product.oldPrice && (
-                            <span className="text-[14px] max-xl:text-[13px] max-md:text-[12px] font-normal text-[#9A9CAA] line-through">
-                              {product.oldPrice}
-                            </span>
-                          )}
-                        </div>
+                        )}
                       </div>
 
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleAddToCart(product);
-                        }}
-                        className="w-[32px] h-[32px] flex items-center justify-center rounded-md bg-gray-100 text-[#272343] transition-all duration-300 group-hover:bg-[#029FAE] group-hover:text-white max-sm:-translate-y-[20%] -translate-y-[30%] mt-[10%]"
-                      >
-                        <FiShoppingCart className="text-[16px] max-md:text-[14px]" />
-                      </button>
+                      <div className="flex justify-between items-center mt-0 max-md:mt-[2px]">
+                        <div>
+                          <span className="mt-0 truncate max-md:mt-[15px] text-[16px] max-xl:text-[14px]  leading-[130%] text-[#272343] transition-colors duration-300 group-hover:text-[#029FAE]">
+                            {product.name}
+                          </span>
+                          <div className="flex gap-[6px] items-center mt-[10px] max-xl:mt-[8px]">
+                            <span className="font-semibold text-[16px] max-xl:text-[14px]  text-[#272343]">
+                              {product.price}
+                            </span>
+                            {product.oldPrice && (
+                              <span className="text-[14px] max-xl:text-[13px] max-md:text-[12px] font-normal text-[#9A9CAA] line-through">
+                                {product.oldPrice}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleAddToCart(product);
+                          }}
+                          className="w-[32px] h-[32px] flex items-center justify-center rounded-md bg-gray-100 text-[#272343] transition-all duration-300 group-hover:bg-[#029FAE] group-hover:text-white max-sm:-translate-y-[20%] -translate-y-[30%] mt-[10%]"
+                        >
+                          <FiShoppingCart className="text-[16px] max-md:text-[14px]" />
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))
+              ) : (
+                <p className="col-span-4 text-center text-[#9a9caa] text-[18px] lg:text-[16px] py-10">
+                  No products found with the filters you selected.
+                </p>
+              )}
             </div>
           </div>
         </div>

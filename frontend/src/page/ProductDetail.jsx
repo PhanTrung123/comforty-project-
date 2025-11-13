@@ -76,11 +76,12 @@ const ProductDetail = () => {
             <span>{product.name}</span>
           </div>
 
-          <div className="flex max-sm:flex-col gap-[50px] md:gap-[40px] ">
-            <div className="w-[50%] max-sm:w-full  flex justify-start">
+          <div className="flex max-sm:flex-col gap-[50px] max-md:gap-[40px] ">
+            <div className="w-[50%] max-sm:w-full flex justify-start">
               <img
                 src={product.image}
-                className="w-[700px] h-auto aspect-square object-cover rounded-md"
+                alt={product.name}
+                className="w-full aspect-square object-cover rounded-md"
               />
             </div>
             <div className="w-[50%] max-sm:w-full flex flex-col">
@@ -152,15 +153,17 @@ const ProductDetail = () => {
                     </button>
 
                     <input
-                      type="number"
-                      min={1}
+                      type="text"
+                      inputMode="numeric"
+                      pattern="[0-9]*"
                       value={inputValues[product.id] ?? product.quantity}
-                      onChange={(e) =>
+                      onChange={(e) => {
+                        const value = e.target.value.replace(/[^0-9]/g, "");
                         setInputValues((prev) => ({
                           ...prev,
-                          [product.id]: e.target.value.replace(/\D/, ""),
-                        }))
-                      }
+                          [product.id]: value,
+                        }));
+                      }}
                       onBlur={() => {
                         const qty = parseInt(inputValues[product.id], 10);
                         setQuantity(
@@ -168,7 +171,7 @@ const ProductDetail = () => {
                           qty > 0 ? qty : product.quantity
                         );
                       }}
-                      className=" h-8  w-16  text-center border border-gray-200 rounded px-1 sm:px-2 py-1 text-sm sm:text-base md:text-lg"
+                      className="h-8 w-16 text-center border border-gray-200 rounded px-1 sm:px-2 py-1 text-[18px] max-lg:text-[16px] max-md:text-[14px]"
                     />
 
                     <button
