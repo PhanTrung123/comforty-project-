@@ -202,74 +202,28 @@ const Navigation = ({ data, isFallback }) => {
         </div>
       </div>
       <div className="bg-white text-gray-800 border-t border-gray-200 w-full">
-        <div className="max-w-[1320px] mx-auto flex items-center justify-between px-4 py-4 sm:gap-3 flex-nowrap">
-          <div className="flex items-center w-[547px] space-x-4 sm:space-x-6 flex-wrap">
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="flex cursor-pointer md:cursor-none items-center justify-center gap-2 w-[176px] h-[44px] border border-gray-300 rounded-md bg-white text-[14px] text-[#272343] hover:bg-gray-50 transition whitespace-nowrap flex-shrink-0"
-            >
-              <FiMenu className="text-[18px] md:text-[20px]" />
-              <span className="font-medium">All Categories</span>
-            </button>
-
-            <div className="hidden md:flex gap-2 items-center space-x-6">
-              <Link
-                to="/"
-                className="hover:text-[#007580] text-[14px] text-[#636270] transition"
-              >
-                Home
-              </Link>
-              <Link
-                to="/shop"
-                className="hover:text-[#007580] text-[14px] text-[#636270] transition"
-              >
-                Shop
-              </Link>
-              <Link
-                to="/product"
-                className="hover:text-[#007580] text-[14px] text-[#636270] transition"
-              >
-                Product
-              </Link>
-              <Link
-                to="/pages"
-                className="hover:text-[#007580] text-[14px] text-[#636270] transition"
-              >
-                Pages
-              </Link>
-              <Link
-                to="/about"
-                className="hover:text-[#007580] text-[14px] text-[#636270] transition"
-              >
-                About
-              </Link>
-            </div>
+        <div className="max-w-[1320px] mx-auto flex items-center justify-center max-lg:justify-between max-sm:justify-center relative px-6 py-6">
+          <div className="flex flex-wrap justify-center gap-10 max-md:gap-6">
+            {["Home", "Shop", "Products", "Pages", "About"].map(
+              (item, index) => (
+                <Link
+                  key={index}
+                  to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                  className="text-[16px] max-sm:text-[14px] text-[#636270] hover:text-[#007580] font-medium transition-colors duration-200"
+                >
+                  {item}
+                </Link>
+              )
+            )}
           </div>
 
-          <div className="text-[12px] sm:text-[14px] text-[#636270] flex items-center gap-2 flex-shrink-0 whitespace-nowrap">
-            <span className="font-inter font-normal text-[14px] leading-[110%] text-[#636270]">
-              Contact:
-            </span>
-            <span className="font-semibold leading-[110%] text-[#272343]">
+          <div className="absolute right-4 flex items-center gap-2 text-[13px]  text-[#555] max-sm:hidden ">
+            <span className="font-normal text-[#636270]">Contact:</span>
+            <span className="font-semibold text-[#272343]">
               {data?.contactNumber || "(000) 000-0000"}
             </span>
           </div>
         </div>
-        {mobileMenuOpen && (
-          <div className="md:hidden w-full bg-gray-50 border-t border-gray-200 !z-1000">
-            <div className="flex flex-col px-4 py-2 space-y-2">
-              {data?.navLinks.map((link, i) => (
-                <Link
-                  key={i}
-                  to={link.path}
-                  className="hover:text-[#007580] text-[14px] transition"
-                >
-                  {link.name}
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
     </nav>
   );
