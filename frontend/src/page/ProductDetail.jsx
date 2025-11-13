@@ -142,7 +142,6 @@ const ProductDetail = () => {
                   <div className="flex items-center gap-[6px]">
                     <button
                       onClick={() => {
-                        decreaseQuantity(product.id);
                         setInputValues((prev) => ({
                           ...prev,
                           [product.id]: Math.max(
@@ -183,7 +182,6 @@ const ProductDetail = () => {
 
                     <button
                       onClick={() => {
-                        increaseQuantity(product.id);
                         setInputValues((prev) => ({
                           ...prev,
                           [product.id]: (
