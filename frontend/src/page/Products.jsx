@@ -19,11 +19,14 @@ const Products = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
-  // const [currentPage, setCurrentPage] = useState(1);
 
-  // const itemsPerPage = 10;
-  // const indexLastItem = currentPage * itemsPerPage;
-  // const indexFirstItem = indexLastItem - itemsPerPage;
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(16);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const indexLastItem = currentPage * itemsPerPage;
+  const indexFirstItem = indexLastItem - itemsPerPage;
+  const currentProducts = filterProduct.slice(indexFirstItem, indexLastItem);
+  const totalPages = Math.ceil(filterProduct.length / itemsPerPage);
 
   const categoryList = ["Table", "Chair", "Bed", "Wardrobe", "Shelf"];
 
@@ -31,6 +34,24 @@ const Products = () => {
     addToCart(product);
     toast.success(`${product.name} đã được thêm vào giỏ hàng!`);
   };
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (windowWidth >= 1280) {
+      setItemsPerPage(16);
+    } else if (windowWidth >= 680) {
+      setItemsPerPage(12);
+    } else {
+      setItemsPerPage(8);
+    }
+    setCurrentPage(1);
+  }, [windowWidth]);
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -201,8 +222,8 @@ const Products = () => {
             </div>
 
             <div className="grid grid-cols-4 max-xl:grid-cols-3 max-sm:grid-cols-2 gap-[16px] max-xl:gap-[14px] my-[20px]">
-              {filterProduct.length > 0 ? (
-                filterProduct.map((product) => (
+              {currentProducts.length > 0 ? (
+                currentProducts.map((product) => (
                   <div key={product.id}>
                     <div
                       onClick={() => navigate(`/products/${product.id}`)}
@@ -212,7 +233,7 @@ const Products = () => {
                         <img
                           src={product.image}
                           alt={product.name}
-                          className="w-full h-[200px] max-lg:h-[180px] max-md:aspect-square object-cover rounded-md"
+                          className="w-full h-[200px] max-xl:h-[200px] max-sm:h-[180px] max-xl:aspect-square object-cover rounded-md"
                         />
                         {product.status && (
                           <span
@@ -261,6 +282,23 @@ const Products = () => {
                 <p className="col-span-4 text-center text-[#9a9caa] text-[18px] lg:text-[16px] py-10">
                   No products found with the filters you selected.
                 </p>
+              )}
+            </div>
+            <div className="flex justify-center gap-2 mt-10 max-xl:mt-8 flex-wrap">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                (page) => (
+                  <button
+                    key={page}
+                    onClick={() => setCurrentPage(page)}
+                    className={`px-3 py-1 rounded-md border ${
+                      currentPage === page
+                        ? "bg-[#029FAE] text-white border-[#029FAE]"
+                        : "bg-white text-[#272343] border-gray-300 hover:bg-[#029FAE] hover:text-white"
+                    }`}
+                  >
+                    {page}
+                  </button>
+                )
               )}
             </div>
           </div>

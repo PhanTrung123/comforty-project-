@@ -28,7 +28,7 @@ export const CartProvider = ({ children, isFallback }) => {
     }
   }, []);
 
-  const addToCart = (product) => {
+  const addToCart = (product, quantity = 1) => {
     if (!product || !product.id) return;
 
     setCartItems((prev) => {
@@ -36,11 +36,11 @@ export const CartProvider = ({ children, isFallback }) => {
       if (existing) {
         return prev.map((item) =>
           item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
+            ? { ...item, quantity: item.quantity + quantity }
             : item
         );
       } else {
-        return [...prev, { ...product, quantity: 1 }];
+        return [...prev, { ...product, quantity }];
       }
     });
   };

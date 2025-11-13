@@ -19,6 +19,11 @@ const ProductDetail = () => {
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
   const location = useLocation;
 
+  const handleBuyNow = () => {
+    addToCart(product);
+    navigate(`/cart?selected=${product.id}`);
+  };
+
   useEffect(() => {
     if (product) {
       setInputValues((prev) => ({
@@ -44,7 +49,9 @@ const ProductDetail = () => {
     (cate) => cate.id === product?.categoryId
   );
   const handleAddToCart = (product) => {
-    addToCart(product);
+    const quantityToAdd =
+      parseInt(inputValues[product.id] ?? product.quantity, 10) || 1;
+    addToCart(product, quantityToAdd);
     toast.success("Thêm vào giỏ hàng thành công");
   };
 
@@ -56,7 +63,7 @@ const ProductDetail = () => {
 
       <div className="w-full py-[40px] max-lg:py-4 ">
         <div className="max-w-[1320px] mx-auto flex flex-col items-start gap-[60px] max-sm:gap-[20px] px-4">
-          <div className=" bg-[#e1e3e6] text-[#636270] px-[16px] py-[12px] w-full rounded-md flex items-center justify-start gap-[12px] text-[18px] max-lg:text-[16px] ">
+          <div className=" bg-[#e1e3e6] text-[#636270] px-[16px] py-[12px] w-full rounded-[6px] flex items-center justify-start gap-[12px] text-[18px] max-lg:text-[16px] ">
             <span
               onClick={() => {
                 navigate("/");
@@ -171,7 +178,7 @@ const ProductDetail = () => {
                           qty > 0 ? qty : product.quantity
                         );
                       }}
-                      className="h-8 w-16 text-center border border-gray-200 rounded px-1 sm:px-2 py-1 text-[18px] max-lg:text-[16px] max-md:text-[14px]"
+                      className="h-8 w-16 text-center border border-gray-200 rounded  px-2 max-sm:px-1 py-1 text-[18px] max-lg:text-[16px] max-md:text-[14px]"
                     />
 
                     <button
@@ -202,27 +209,24 @@ const ProductDetail = () => {
                   >
                     Add To Cart
                   </button>
-                  <button className="text-[#029FAE] max-sm:w-full border py-[10px] px-[12px] rounded-md">
+                  <button
+                    onClick={handleBuyNow}
+                    className="text-[#029FAE] max-sm:w-full border py-[10px] px-[12px] rounded-md"
+                  >
                     Buy Now
                   </button>
                 </div>
               </div>
             </div>
           </div>
-          <div>
-            <h3 className="text-[18px] xs:text-[20px] sm:text-[24px] lg:text-[32px] font-semibold capitalize text-[#272343] truncate">
-              Products Related to {category.name}
-            </h3>
-            <div className="grid grid-cols-4 "></div>
-          </div>
         </div>
       </div>
       <footer className="w-full border-t border-b border-[#e9eaec] bg-white">
-        <div className="max-w-[1320px] w-full mx-auto px-4 xl:px-0">
+        <div className="max-w-[1320px] w-full mx-auto px-0 max-xl:px-4 ">
           <Footer />
         </div>
-        <section className="flex-1 border-t border-[#e9eaec] w-full mx-auto px-4 sm:px-0">
-          <div className="max-w-[1320px] w-full mx-auto px-4 xl:px-0">
+        <section className="flex-1 border-t border-[#e9eaec] w-full mx-auto px-0 max-sm:px-4 ">
+          <div className="max-w-[1320px] w-full mx-auto px-0 max-xl:px-4 ">
             <Copyright />
           </div>
         </section>

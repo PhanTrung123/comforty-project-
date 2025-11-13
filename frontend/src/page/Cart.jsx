@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { FiPlus, FiMinus, FiTrash } from "react-icons/fi";
 import { FaArrowLeft } from "react-icons/fa6";
@@ -16,7 +16,7 @@ const Cart = () => {
     getItemTotal,
     setQuantity,
   } = useCart();
-
+  const location = useLocation();
   const [selectedItems, setSelectedItems] = useState([]);
   const [inputValues, setInputValues] = useState({});
   const [confirmDeleteId, setConfirmDeleteId] = useState(null);
@@ -43,6 +43,17 @@ const Cart = () => {
   const selectedTotal = cartItems
     .filter((item) => selectedItems.includes(item.id))
     .reduce((sum, item) => sum + getItemTotal(item), 0);
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const selectedId = params.get("selected");
+    if (selectedId) {
+      const NumberId = parseInt(selectedId, 10);
+      if (cartItems.some((item) => item.id === NumberId)) {
+        setSelectedItems([NumberId]);
+      }
+    }
+  });
 
   return (
     <div className="w-full min-h-screen flex flex-col">
